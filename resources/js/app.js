@@ -1,5 +1,5 @@
 import './bootstrap';
-import Alpine from 'alpinejs';
+
 import { createPopper } from '@popperjs/core';
 import Choices from 'choices.js';
 import GLightbox from 'glightbox';
@@ -9,7 +9,9 @@ import noUiSlider from 'nouislider';
 import { lighten } from 'polished';
 import SimpleBar from 'simplebar';
 import SmoothScroll from 'smooth-scroll';
+import Alpine from 'alpinejs';
 import Swiper from 'swiper';
+import 'swiper/css';
 
 
 window.Alpine = Alpine;
@@ -56,26 +58,6 @@ window.onscroll = function () {
     }
 };
 
-function initActiveMenu() {
-    var currentPath = location.pathname == "/" ? "index.html" : location.pathname.substring(1);
-    currentPath = currentPath.substring(currentPath.lastIndexOf("/") + 1);
-    if (currentPath) {
-        var a = document.getElementById("navigation-menu").querySelector('li a[href="' + currentPath + '"]');
-        if (a) {
-            a.classList.add("active");
-            var parentCollapseDiv = a.closest(".dropdown-menu");
-            if (parentCollapseDiv) {
-                if (parentCollapseDiv.parentElement.classList.contains('dropdown')) {
-                    parentCollapseDiv.parentElement.children[0].classList.add("active");
-                    console.log("test", parentCollapseDiv.parentElement)
-                    if (parentCollapseDiv.parentElement.classList.contains('dropdown')) {
-                        parentCollapseDiv.parentElement.children[0].classList.add("active");
-                    }
-                }
-            }
-        }
-    }
-}
 
 // navbar toggler
 document.getElementById("navbar").querySelector(".navbar-toggler").addEventListener("click", function () {
@@ -92,7 +74,7 @@ window.addEventListener('resize', function(){
 });
 
 
-initActiveMenu();
+
 
 
 /************** Testimonial Slider *************/

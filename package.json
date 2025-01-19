@@ -19,10 +19,13 @@
     "dependencies": {
         "@mdi/font": "^7.4.47",
         "@popperjs/core": "^2.11.6",
+        "alertifyjs": "^1.14.0",
+        "apexcharts": "^4.3.0",
         "choices.js": "^11.0.2",
         "feather-icons": "^4.29.2",
         "glightbox": "^3.3.0",
         "gumshoejs": "^5.1.2",
+        "jquery": "^3.7.1",
         "masonry-layout": "^4.2.2",
         "metismenujs": "^1.4.0",
         "nouislider": "^15.8.1",
