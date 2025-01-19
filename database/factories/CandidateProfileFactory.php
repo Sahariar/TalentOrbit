@@ -23,6 +23,7 @@ class CandidateProfileFactory extends Factory
             'phone_number'  => fake()->phoneNumber(),
             'url'           => fake()->url(),
             'is_subscribed' => fake()->boolean(),
+            'image'         => fake()->imageUrl(),
         ];
     }
 }

@@ -30,6 +30,7 @@ class JobPostFactory extends Factory
             'is_active'             => $this->faker->boolean(),
             'apply_count'           => $this->faker->numberBetween(0, 100),
             'view_count'            => $this->faker->numberBetween(0, 100),
+            'featured_image'        => fake()->imageUrl(),
         ];
     }
 }

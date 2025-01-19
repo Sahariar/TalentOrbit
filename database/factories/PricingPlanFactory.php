@@ -17,7 +17,6 @@ class PricingPlanFactory extends Factory
     public function definition(): array
     {
         return [
-            'company_profile_id' => \App\Models\CompanyProfile::factory(),
             'type'               => $this->faker->randomElement(['free', 'premium']),
             'title'              => $this->faker->sentence(),
             'description'        => $this->faker->optional()->paragraph(),

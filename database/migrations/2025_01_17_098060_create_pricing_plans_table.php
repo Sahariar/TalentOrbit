@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('pricing_plans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_profile_id')->constrained()->onDelete('cascade');
             $table->string('type')->comment('free, premium');
             $table->string('title');
             $table->longText('description')->nullable();
