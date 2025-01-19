@@ -26,6 +26,7 @@ return new class extends Migration
             $table->boolean('is_active')->default(false);
             $table->mediumInteger('apply_count')->default(0);
             $table->mediumInteger('view_count')->default(0);
+            $table->string('featured_image');
             $table->timestamps();
         });
     }

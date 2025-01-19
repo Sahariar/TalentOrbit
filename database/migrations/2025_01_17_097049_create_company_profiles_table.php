@@ -21,6 +21,7 @@ return new class extends Migration
             $table->boolean('is_subscribed')->default(false);
             $table->boolean('is_approved')->default(false);
             $table->string('linkedin_url');
+            $table->string('image');
             $table->timestamps();
         });
     }

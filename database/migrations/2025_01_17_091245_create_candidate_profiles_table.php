@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('phone_number');
             $table->string('url');
             $table->boolean('is_subscribed')->default(false);
+            $table->string('image');
             $table->timestamps();
         });
     }

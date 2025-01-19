@@ -25,6 +25,7 @@ class CompanyProfileFactory extends Factory
             'is_subscribed' => fake()->boolean(),
             'is_approved'   => fake()->boolean(),
             'linkedin_url'  => fake()->url(),
+            'image'         => fake()->imageUrl(),
         ];
     }
 }
