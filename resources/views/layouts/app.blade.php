@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="ltr" data-mode="light" class="scroll-smooths group" data-theme-color="sky">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'TalentOrbit') }}</title>
+    <title>{{ config('app.name', 'TalentOrbit') }} - Where Talent Meets Opportunity</title>
 
     <link rel="icon" type="image/png" href="{{ asset('storage/images/talentorbit-fav.png') }}">
 

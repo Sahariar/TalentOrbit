@@ -148,9 +148,8 @@
                 <div class="container mx-auto">
                     <div class="text-center">
                         <p class="mb-0 text-center text-white/50">
-                            ©
-                            <script>document.write(new Date().getFullYear())</script>
-                        TalentOrbit - Where Talent Meets Opportunity.
+                            &copy;
+                {{ now()->year }} Talent Orbit - Where Talent Meets Opportunity.
 
                         </p>
                     </div>

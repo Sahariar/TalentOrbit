@@ -3,9 +3,7 @@
         <div class="grid grid-cols-2 text-dark">
             <div class="grow">
                 &copy;
-                <script>
-                    document.write(new Date().getFullYear());
-                </script> Talent Orbit
+                {{ now()->year }} Talent Orbit - Where Talent Meets Opportunity.
             </div>
         </div>
     </footer>
