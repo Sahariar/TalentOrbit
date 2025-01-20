@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\Auth\RegisteredUserController;
-use App\Http\Controllers\CandidateProfileController;
-use App\Http\Controllers\CompanyProfileController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\JobPostController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CompanyProfileController;
+use App\Http\Controllers\CandidateProfileController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 
 Route::get('/', function () {
     return view('public.index')->with('layout', 'app');;
@@ -49,5 +50,11 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
+// public route
+// Route::get('/jobs', [JobPostController::class, 'index'])->name('jobs');
+Route::resource('jobs', JobPostController::class)->names([
+    'index' => 'jobs',
+    'show' => 'jobs.show'
+]);
 
 require __DIR__.'/auth.php';
