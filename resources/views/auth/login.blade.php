@@ -17,7 +17,7 @@
                             <div class="my-auto">
                                 <div class="text-center">
                                     <h5 class="font-medium text-gray-700 dark:text-gray-100">Login</h5>
-                                    <p class="mt-1 text-gray-500 dark:text-zinc-100/60">Lgoin in to continue to TalentOrbit</p>
+                                    <p class="mt-1 text-gray-500 dark:text-zinc-100/60">Log in in to continue to TalentOrbit</p>
                                 </div>
 
                                 <form method="POST" action="{{ route('login') }}">
