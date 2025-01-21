@@ -13,7 +13,7 @@ class CompanyProfileController extends Controller
     public function dashboard()
     {
         //
-        return view('dashboard.company.index');
+        return view('dashboard.company.index')->with('layout', 'dashboard');
     }
     public function index()
     {
