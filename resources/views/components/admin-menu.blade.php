@@ -1,3 +1,11 @@
+
+<li>
+    <a href="{{ route('admin.dashboard') }}" class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-sky-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
+        <i data-feather="home" fill="#545a6d33"></i>
+        <span data-key="t-dashboard"> Dashboard</span>
+    </a>
+</li>
+
 <li>
     <a href="javascript: void(0);" aria-expanded="false" class="block :rtl:pr-10 py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear nav-menu hover:text-sky-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
         <i data-feather="users" fill="#545a6d33"></i>
@@ -5,26 +13,15 @@
     </a>
     <ul>
         <li>
-            <a href="recoverpw.html" class="pl-[52.8px] pr-6 py-[6.4px] block text-[13.5px] font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-sky-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">Company</a>
+            <a href="{{ route('admin.companies.index') }}" class="pl-[52.8px] pr-6 py-[6.4px] block text-[13.5px] font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-sky-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">Companies</a>
         </li>
         <li>
             <a href="lock-screen.html" class="pl-[52.8px] pr-6 py-[6.4px] block text-[13.5px] font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-sky-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">Candidate</a>
         </li>
-        <li>
-            <a href="logout.html" class="pl-[52.8px] pr-6 py-[6.4px] block text-[13.5px] font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-sky-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">Log Out</a>
-        </li>
-        <li>
-            <a href="confirm-mail.html" class="pl-[52.8px] pr-6 py-[6.4px] block text-[13.5px] font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-sky-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">Confirm Mail</a>
-        </li>
-        <li>
-            <a href="email-verification.html" class="pl-[52.8px] pr-6 py-[6.4px] block text-[13.5px] font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-sky-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">Email Verification</a>
-        </li>
-        <li>
-            <a href="two-step-verification.html" class="pl-[52.8px] pr-6 py-[6.4px] block text-[13.5px] font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-sky-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">Two Step Verification</a>
-        </li>
+
     </ul>
 </li>
-<li class="px-5 py-3 mt-2 text-xs font-medium text-gray-500 cursor-default leading-[18px] group-data-[sidebar-size=sm]:hidden" data-key="t-elements">Elements</li>
+{{-- <li class="px-5 py-3 mt-2 text-xs font-medium text-gray-500 cursor-default leading-[18px] group-data-[sidebar-size=sm]:hidden" data-key="t-elements">Elements</li> --}}
 
     <li>
         <a href="javascript: void(0);" aria-expanded="false" class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear nav-menu hover:text-sky-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">

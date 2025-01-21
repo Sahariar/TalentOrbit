@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobPostController;
 use App\Http\Controllers\ProfileController;
@@ -21,9 +22,9 @@ Route::middleware('guest')->group(function(){
     Route::post('/register/candidate', [RegisteredUserController::class, 'registerCandidate'])->name('register.candidate.submit');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard.index')->with('layout', 'dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard.index')->with('layout', 'dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -31,13 +32,38 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth'])->group(function () {
-    // Admin routes
-    Route::middleware(['role:admin'])->group(function () {
-        // Route::get('/admin/dashboard', [AdminController::class, 'dashboard']);
-        // Route::get('/admin/companies', [AdminController::class, 'companies']);
-        // Route::patch('/admin/companies/{company}/approve', [AdminController::class, 'approveCompany']);
+// Admin Management
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
+    // Dashboard
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+
+    // Companies management
+    Route::prefix('companies')->name('companies.')->group(function () {
+        Route::get('/', [AdminController::class, 'companies'])->name('index');
+        Route::get('/{company}', [AdminController::class, 'companyShow'])->name('show');
+        Route::patch('/{company}/approve', [AdminController::class, 'companyApprove'])->name('approve');
+        Route::patch('/{company}/reject', [AdminController::class, 'companyReject'])->name('reject');
+        Route::delete('/{company}', [AdminController::class, 'companyDelete'])->name('delete');
     });
+
+    // Jobs management
+    Route::prefix('jobs')->name('jobs.')->group(function () {
+        Route::get('/', [AdminController::class, 'jobs'])->name('index');
+        Route::get('/{job}', [AdminController::class, 'jobShow'])->name('show');
+        Route::patch('/{job}/toggle-status', [AdminController::class, 'jobToggleStatus'])->name('toggle-status');
+        Route::delete('/{job}', [AdminController::class, 'jobDelete'])->name('delete');
+    });
+
+    // Candidates management
+    Route::prefix('candidates')->name('candidates.')->group(function () {
+        Route::get('/', [AdminController::class, 'candidates'])->name('index');
+        Route::get('/{candidate}', [AdminController::class, 'candidateShow'])->name('show');
+        Route::delete('/{candidate}', [AdminController::class, 'candidateDelete'])->name('delete');
+    });
+});
+
+
+Route::middleware(['auth'])->group(function () {
 
     // Company routes
     Route::middleware(['role:company'])->group(function () {
@@ -49,6 +75,7 @@ Route::middleware(['auth'])->group(function () {
         // Route::resource('jobs', JobController::class);
     });
 });
+
 
 // public route
 // Route::get('/jobs', [JobPostController::class, 'index'])->name('jobs');
