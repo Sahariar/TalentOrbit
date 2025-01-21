@@ -400,7 +400,7 @@
                                         <!--end col-->
                                         <div class="col-span-12 lg:col-span-3">
                                             <div class="mb-2 mb-md-0">
-                                                <h5 class="mb-1 fs-18"><a href="job-details.html" class="text-gray-900 dark:text-gray-50">{{ $jobPost->title }}</a>
+                                                <h5 class="mb-1 fs-18"><a href="jobs/{{$jobPost->id}}" class="text-gray-900 dark:text-gray-50">{{ $jobPost->title }}</a>
                                                 </h5>
                                                 <p class="mb-0 text-gray-500 fs-14 dark:text-gray-300">{{ $jobPost->company_profile->name ?? 'N/A' }}</p>
                                             </div>
@@ -419,7 +419,8 @@
 
                                         <div class="col-span-12 lg:col-span-2">
                                             <div>
-                                                <p class="mb-0 text-gray-500 dark:text-gray-300"> <i class="mr-1 uil uil-clock-three group-data-[theme-color=violet]:text-violet-500 group-data-[theme-color=sky]:text-sky-500 group-data-[theme-color=red]:text-red-500 group-data-[theme-color=green]:text-green-500 group-data-[theme-color=pink]:text-pink-500 group-data-[theme-color=blue]:text-blue-500"></i> {{ $jobPost->created_at }}</p>
+                                                <p class="mb-0 text-gray-500 dark:text-gray-300"> <i class="mr-1 uil uil-clock-three group-data-[theme-color=violet]:text-violet-500 group-data-[theme-color=sky]:text-sky-500 group-data-[theme-color=red]:text-red-500 group-data-[theme-color=green]:text-green-500 group-data-[theme-color=pink]:text-pink-500 group-data-[theme-color=blue]:text-blue-500">
+                                                    </i> {{ $jobPost->created_at->diffForHumans() }}</p>
                                             </div>
                                         </div>
                                         <!--end col-->
