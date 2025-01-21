@@ -2,14 +2,15 @@
 
 namespace Database\Seeders;
 
-use App\Models\{User,CompanyProfile,CandidateProfile};
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\CandidateProfile;
 use App\Models\Category;
+use App\Models\CompanyProfile;
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\JobPost;
 use App\Models\Payment;
 use App\Models\PricingPlan;
 use App\Models\Tag;
-use Database\Factories\CandidateProfileFactory;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder

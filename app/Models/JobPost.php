@@ -14,11 +14,11 @@ class JobPost extends Model
 
     public function company_profile()
     {
-        return $this->belongsTo(CompanyProfile::class,'company_profile_id','id');
+        return $this->belongsTo(CompanyProfile::class, 'company_profile_id', 'id');
     }
 
     public function category()
     {
-        return $this->belongsTo(Category::class,'category_id','id');
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 }

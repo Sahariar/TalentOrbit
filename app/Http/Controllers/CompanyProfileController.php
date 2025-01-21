@@ -15,6 +15,7 @@ class CompanyProfileController extends Controller
         //
         return view('dashboard.company.index')->with('layout', 'dashboard');
     }
+
     public function index()
     {
         //
@@ -39,5 +40,4 @@ class CompanyProfileController extends Controller
     /**
      * Display the specified resource.
      */
-
 }

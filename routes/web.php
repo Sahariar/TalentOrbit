@@ -1,19 +1,19 @@
 <?php
 
 use App\Http\Controllers\AdminController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\CandidateProfileController;
+use App\Http\Controllers\Company\JobPostController as CompanyJobPostController;
+use App\Http\Controllers\CompanyProfileController;
 use App\Http\Controllers\JobPostController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\CompanyProfileController;
-use App\Http\Controllers\CandidateProfileController;
-use App\Http\Controllers\Auth\RegisteredUserController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('public.index')->with('layout', 'app');;
+    return view('public.index')->with('layout', 'app');
 })->name('home');
 
-
-Route::middleware('guest')->group(function(){
+Route::middleware('guest')->group(function () {
     // Route::get('/register', [RegisteredUserController::class, 'showRegisterationForm'])->name('register');
     Route::get('/register/company', [RegisteredUserController::class, 'showCompanyRegistrationForm'])->name('register.company');
     Route::get('/register/candidate', [RegisteredUserController::class, 'showCandidateRegistrationForm'])->name('register.candidate');
@@ -62,13 +62,20 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     });
 });
 
-
 Route::middleware(['auth'])->group(function () {
 
     // Company routes
-    Route::middleware(['role:company'])->group(function () {
-        Route::get('/company/dashboard', [CompanyProfileController::class, 'dashboard'])->name('company.dashboard');
-        // Route::resource('jobs', JobController::class);
+    Route::prefix('/company')->middleware(['role:company'])->group(function () {
+        Route::get('/dashboard', [CompanyProfileController::class, 'dashboard'])->name('company.dashboard');
+        Route::resource('job-posts', CompanyJobPostController::class)->names([
+            'index' => 'company.job-posts.index',
+            'show' => 'company.job-posts.show',
+            'create' => 'company.job-posts.create',
+            'store' => 'company.job-posts.store',
+            'edit' => 'company.job-posts.edit',
+            'update' => 'company.job-posts.update',
+            'destroy' => 'company.job-posts.destroy',
+        ]);
     });
     Route::middleware(['role:candidate'])->group(function () {
         Route::get('/candidate/dashboard', [CandidateProfileController::class, 'dashboard'])->name('candidate.dashboard');
@@ -76,12 +83,11 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
-
 // public route
 // Route::get('/jobs', [JobPostController::class, 'index'])->name('jobs');
 Route::resource('jobs', JobPostController::class)->names([
     'index' => 'jobs',
-    'show' => 'jobs.show'
+    'show' => 'jobs.show',
 ]);
 
 require __DIR__.'/auth.php';

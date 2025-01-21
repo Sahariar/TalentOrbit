@@ -5,48 +5,49 @@ namespace App\Http\Controllers;
 use App\Models\CandidateProfile;
 use App\Models\CompanyProfile;
 use App\Models\JobPost;
-use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
     //
-    public function dashboard(){
-        $stats =[
+    public function dashboard()
+    {
+        $stats = [
             'total_companies' => CompanyProfile::count(),
-            'pending_companies' => CompanyProfile::where('is_approved' , false)
-            ->count(),
+            'pending_companies' => CompanyProfile::where('is_approved', false)
+                ->count(),
             'total_jobs' => JobPost::count(),
             'active_jobs' => JobPost::where('is_active', true)
-            ->where('expiration_date' ,'>=' ,now())->count(),
+                ->where('expiration_date', '>=', now())->count(),
             'total_candidates' => CandidateProfile::count(),
         ];
 
         $recent_companies = CompanyProfile::with('user')
-        ->latest()->take(5)->get();
+            ->latest()->take(5)->get();
 
         $recent_jobs = JobPost::with('company_profile')
-        ->latest()->take(5)->get();
+            ->latest()->take(5)->get();
 
-        $recent_candidates= CandidateProfile::with('user')
-        ->latest()->take(5)->get();
+        $recent_candidates = CandidateProfile::with('user')
+            ->latest()->take(5)->get();
 
-        return view('dashboard.index' , compact('stats' , 'recent_companies','recent_jobs' , 'recent_candidates' ));
+        return view('dashboard.index', compact('stats', 'recent_companies', 'recent_jobs', 'recent_candidates'));
     }
 
-    public function companies(){
+    public function companies()
+    {
         $companies = CompanyProfile::with('user')
-        ->withCount('job_posts')->latest()->paginate(10);
+            ->withCount('job_posts')->latest()->paginate(10);
 
-        return view('dashboard.admin.companies.index' , compact('companies' ));
+        return view('dashboard.admin.companies.index', compact('companies'));
     }
 
-    public function companyShow(CompanyProfile $companyProfile){
+    public function companyShow(CompanyProfile $companyProfile)
+    {
 
-        $companyProfile->load(['user' , 'job_posts'=> function ($query){
+        $companyProfile->load(['user', 'job_posts' => function ($query) {
             $query->latest();
         }]);
 
-        return view('dashboard.admin.companies.show' , compact('companyProfile' ));
+        return view('dashboard.admin.companies.show', compact('companyProfile'));
     }
-
 }
