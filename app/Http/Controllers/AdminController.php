@@ -53,6 +53,7 @@ class AdminController extends Controller
 
         return view('dashboard.admin.companies.show', compact('companyProfile'));
     }
+
     public function companyProfileApprove(CompanyProfile $companyProfile)
     {
         $companyProfile->update(['is_approved' => true]);
@@ -60,6 +61,7 @@ class AdminController extends Controller
 
         return redirect()->back()->with('success', 'Company has been approved successfully.');
     }
+
     public function CompanyProfileReject(CompanyProfile $companyProfile)
     {
         $companyProfile->update(['is_approved' => false]);
@@ -70,7 +72,7 @@ class AdminController extends Controller
 
     public function companyProfileDelete(CompanyProfile $companyProfile)
     {
-        if($companyProfile->image){
+        if ($companyProfile->image) {
             Storage::disk('public')->delete($companyProfile->image);
         }
         $user = User::find($companyProfile->user_id);
@@ -79,6 +81,7 @@ class AdminController extends Controller
         }
         // Delete the company profile
         $companyProfile->delete();
+
         return redirect()->route('admin.companies.index')->with('success', 'Company has been Deleted Successfully.');
     }
 
@@ -88,15 +91,17 @@ class AdminController extends Controller
 
         return view('dashboard.admin.candidates.index', compact('candidates'));
     }
+
     public function candidateProfileShow(CandidateProfile $candidate)
     {
         // $candidate = ;
         // dd($candidate);
         return view('dashboard.admin.candidates.show', compact('candidate'));
     }
+
     public function candidateDelete(CandidateProfile $candidate)
     {
-        if($candidate->image){
+        if ($candidate->image) {
             Storage::disk('public')->delete($candidate->image);
         }
         $user = User::find($candidate->user_id);
@@ -105,6 +110,7 @@ class AdminController extends Controller
         }
         // Delete the candidate profile
         $candidate->delete();
+
         return redirect()->route('admin.candidates.index')->with('success', 'Candidate has been Deleted Successfully.');
     }
 

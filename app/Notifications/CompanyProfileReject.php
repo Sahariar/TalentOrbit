@@ -3,7 +3,6 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -35,12 +34,12 @@ class CompanyProfileReject extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-        ->subject('Company Registration Update')
-        ->line('Your company registration has been reviewed.')
-        ->line('Unfortunately, we cannot approve your registration at this time.')
-        ->line('Please contact our support team for more information.')
+            ->subject('Company Registration Update')
+            ->line('Your company registration has been reviewed.')
+            ->line('Unfortunately, we cannot approve your registration at this time.')
+            ->line('Please contact our support team for more information.')
         // ->action('Contact Support', route('contact'))
-        ->line('Thank you for your interest in our platform.');
+            ->line('Thank you for your interest in our platform.');
     }
 
     /**

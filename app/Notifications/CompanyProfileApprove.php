@@ -3,7 +3,6 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -35,11 +34,11 @@ class CompanyProfileApprove extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-        ->subject('Company Registration Approved')
-        ->line('Congratulations! Your company registration has been approved.')
-        ->line('You can now start posting jobs on our platform.')
-        ->action('Post a Job', route('jobs.create'))
-        ->line('Thank you for choosing our platform!');
+            ->subject('Company Registration Approved')
+            ->line('Congratulations! Your company registration has been approved.')
+            ->line('You can now start posting jobs on our platform.')
+            ->action('Post a Job', route('jobs.create'))
+            ->line('Thank you for choosing our platform!');
     }
 
     /**
