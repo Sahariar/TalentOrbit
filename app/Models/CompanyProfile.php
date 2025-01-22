@@ -19,7 +19,7 @@ class CompanyProfile extends Model
 
     public function job_posts()
     {
-        return $this->hasMany(JobPost::class);
+        return $this->hasMany(JobPost::class , 'company_profile_id');
     }
 
     public function payment()

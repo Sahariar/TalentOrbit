@@ -40,14 +40,14 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::prefix('companies')->name('companies.')->group(function () {
         Route::get('/', [AdminController::class, 'companies'])->name('index');
         Route::get('/{companyProfile}', [AdminController::class, 'companyProfileShow'])->name('show');
-        Route::patch('/{companyProfile}/approve', [AdminController::class, 'CompanyProfileApprove'])->name('approve');
+        Route::patch('/{companyProfile}/approve', [AdminController::class, 'companyProfileApprove'])->name('approve');
         Route::patch('/{companyProfile}/reject', [AdminController::class, 'companyProfileReject'])->name('reject');
-        Route::delete('/{companyProfileProfile}', [AdminController::class, 'CompanyProfileDelete'])->name('delete');
+        Route::delete('/{companyProfile}', [AdminController::class, 'companyProfileDelete'])->name('delete');
     });
 
     // Jobs management
-    Route::prefix('job_posts')->name('jobs.')->group(function () {
-        Route::get('/', [AdminController::class, 'jobs'])->name('index');
+    Route::prefix('job_posts')->name('job_posts.')->group(function () {
+        Route::get('/', [AdminController::class, 'job_posts'])->name('index');
         Route::get('/{job}', [AdminController::class, 'jobShow'])->name('show');
         Route::patch('/{job}/toggle-status', [AdminController::class, 'jobToggleStatus'])->name('toggle-status');
         Route::delete('/{job}', [AdminController::class, 'jobDelete'])->name('delete');
@@ -56,7 +56,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     // Candidates management
     Route::prefix('candidates')->name('candidates.')->group(function () {
         Route::get('/', [AdminController::class, 'candidates'])->name('index');
-        Route::get('/{candidate}', [AdminController::class, 'candidateShow'])->name('show');
+        Route::get('/{candidate}', [AdminController::class, 'candidateProfileShow'])->name('show');
         Route::delete('/{candidate}', [AdminController::class, 'candidateDelete'])->name('delete');
     });
 });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CandidateProfile;
 use App\Models\CompanyProfile;
 use App\Models\JobPost;
+use App\Models\User;
 use App\Notifications\CompanyProfileApprove;
 use App\Notifications\CompanyProfileReject;
 use Illuminate\Support\Facades\Storage;
@@ -52,7 +53,7 @@ class AdminController extends Controller
 
         return view('dashboard.admin.companies.show', compact('companyProfile'));
     }
-    public function CompanyProfileApprove(CompanyProfile $companyProfile)
+    public function companyProfileApprove(CompanyProfile $companyProfile)
     {
         $companyProfile->update(['is_approved' => true]);
         $companyProfile->user->notify(new CompanyProfileApprove);
@@ -72,7 +73,12 @@ class AdminController extends Controller
         if($companyProfile->image){
             Storage::disk('public')->delete($companyProfile->image);
         }
-        $companyProfile->user->delete();
+        $user = User::find($companyProfile->user_id);
+        if ($user) {
+            $user->delete();
+        }
+        // Delete the company profile
+        $companyProfile->delete();
         return redirect()->route('admin.companies.index')->with('success', 'Company has been Deleted Successfully.');
     }
 
@@ -82,4 +88,33 @@ class AdminController extends Controller
 
         return view('dashboard.admin.candidates.index', compact('candidates'));
     }
+    public function candidateProfileShow(CandidateProfile $candidate)
+    {
+        // $candidate = ;
+        // dd($candidate);
+        return view('dashboard.admin.candidates.show', compact('candidate'));
+    }
+    public function candidateDelete(CandidateProfile $candidate)
+    {
+        if($candidate->image){
+            Storage::disk('public')->delete($candidate->image);
+        }
+        $user = User::find($candidate->user_id);
+        if ($user) {
+            $user->delete();
+        }
+        // Delete the candidate profile
+        $candidate->delete();
+        return redirect()->route('admin.candidates.index')->with('success', 'Candidate has been Deleted Successfully.');
+    }
+
+    // job posts
+
+    // public function job_posts(){
+    //     $jobs = JobPost::with('companyProfile')
+    //     ->latest()
+    //     ->paginate(10);
+    //     return view('admin.job_posts.index', compact('jobs'));
+    // }
+
 }
