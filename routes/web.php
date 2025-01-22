@@ -1,24 +1,23 @@
 <?php
 
 use App\Http\Controllers\AdminController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\CandidateProfileController;
+use App\Http\Controllers\CompanyProfileController;
 use App\Http\Controllers\JobPostController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\CompanyProfileController;
-use App\Http\Controllers\CandidateProfileController;
-use App\Http\Controllers\Auth\RegisteredUserController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('public.index')->with('layout', 'app');;
+    return view('public.index')->with('layout', 'app');
 })->name('home');
 
-
-Route::middleware('guest')->group(function(){
+Route::middleware('guest')->group(function () {
     // Route::get('/register', [RegisteredUserController::class, 'showRegisterationForm'])->name('register');
-    Route::get('/register/company', [RegisteredUserController::class, 'showCompanyRegistrationForm'])->name('register.company');
+    Route::get('/register/CompanyProfile', [RegisteredUserController::class, 'showCompanyProfileRegistrationForm'])->name('register.CompanyProfile');
     Route::get('/register/candidate', [RegisteredUserController::class, 'showCandidateRegistrationForm'])->name('register.candidate');
 
-    Route::post('/register/company', [RegisteredUserController::class, 'registerCompany'])->name('register.company.submit');
+    Route::post('/register/CompanyProfile', [RegisteredUserController::class, 'registerCompanyProfile'])->name('register.CompanyProfile.submit');
     Route::post('/register/candidate', [RegisteredUserController::class, 'registerCandidate'])->name('register.candidate.submit');
 });
 
@@ -40,14 +39,14 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     // Companies management
     Route::prefix('companies')->name('companies.')->group(function () {
         Route::get('/', [AdminController::class, 'companies'])->name('index');
-        Route::get('/{company}', [AdminController::class, 'companyShow'])->name('show');
-        Route::patch('/{company}/approve', [AdminController::class, 'companyApprove'])->name('approve');
-        Route::patch('/{company}/reject', [AdminController::class, 'companyReject'])->name('reject');
-        Route::delete('/{company}', [AdminController::class, 'companyDelete'])->name('delete');
+        Route::get('/{companyProfile}', [AdminController::class, 'companyProfileShow'])->name('show');
+        Route::patch('/{companyProfile}/approve', [AdminController::class, 'CompanyProfileApprove'])->name('approve');
+        Route::patch('/{companyProfile}/reject', [AdminController::class, 'companyProfileReject'])->name('reject');
+        Route::delete('/{companyProfileProfile}', [AdminController::class, 'CompanyProfileDelete'])->name('delete');
     });
 
     // Jobs management
-    Route::prefix('jobs')->name('jobs.')->group(function () {
+    Route::prefix('job_posts')->name('jobs.')->group(function () {
         Route::get('/', [AdminController::class, 'jobs'])->name('index');
         Route::get('/{job}', [AdminController::class, 'jobShow'])->name('show');
         Route::patch('/{job}/toggle-status', [AdminController::class, 'jobToggleStatus'])->name('toggle-status');
@@ -62,12 +61,11 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     });
 });
 
-
 Route::middleware(['auth'])->group(function () {
 
-    // Company routes
-    Route::middleware(['role:company'])->group(function () {
-        Route::get('/company/dashboard', [CompanyProfileController::class, 'dashboard'])->name('company.dashboard');
+    // CompanyProfile routes
+    Route::middleware(['role:CompanyProfile'])->group(function () {
+        Route::get('/CompanyProfile/dashboard', [CompanyProfileController::class, 'dashboard'])->name('CompanyProfile.dashboard');
         // Route::resource('jobs', JobController::class);
     });
     Route::middleware(['role:candidate'])->group(function () {
@@ -76,12 +74,11 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
-
 // public route
 // Route::get('/jobs', [JobPostController::class, 'index'])->name('jobs');
 Route::resource('jobs', JobPostController::class)->names([
     'index' => 'jobs',
-    'show' => 'jobs.show'
+    'show' => 'jobs.show',
 ]);
 
 require __DIR__.'/auth.php';

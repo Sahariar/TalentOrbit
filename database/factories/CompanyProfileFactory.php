@@ -17,15 +17,15 @@ class CompanyProfileFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id'       => \App\Models\User::factory(),
-            'name'          => fake()->company(),
-            'description'   => fake()->optional()->paragraph(),
-            'phone_number'  => fake()->phoneNumber(),
-            'url'           => fake()->url(),
+            'user_id' => \App\Models\User::factory(),
+            'name' => fake()->company(),
+            'description' => fake()->optional()->paragraph(),
+            'phone_number' => fake()->phoneNumber(),
+            'url' => fake()->url(),
             'is_subscribed' => fake()->boolean(),
-            'is_approved'   => fake()->boolean(),
-            'linkedin_url'  => fake()->url(),
-            'image'         => fake()->imageUrl(),
+            'is_approved' => fake()->boolean(),
+            'linkedin_url' => fake()->url(),
+            'image' => fake()->imageUrl(),
         ];
     }
 }

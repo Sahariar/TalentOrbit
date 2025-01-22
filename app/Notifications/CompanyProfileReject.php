@@ -3,22 +3,20 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewCompanyRegistration extends Notification
+class CompanyProfileReject extends Notification
 {
     use Queueable;
-
-    private $company;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct($company)
+    public function __construct()
     {
         //
-        $this->company = $company;
     }
 
     /**
@@ -37,9 +35,12 @@ class NewCompanyRegistration extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->line('A new company has registered: '.$this->company->name)
-            ->action('Review Company', route('admin.companies.show', $this->company->id))
-            ->line('Please review their information and approve or reject their registration.');
+        ->subject('Company Registration Update')
+        ->line('Your company registration has been reviewed.')
+        ->line('Unfortunately, we cannot approve your registration at this time.')
+        ->line('Please contact our support team for more information.')
+        // ->action('Contact Support', route('contact'))
+        ->line('Thank you for your interest in our platform.');
     }
 
     /**
