@@ -3,7 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CandidateProfileController;
-use App\Http\Controllers\CompanyProfileController;
+use App\Http\Controllers\Company\JobPostController as CompanyJobPostController;
 use App\Http\Controllers\RSSFeedController;
 use App\Http\Controllers\JobPostController;
 use App\Http\Controllers\ProfileController;
@@ -63,11 +63,22 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
 });
 
 Route::middleware(['auth'])->group(function () {
-
-    // CompanyProfile routes
-    Route::middleware(['role:CompanyProfile'])->group(function () {
-        Route::get('/CompanyProfile/dashboard', [CompanyProfileController::class, 'dashboard'])->name('CompanyProfile.dashboard');
-        // Route::resource('jobs', JobController::class);
+  
+    // Company routes
+    Route::prefix('/company')->middleware(['role:company'])->group(function () {
+        Route::get('/dashboard', [CompanyProfileController::class, 'dashboard'])->name('company.dashboard');
+        Route::get('/job-posts/search',[CompanyJobPostController::class,'search'])->name('company.job-posts.search');
+        Route::resource('job-posts', CompanyJobPostController::class)->names([
+            'index' => 'company.job-posts.index',
+            'show' => 'company.job-posts.show',
+            'create' => 'company.job-posts.create',
+            'store' => 'company.job-posts.store',
+            'edit' => 'company.job-posts.edit',
+            'update' => 'company.job-posts.update',
+            'destroy' => 'company.job-posts.destroy',
+        ]);
+        Route::resource('company-profile', CompanyProfileController::class);
+        // Route::get('/profile/{profile}',[CompanyProfileController::class,'show'])->name('company.profile.show');
     });
     Route::middleware(['role:candidate'])->group(function () {
         Route::get('/candidate/dashboard', [CandidateProfileController::class, 'dashboard'])->name('candidate.dashboard');
@@ -75,12 +86,20 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
-// public route
-// Route::get('/jobs', [JobPostController::class, 'index'])->name('jobs');
 Route::resource('jobs', JobPostController::class)->names([
     'index' => 'jobs',
     'show' => 'jobs.show',
 ]);
+
+Route::resource('company', CompanyProfileController::class)->names([
+    'index' => 'companies',
+    'show' => 'company.show'
+]);
+
+Route::resource('candidate', CandidateProfileController::class)->names([
+    'index' => 'candidates',
+    'show' => 'candidate.show'
+
 
 
 Route::get('/rss-feed', [RSSFeedController::class, 'index'])->name('rss.feed');

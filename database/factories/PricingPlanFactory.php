@@ -17,7 +17,7 @@ class PricingPlanFactory extends Factory
     public function definition(): array
     {
         return [
-            'type' => $this->faker->randomElement(['free', 'premium']),
+            'max_jobs' => $this->faker->numberBetween(0, 100),
             'title' => $this->faker->sentence(),
             'description' => $this->faker->optional()->paragraph(),
             'price' => $this->faker->numberBetween(0, 100000),

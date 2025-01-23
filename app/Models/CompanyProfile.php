@@ -9,9 +9,15 @@ use Illuminate\Notifications\Notifiable;
 class CompanyProfile extends Model
 {
     /** @use HasFactory<\Database\Factories\CompanyProfileFactory> */
-    use HasFactory , Notifiable;
+    use HasFactory,Notifiable;
+
 
     protected $guarded = ['id'];
+
+    public static function paginate(int $int)
+    {
+        return static::query()->paginate($int);
+    }
 
     public function user()
     {

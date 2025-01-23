@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pricing_plans', function (Blueprint $table) {
             $table->id();
-            $table->string('type')->comment('free, premium');
+            $table->integer('max_jobs')->default(0);
             $table->string('title');
             $table->longText('description')->nullable();
             $table->mediumInteger('price')->default(0);

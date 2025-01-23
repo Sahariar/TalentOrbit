@@ -10,6 +10,7 @@ use App\Notifications\CompanyProfileApprove;
 use App\Notifications\CompanyProfileReject;
 use Illuminate\Support\Facades\Storage;
 
+
 class AdminController extends Controller
 {
     //
@@ -44,6 +45,7 @@ class AdminController extends Controller
 
         return view('dashboard.admin.companies.index', compact('companies'));
     }
+
 
     public function companyProfileShow(CompanyProfile $companyProfile)
     {
