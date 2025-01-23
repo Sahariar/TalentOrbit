@@ -14,11 +14,13 @@ class CandidateProfileController extends Controller
 
         return view('public.candidate.index', compact('candidates'));
     }
+
     public function dashboard()
     {
         //
         return view('dashboard.candidate.index');
     }
+
     /**
      * Show the form for creating a new resource.
      */

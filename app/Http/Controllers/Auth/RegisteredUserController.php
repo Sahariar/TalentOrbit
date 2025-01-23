@@ -26,6 +26,7 @@ class RegisteredUserController extends Controller
     public function create(): View
     {
         $roles = Config::get('roles');
+
         return view('auth.register', compact('roles'));
     }
 
@@ -42,14 +43,14 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'role'=> ['required' , 'string' , Rule::in(array_keys(config('roles')))],
+            'role' => ['required', 'string', Rule::in(array_keys(config('roles')))],
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role'=> $request->role,
+            'role' => $request->role,
         ]);
 
         event(new Registered($user));
@@ -59,13 +60,18 @@ class RegisteredUserController extends Controller
         return redirect(route('dashboard', absolute: false));
     }
 
-    public function showCompanyRegistrationForm(){
+    public function showCompanyRegistrationForm()
+    {
         return view('auth.register-company');
     }
-    public function showCandidateRegistrationForm(){
+
+    public function showCandidateRegistrationForm()
+    {
         return view('auth.register-candidate');
     }
-    public function registerCompany(Request $request){
+
+    public function registerCompany(Request $request)
+    {
 
         // dd($request->all());
         $request->validate([
@@ -117,6 +123,7 @@ class RegisteredUserController extends Controller
         return redirect()->route('company.dashboard')
             ->with('success', 'Registration successful. Please wait for admin approval to post jobs.');
     }
+
     public function registerCandidate(Request $request)
     {
         $request->validate([
@@ -157,5 +164,4 @@ class RegisteredUserController extends Controller
         return redirect()->route('candidate.dashboard')
             ->with('success', 'Registration successful. You can now browse jobs.');
     }
-
 }

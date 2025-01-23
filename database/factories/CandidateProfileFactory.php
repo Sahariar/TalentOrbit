@@ -17,13 +17,13 @@ class CandidateProfileFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id'       => \App\Models\User::factory(),
-            'name'          => fake()->name(),
-            'description'   => fake()->optional()->paragraph(),
-            'phone_number'  => fake()->phoneNumber(),
-            'url'           => fake()->url(),
+            'user_id' => \App\Models\User::factory(),
+            'name' => fake()->name(),
+            'description' => fake()->optional()->paragraph(),
+            'phone_number' => fake()->phoneNumber(),
+            'url' => fake()->url(),
             'is_subscribed' => fake()->boolean(),
-            'image'         => fake()->imageUrl(),
+            'image' => fake()->imageUrl(),
         ];
     }
 }

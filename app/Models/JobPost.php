@@ -4,21 +4,27 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class JobPost extends Model
 {
     /** @use HasFactory<\Database\Factories\JobPostFactory> */
-    use HasFactory;
+    use HasFactory,Notifiable;
 
     protected $guarded = ['id'];
 
     public function company_profile()
     {
-        return $this->belongsTo(CompanyProfile::class,'company_profile_id','id');
+        return $this->belongsTo(CompanyProfile::class, 'company_profile_id', 'id');
     }
 
     public function category()
     {
-        return $this->belongsTo(Category::class,'category_id','id');
+        return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
     }
 }

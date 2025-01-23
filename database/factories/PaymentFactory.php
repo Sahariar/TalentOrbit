@@ -17,10 +17,10 @@ class PaymentFactory extends Factory
     public function definition(): array
     {
         return [
-            'company_profile_id'    => \App\Models\CompanyProfile::factory(),
-            'pricing_plan_id'       => \App\Models\PricingPlan::factory(),
-            'transaction_id'        => $this->faker->unique()->uuid(),
-            'amount'                => $this->faker->numberBetween(100000, 1000000),
+            'company_profile_id' => \App\Models\CompanyProfile::factory(),
+            'pricing_plan_id' => \App\Models\PricingPlan::factory(),
+            'transaction_id' => $this->faker->unique()->uuid(),
+            'amount' => $this->faker->numberBetween(100000, 1000000),
         ];
     }
 }

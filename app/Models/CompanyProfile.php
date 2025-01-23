@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class CompanyProfile extends Model
 {
     /** @use HasFactory<\Database\Factories\CompanyProfileFactory> */
-    use HasFactory;
+    use HasFactory,Notifiable;
 
     protected $guarded = ['id'];
 
@@ -19,7 +20,7 @@ class CompanyProfile extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id','id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function job_posts()
