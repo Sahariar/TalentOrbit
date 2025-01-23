@@ -63,7 +63,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
 });
 
 Route::middleware(['auth'])->group(function () {
-  
+
     // Company routes
     Route::prefix('/company')->middleware(['role:company'])->group(function () {
         Route::get('/dashboard', [CompanyProfileController::class, 'dashboard'])->name('company.dashboard');
@@ -99,7 +99,7 @@ Route::resource('company', CompanyProfileController::class)->names([
 Route::resource('candidate', CandidateProfileController::class)->names([
     'index' => 'candidates',
     'show' => 'candidate.show'
-
+]);
 
 
 Route::get('/rss-feed', [RSSFeedController::class, 'index'])->name('rss.feed');
