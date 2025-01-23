@@ -9,7 +9,7 @@ use App\Http\Controllers\CandidateProfileController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 
 Route::get('/', function () {
-    return view('public.index')->with('layout', 'app');;
+    return view('public.index')->with('layout', 'app');
 })->name('home');
 
 
@@ -76,12 +76,19 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
-
-// public route
-// Route::get('/jobs', [JobPostController::class, 'index'])->name('jobs');
 Route::resource('jobs', JobPostController::class)->names([
     'index' => 'jobs',
     'show' => 'jobs.show'
+]);
+
+Route::resource('company', CompanyProfileController::class)->names([
+    'index' => 'companies',
+    'show' => 'company.show'
+]);
+
+Route::resource('candidate', CandidateProfileController::class)->names([
+    'index' => 'candidates',
+    'show' => 'candidate.show'
 ]);
 
 require __DIR__.'/auth.php';
