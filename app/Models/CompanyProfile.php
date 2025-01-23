@@ -13,6 +13,11 @@ class CompanyProfile extends Model
 
     protected $guarded = ['id'];
 
+    public static function paginate(int $int)
+    {
+        return static::query()->paginate($int);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');

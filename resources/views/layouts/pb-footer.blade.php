@@ -43,13 +43,8 @@
                             <p class="mb-6 text-white text-16">Company</p>
                             <ul class="space-y-4">
                                 <li class="text-sm transition-all duration-500 ease-in-out text-white/50 hover:text-gray-50 hover:text-base dark:text-gray-300 dark:hover:text-gray-50">
-                                    <a href="about.html">
-                                        <i class="mdi mdi-chevron-right"></i> About Us
-                                    </a>
-                                </li>
-                                <li class="text-sm transition-all duration-500 ease-in-out text-white/50 hover:text-gray-50 hover:text-base dark:text-gray-300 dark:hover:text-gray-50">
-                                    <a href="contact.html">
-                                        <i class="mdi mdi-chevron-right"></i> Contact Us
+                                    <a href="{{ route('companies') }}">
+                                        <i class="mdi mdi-chevron-right"></i> All companies
                                     </a>
                                 </li>
                                 <li class="text-sm transition-all duration-500 ease-in-out text-white/50 hover:text-gray-50 hover:text-base dark:text-gray-300 dark:hover:text-gray-50">
@@ -85,11 +80,6 @@
                                 <li class="text-sm transition-all duration-500 ease-in-out text-white/50 hover:text-gray-50 hover:text-base dark:text-gray-300 dark:hover:text-gray-50">
                                     <a href="{{ route('jobs') }}">
                                         <i class="mdi mdi-chevron-right"></i> Browser Jobs
-                                    </a>
-                                </li>
-                                <li class="text-sm transition-all duration-500 ease-in-out text-white/50 hover:text-gray-50 hover:text-base dark:text-gray-300 dark:hover:text-gray-50">
-                                    <a href="{{ route('jobs') }}">
-                                        <i class="mdi mdi-chevron-right"></i> Job Details
                                     </a>
                                 </li>
                             </ul>
@@ -130,6 +120,16 @@
                                 <li class="text-sm transition-all duration-500 ease-in-out text-white/50 hover:text-gray-50 hover:text-base dark:text-gray-300 dark:hover:text-gray-50">
                                     <a href="privacy-policy.html">
                                         <i class="mdi mdi-chevron-right"></i> Privacy Policy
+                                    </a>
+                                </li>
+                                <li class="text-sm transition-all duration-500 ease-in-out text-white/50 hover:text-gray-50 hover:text-base dark:text-gray-300 dark:hover:text-gray-50">
+                                    <a href="contact.html">
+                                        <i class="mdi mdi-chevron-right"></i> About Us
+                                    </a>
+                                </li>
+                                <li class="text-sm transition-all duration-500 ease-in-out text-white/50 hover:text-gray-50 hover:text-base dark:text-gray-300 dark:hover:text-gray-50">
+                                    <a href="contact.html">
+                                        <i class="mdi mdi-chevron-right"></i> Contact Us
                                     </a>
                                 </li>
                             </ul>

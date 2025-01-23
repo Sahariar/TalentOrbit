@@ -36,9 +36,12 @@ class JobPostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(JobPost $jobPost)
+    public function show(JobPost $job)
     {
-        //
+        $job->load('company_profile', 'category');
+        $jobPost = $job;
+
+        return view('public.job.show', compact('jobPost'));
     }
 
     /**

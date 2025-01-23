@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\{CompanyProfile};
 use Illuminate\Http\Request;
 use App\Services\{FetchAuthCompanyProfile};
@@ -9,10 +10,7 @@ use App\Http\Requests\{CreateOrUpdateCompanyProfileRequest};
 
 class CompanyProfileController extends Controller
 {
-    //
-    /**
-     * Display a listing of the resource.
-     */
+
     public function dashboard()
     {
         return view('dashboard.company.index')->with('layout', 'dashboard');
@@ -25,22 +23,16 @@ class CompanyProfileController extends Controller
         return view('dashboard.company.profile.index', compact('companyProfile'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         //
     }
-
     /**
      * Display the specified resource.
      */
