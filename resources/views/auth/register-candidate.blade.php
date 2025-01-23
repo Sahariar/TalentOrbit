@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="h-screen md:overflow-hidden">
             <div class="grid grid-cols-1 md:grid-cols-12 ">
-                <div class="relative z-50 col-span-12 md:col-span-5 lg:col-span-4 xl:col-span-3">
+                <div class="relative z-50 col-span-12 md:col-span-5 lg:col-span-4">
                     <div class="w-full p-10 bg-white xl:p-12 dark:bg-zinc-800">
                         <div class="flex h-[90vh] flex-col">
                             <div class="mx-auto mb-12">
@@ -116,7 +116,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-span-12 md:col-span-7 lg:col-span-8 xl:col-span-9">
+                <div class="col-span-12 md:col-span-7 lg:col-span-8 xl:col-span-8">
                     <div class="h-screen bg-cover relative p-5 ">
                         <div class="absolute inset-0 bg-sky-900/80"></div>
 

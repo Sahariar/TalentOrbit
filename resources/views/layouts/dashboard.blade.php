@@ -18,6 +18,10 @@
         @include('layouts.dash-footer')
     </main>
 
+    <script src="
+https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js
+"></script>
     @vite(['resources/js/dashboard.js'])
+
 </body>
 </html>
