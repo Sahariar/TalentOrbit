@@ -11,4 +11,9 @@ class Tag extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    public function job_posts()
+    {
+        return $this->belongsToMany(JobPost::class);
+    }
 }
