@@ -15,7 +15,7 @@
                             </li>
                             <li>
                                 <div class="flex items-center rtl:mr-2">
-                                   <i class="font-semibold text-gray-600 align-middle far fa-angle-right text-13 rtl:rotate-180 dark:text-zinc-100"></i>
+                                    <i class="font-semibold text-gray-600 align-middle far fa-angle-right text-13 rtl:rotate-180 dark:text-zinc-100"></i>
                                     <a href="#" class="text-sm font-medium text-gray-500 ltr:ml-2 rtl:mr-2 hover:text-gray-900 ltr:md:ml-2 rtl:md:mr-2 dark:text-gray-100 dark:hover:text-white">Dashboard</a>
                                 </div>
                             </li>
@@ -23,7 +23,7 @@
                     </nav>
                 </div>
             </div>
-            <div class="grid grid-cols-1 gap-6 gap-y-0 2xl:gap-6 md:grid-cols-2 2xl:grid-cols-4">
+            <div class="grid grid-cols-1 gap-6 gap-y-0 2xl:gap-6 md:grid-cols-2 2xl:grid-cols-3">
                 <div class="card dark:bg-zinc-800 dark:border-zinc-600">
                     <div class="card-body">
                         <div>

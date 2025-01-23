@@ -11,6 +11,7 @@ class CompanyProfile extends Model
     /** @use HasFactory<\Database\Factories\CompanyProfileFactory> */
     use HasFactory,Notifiable;
 
+
     protected $guarded = ['id'];
 
     public static function paginate(int $int)
@@ -25,7 +26,7 @@ class CompanyProfile extends Model
 
     public function job_posts()
     {
-        return $this->hasMany(JobPost::class);
+        return $this->hasMany(JobPost::class, 'company_profile_id');
     }
 
     public function payment()
