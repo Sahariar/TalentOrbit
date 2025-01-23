@@ -27,11 +27,9 @@ class CreateOrUpdateCompanyJobPostRequest extends FormRequest
             'description'           => 'required',
             'apply_link'            => 'string',
             'job_expiration_date'   => 'required|date',
-            'is_public'             => 'boolean',
             'is_available'          => 'boolean',
             'location'              => 'required|string|max:255',
             'salary_range'          => 'required|string',
-            'is_active'             => 'boolean',
             'featured_image'        => 'file'
         ];
     }

@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Company;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Services\{FetchCompanyProfileJobPosts};
+use App\Services\{FetchCompanyProfileJobPosts,FetchCategories,FetchAuthCompanyProfile};
 use App\Http\Requests\{CreateOrUpdateCompanyJobPostRequest};
-use App\Models\{JobPost,CompanyProfile,Category};
+use App\Models\{JobPost};
 
 class JobPostController extends Controller
 {
@@ -19,23 +19,39 @@ class JobPostController extends Controller
 
         $jobPosts       = $fetchCompanyProfileJobPosts->fetch()['jobPosts'];
 
-        return view('dashboard.company.job-posts', compact('jobPosts'));
+        return view('dashboard.company.job-posts.index', compact('jobPosts'));
+    }
+
+    public function search(Request $request,FetchAuthCompanyProfile $fetchAuthCompanyProfile)
+    {
+        $companyProfile = $fetchAuthCompanyProfile->fetch();
+
+        $jobPosts = JobPost::query()->where('company_profile_id',$companyProfile->id)
+                        ->where('title','LIKE','%'.$request->search.'%')
+                        ->orWhere('description','LIKE','%'.$request->search.'%')
+                        ->orWhere('location','LIKE','%'.$request->search.'%')
+                        ->orWhere('salary_range','LIKE','%'.$request->search.'%')
+                        ->orWhere('expiration_date','LIKE','%'.$request->search.'%')
+                        ->orWhere('apply_link','LIKE','%'.$request->search.'%')
+                        ->paginate(5);
+
+        return view('dashboard.company.job-posts.index',compact('jobPosts'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(FetchCategories $fetchCategories)
     {
-        $categories = Category::query()->select('id','name')->get();
+        $categories = $fetchCategories->fetch();
 
-        return view('dashboard.company.job-posts-create-or-edit',compact('categories'));
+        return view('dashboard.company.job-posts.create-or-edit',compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CreateOrUpdateCompanyJobPostRequest $request)
+    public function store(CreateOrUpdateCompanyJobPostRequest $request,FetchAuthCompanyProfile $fetchAuthCompanyProfile)
     {
         $validated = $request->validated();
         
@@ -47,7 +63,7 @@ class JobPostController extends Controller
             $featuredImage = null;
         }
 
-        $companyProfile = CompanyProfile::query()->where('user_id',auth()->user()->id)->first();
+        $companyProfile = $fetchAuthCompanyProfile->fetch();
 
         $newJobPost = JobPost::create([
             'company_profile_id'=> $companyProfile->id,
@@ -56,7 +72,6 @@ class JobPostController extends Controller
             'description'       => $validated['description'],
             'apply_link'        => $validated['apply_link'],
             'expiration_date'   => $validated['job_expiration_date'],
-            'is_public'         => $validated['is_public'],
             'is_available'      => $validated['is_available'],
             'location'          => $validated['location'],
             'salary_range'      => $validated['salary_range'],
@@ -73,25 +88,25 @@ class JobPostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(JobPost $job_post)
     {
-        //
+        return view('dashboard.company.job-posts.show',compact('job_post'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(JobPost $job_post)
+    public function edit(JobPost $job_post,FetchCategories $fetchCategories)
     {
-        $categories = Category::query()->select('id','name')->get();
+        $categories = $fetchCategories->fetch();
 
-        return view('dashboard.company.job-posts-create-or-edit',compact('categories','job_post'));
+        return view('dashboard.company.job-posts.create-or-edit',compact('categories','job_post'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(CreateOrUpdateCompanyJobPostRequest $request, JobPost $job_post)
+    public function update(CreateOrUpdateCompanyJobPostRequest $request, JobPost $job_post, FetchAuthCompanyProfile $fetchAuthCompanyProfile)
     {
         $validated = $request->validated();
         
@@ -103,7 +118,7 @@ class JobPostController extends Controller
             $featuredImage = null;
         }
 
-        $companyProfile = CompanyProfile::query()->where('user_id',auth()->user()->id)->first();
+        $companyProfile = $fetchAuthCompanyProfile->fetch();
 
         $updatedJobPost = $job_post->update([
             'company_profile_id'=> $companyProfile->id,
@@ -112,7 +127,6 @@ class JobPostController extends Controller
             'description'       => $validated['description'],
             'apply_link'        => $validated['apply_link'],
             'expiration_date'   => $validated['job_expiration_date'],
-            'is_public'         => $validated['is_public'],
             'is_available'      => $validated['is_available'],
             'location'          => $validated['location'],
             'salary_range'      => $validated['salary_range'],

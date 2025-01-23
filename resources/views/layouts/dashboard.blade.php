@@ -8,6 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
     <!-- Dashboard-specific CSS and JS -->
     @vite(['resources/css/app.css','resources/css/dashboard.css','resources/css/icons.min.css'  ])
+    <!-- CKEditor -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
 </head>
 <body class="group">
     @include('layouts.sidebar')

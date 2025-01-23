@@ -67,6 +67,7 @@ Route::middleware(['auth'])->group(function () {
     // Company routes
     Route::prefix('/company')->middleware(['role:company'])->group(function () {
         Route::get('/dashboard', [CompanyProfileController::class, 'dashboard'])->name('company.dashboard');
+        Route::get('/job-posts/search',[CompanyJobPostController::class,'search'])->name('company.job-posts.search');
         Route::resource('job-posts', CompanyJobPostController::class)->names([
             'index' => 'company.job-posts.index',
             'show' => 'company.job-posts.show',
@@ -76,6 +77,8 @@ Route::middleware(['auth'])->group(function () {
             'update' => 'company.job-posts.update',
             'destroy' => 'company.job-posts.destroy',
         ]);
+        Route::resource('company-profile', CompanyProfileController::class);
+        // Route::get('/profile/{profile}',[CompanyProfileController::class,'show'])->name('company.profile.show');
     });
     Route::middleware(['role:candidate'])->group(function () {
         Route::get('/candidate/dashboard', [CandidateProfileController::class, 'dashboard'])->name('candidate.dashboard');
