@@ -436,7 +436,7 @@
                                     </ul>
 
                                     <div class="mt-8 space-y-2">
-                                        <a href="{{$jobPost->apply_link}}" data-bs-toggle="modal" class="btn w-full group-data-[theme-color=violet]:bg-violet-500 group-data-[theme-color=sky]:bg-sky-500 group-data-[theme-color=red]:bg-red-500 group-data-[theme-color=green]:bg-green-500 group-data-[theme-color=pink]:bg-pink-500 group-data-[theme-color=blue]:bg-blue-500 border-transparent text-white hover:-translate-y-1.5">Apply Now <i class="uil uil-arrow-right"></i></a>
+                                        <a href="https://{{$jobPost->apply_link}}" data-bs-toggle="modal" class="btn w-full group-data-[theme-color=violet]:bg-violet-500 group-data-[theme-color=sky]:bg-sky-500 group-data-[theme-color=red]:bg-red-500 group-data-[theme-color=green]:bg-green-500 group-data-[theme-color=pink]:bg-pink-500 group-data-[theme-color=blue]:bg-blue-500 border-transparent text-white hover:-translate-y-1.5">Apply Now <i class="uil uil-arrow-right"></i></a>
                                         <a href="bookmark-jobs.html" class="btn w-full bg-yellow-500/20 border-transparent text-yellow-500 hover:-translate-y-1.5 dark:bg-yellow-500/30"><i class="uil uil-bookmark"></i> Add Bookmark</a>
                                     </div>
                                 </div>

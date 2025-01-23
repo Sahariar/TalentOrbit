@@ -7,12 +7,12 @@ use Illuminate\Http\Request;
 
 class CandidateProfileController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        // $candidate = CandidateProfile::withCount('job_applications')->paginate(12);
+        $candidates = CandidateProfile::all();
+
+        return view('public.candidate.index', compact('candidates'));
     }
     public function dashboard()
     {
@@ -38,9 +38,11 @@ class CandidateProfileController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(CandidateProfile $candidateProfile)
+    public function show(CandidateProfile $candidate)
     {
-        //
+        $candidate->load('user');;
+        $candidateProfile = $candidate;
+        return view('public.candidate.show', compact('candidate'));
     }
 
     /**
