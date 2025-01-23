@@ -50,7 +50,7 @@
                                 </div>
                             </td>
                             <td class="px-6 py-4">{{ $companyProfile->user->email }}</td>
-                            <td class="px-6 py-4">{{ $companyProfile->jobs_count }}</td>
+                            <td class="px-6 py-4">{{ $companyProfile->job_posts_count  }}</td>
                             <td class="px-6 py-4">
                                 <span class="px-2 py-1 text-xs rounded-full {{ $companyProfile->is_approved ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
                                     {{ $companyProfile->is_approved ? 'Approved' : 'Pending' }}
@@ -58,24 +58,34 @@
                             </td>
                             <td class="px-6 py-4">
                                 <div class="flex space-x-2">
-                                    <a href="{{ route('admin.companies.show', $companyProfile->id) }}" class="text-blue-600 hover:text-blue-900">View</a>
+                                    <x-viewbtn
+                                    href="{{ route('admin.companies.show', $companyProfile) }}">
+                                    {{ __('View') }}
+                                    </x-viewbtn>
+
                                     @if(!$companyProfile->is_approved)
                                         <form action="{{ route('admin.companies.approve', $companyProfile) }}" method="POST" class="inline">
                                             @csrf
                                             @method('PATCH')
-                                            <button type="submit" class="text-green-600 hover:text-green-900">Approve</button>
+                                            <x-approvebtn>
+                                                {{ __('Approve') }}
+                                            </x-approvebtn>
                                         </form>
                                     @else
                                         <form action="{{ route('admin.companies.reject', $companyProfile) }}" method="POST" class="inline">
                                             @csrf
                                             @method('PATCH')
-                                            <button type="submit" class="text-yellow-600 hover:text-yellow-900">Reject</button>
+                                            <x-rejectbtn>
+                                            {{ __('Reject') }}
+                                            </x-rejectbtn>
+
                                         </form>
                                     @endif
                                     <form action="{{ route('admin.companies.delete', $companyProfile) }}" method="POST" class="inline" onsubmit="return confirm('Are you sure?')">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="text-red-600 hover:text-red-900">Delete</button>
+                                        <x-deletebtn>{{ __('Delete') }}
+                                        </x-deletebtn>
                                     </form>
                                 </div>
                             </td>

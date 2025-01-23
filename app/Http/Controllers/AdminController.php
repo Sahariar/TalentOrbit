@@ -94,8 +94,6 @@ class AdminController extends Controller
 
     public function candidateProfileShow(CandidateProfile $candidate)
     {
-        // $candidate = ;
-        // dd($candidate);
         return view('dashboard.admin.candidates.show', compact('candidate'));
     }
 
@@ -116,11 +114,24 @@ class AdminController extends Controller
 
     // job posts
 
-    // public function job_posts(){
-    //     $jobs = JobPost::with('companyProfile')
-    //     ->latest()
-    //     ->paginate(10);
-    //     return view('admin.job_posts.index', compact('jobs'));
-    // }
+    public function job_posts()
+    {
+        $jobs = JobPost::with('company_profile')
+            ->latest()
+            ->paginate(10);
 
+        return view('dashboard.admin.job_posts.index', compact('jobs'));
+    }
+
+    public function job_postsShow(JobPost $job)
+    {
+
+        return view('dashboard.admin.job_posts.show', compact('job'));
+    }
+    public function jobToggleStatus(JobPost $job)
+    {
+        $job->update(['is_active' => !$job->is_active]);
+
+        return redirect()->back()->with('success', $job->is_active ? 'Job has been activated.' : 'Job has been deactivated.');
+    }
 }

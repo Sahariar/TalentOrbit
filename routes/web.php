@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CandidateProfileController;
 use App\Http\Controllers\CompanyProfileController;
+use App\Http\Controllers\RSSFeedController;
 use App\Http\Controllers\JobPostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -48,7 +49,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     // Jobs management
     Route::prefix('job_posts')->name('job_posts.')->group(function () {
         Route::get('/', [AdminController::class, 'job_posts'])->name('index');
-        Route::get('/{job}', [AdminController::class, 'jobShow'])->name('show');
+        Route::get('/{job}', [AdminController::class, 'job_postsShow'])->name('show');
         Route::patch('/{job}/toggle-status', [AdminController::class, 'jobToggleStatus'])->name('toggle-status');
         Route::delete('/{job}', [AdminController::class, 'jobDelete'])->name('delete');
     });
@@ -80,5 +81,8 @@ Route::resource('jobs', JobPostController::class)->names([
     'index' => 'jobs',
     'show' => 'jobs.show',
 ]);
+
+
+Route::get('/rss-feed', [RSSFeedController::class, 'index'])->name('rss.feed');
 
 require __DIR__.'/auth.php';

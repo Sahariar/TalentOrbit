@@ -10,11 +10,10 @@
                     @if(Auth::user()->role === 'company')
                     <x-company-menu/>
                     @elseif(Auth::user()->role === 'candidate')
-                        <x-candidate-menu/>
+                    <x-candidate-menu/>
                     @else
                     <x-admin-menu/>
                     @endif
-
 
                     </ul>
                 </div>

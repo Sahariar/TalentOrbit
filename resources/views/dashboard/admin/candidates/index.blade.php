@@ -57,11 +57,15 @@
                                     <td class="px-6 py-4">{{ $candidate->created_at->diffForHumans() }}</td>
                                     <td class="px-6 py-4">
                                         <div class="flex space-x-2">
-                                            <a href="{{ route('admin.candidates.show', $candidate) }}" class="text-blue-600 hover:text-blue-900">View</a>
+                                            <x-viewbtn
+                                            href="{{ route('admin.candidates.show', $candidate) }}">
+                                            {{ __('View') }}
+                                            </x-viewbtn>
                                             <form action="{{ route('admin.candidates.delete', $candidate) }}" method="POST" class="inline" onsubmit="return confirm('Are you sure?')">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="text-red-600 hover:text-red-900">Delete</button>
+                                                <x-deletebtn>{{ __('Delete') }}
+                                                </x-deletebtn>
                                             </form>
                                         </div>
                                     </td>
