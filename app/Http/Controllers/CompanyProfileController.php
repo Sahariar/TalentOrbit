@@ -20,7 +20,7 @@ class CompanyProfileController extends Controller
             'active_jobs'       => $fetchCompanyStats->active_jobs($companyProfile),
         ];
 
-        return view('dashboard.company.index', compact('stats'))->with('layout', 'dashboard');
+        return view('dashboard.company.index', compact('stats','companyProfile'))->with('layout', 'dashboard');
     }
 
     public function index(FetchAuthCompanyProfile $fetchAuthCompanyProfile)

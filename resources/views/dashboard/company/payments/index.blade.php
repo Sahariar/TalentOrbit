@@ -76,12 +76,12 @@
                                                     <a href="{{ route('company.payments.show',$payment->id) }}" title="View Company Payment" class="font-medium text-blue-600 hover:underline">
                                                         <i class="fas fa-eye"></i>
                                                     </a>
-                                                    <a href="{{ route('company.payments.edit',$payment->id) }}" title="Edit Company Payment" class="font-medium text-blue-600 hover:underline">
+                                                    {{-- <a href="{{ route('company.payments.edit',$payment->id) }}" title="Edit Company Payment" class="font-medium text-blue-600 hover:underline">
                                                         <i class="fas fa-pencil-alt"></i>
                                                     </a>
                                                     <a href="#" role="button" class="text-white btn bg-violet-500 border-violet-500 hover:bg-violet-600 focus:ring ring-violet-50focus:bg-violet-600" title="Delete Company Payment" data-tw-toggle="modal" data-tw-target="#delete-company-payment">
                                                         <i class="fas fa-trash"></i>
-                                                    </a>
+                                                    </a> --}}
 
                                                     <!-- Delete Job Post Modal -->
                                                     <div class="relative z-50 hidden modal" id="delete-company-payment" aria-labelledby="modal-title" role="dialog" aria-modal="true">

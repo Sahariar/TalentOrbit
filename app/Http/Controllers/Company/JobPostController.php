@@ -19,7 +19,7 @@ class JobPostController extends Controller
 
         $jobPosts       = $fetchCompanyProfileJobPosts->fetch()['jobPosts'];
 
-        return view('dashboard.company.job-posts.index', compact('jobPosts'));
+        return view('dashboard.company.job-posts.index', compact('jobPosts', 'companyProfile'));
     }
 
     public function search(Request $request,FetchAuthCompanyProfile $fetchAuthCompanyProfile)

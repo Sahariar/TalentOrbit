@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Carbon\Carbon;
 
 class JobPost extends Model
 {
@@ -27,5 +28,16 @@ class JobPost extends Model
     {
         return $this->belongsToMany(Tag::class);
 
+    }
+
+    public function isExpired(): bool
+    {
+        return $this->expiration_date < Carbon::now();
+    }
+
+    public function setPrivate()
+    {
+        $this->is_public = false;
+        $this->save();
     }
 }
