@@ -12,7 +12,6 @@ use App\Http\Controllers\Company\PaymentController;
 use App\Http\Controllers\RSSFeedController;
 use App\Http\Controllers\JobPostController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\CompanyProfileController;
 
 use Illuminate\Support\Facades\Route;
 
