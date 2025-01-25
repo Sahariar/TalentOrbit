@@ -16,4 +16,9 @@ class Tag extends Model
     {
         return $this->belongsToMany(JobPost::class);
     }
+
+    public function candidate_profiles()
+    {
+        return $this->belongsToMany(CandidateProfile::class);
+    }
 }

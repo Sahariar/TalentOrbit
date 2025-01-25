@@ -4,12 +4,16 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CandidateProfileController;
 use App\Http\Controllers\Company\JobPostController as CompanyJobPostController;
+
 use App\Http\Controllers\CompanyProfileController;
 use App\Http\Controllers\Public\CandidateController;
+use App\Http\Controllers\Public\CompanyController;
+use App\Http\Controllers\Company\PaymentController;
 use App\Http\Controllers\RSSFeedController;
 use App\Http\Controllers\JobPostController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Public\CompanyController;
+use App\Http\Controllers\CompanyProfileController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -81,6 +85,14 @@ Route::middleware(['auth'])->group(function () {
             'destroy' => 'company.job-posts.destroy',
         ]);
         Route::resource('company-profile', CompanyProfileController::class);
+        Route::get('/payments/search',[PaymentController::class,'search'])->name('company.payments.search');
+        Route::resource('payments',PaymentController::class)->except(['create','store'])->names([
+            'index'     => 'company.payments.index',
+            'show'      => 'company.payments.show',
+            'destroy'   => 'company.payments.destroy',
+            'edit'      => 'company.payments.edit',
+            'update'    => 'company.payments.update',
+        ]);
         // Route::get('/profile/{profile}',[CompanyProfileController::class,'show'])->name('company.profile.show');
     });
     Route::middleware(['role:candidate'])->group(function () {

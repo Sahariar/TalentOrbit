@@ -11,6 +11,7 @@ export default defineConfig({
                 'resources/css/dashboard.css',
                 'resources/css/icons.min.css',
                 'resources/js/dashboard.js',
+                'resources/css/public.css'
             ],
             refresh: true,
         }),
