@@ -3,17 +3,24 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\{CompanyProfile};
+use App\Models\{CompanyProfile,JobPost,CandidateProfile};
 use Illuminate\Http\Request;
-use App\Services\{FetchAuthCompanyProfile};
+use App\Services\{FetchAuthCompanyProfile,FetchCompanyStats};
 use App\Http\Requests\{CreateOrUpdateCompanyProfileRequest};
 
 class CompanyProfileController extends Controller
 {
 
-    public function dashboard()
+    public function dashboard(FetchAuthCompanyProfile $fetchAuthCompanyProfile,FetchCompanyStats $fetchCompanyStats)
     {
-        return view('dashboard.company.index')->with('layout', 'dashboard');
+        $companyProfile = $fetchAuthCompanyProfile->fetch();
+
+        $stats = [
+            'total_jobs'        => $fetchCompanyStats->total_jobs($companyProfile),
+            'active_jobs'       => $fetchCompanyStats->active_jobs($companyProfile),
+        ];
+
+        return view('dashboard.company.index', compact('stats'))->with('layout', 'dashboard');
     }
 
     public function index(FetchAuthCompanyProfile $fetchAuthCompanyProfile)
