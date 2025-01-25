@@ -4,11 +4,16 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CandidateProfileController;
 use App\Http\Controllers\Company\JobPostController as CompanyJobPostController;
+
+use App\Http\Controllers\CompanyProfileController;
+use App\Http\Controllers\Public\CandidateController;
+use App\Http\Controllers\Public\CompanyController;
 use App\Http\Controllers\Company\PaymentController;
 use App\Http\Controllers\RSSFeedController;
 use App\Http\Controllers\JobPostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CompanyProfileController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -101,12 +106,12 @@ Route::resource('jobs', JobPostController::class)->names([
     'show' => 'jobs.show',
 ]);
 
-Route::resource('company', CompanyProfileController::class)->names([
+Route::resource('company', CompanyController::class)->names([
     'index' => 'companies',
     'show' => 'company.show'
-]);
+])->only(['index', 'show']);
 
-Route::resource('candidate', CandidateProfileController::class)->names([
+Route::resource('candidate', CandidateController::class)->names([
     'index' => 'candidates',
     'show' => 'candidate.show'
 ]);
