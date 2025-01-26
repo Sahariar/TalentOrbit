@@ -184,7 +184,7 @@
                         <div class="col-span-12 lg:col-span-8">
                             <div class="p-6 border rounded border-gray-100/50 dark:border-neutral-600">
                                 <div>
-                                    <h6 class="mb-3 text-gray-900 text-17 dark:text-gray-50">About Me</h6>
+                                    <h6 class="mb-3 text-gray-900 text-17 dark:text-gray-50">Candidate details</h6>
                                     <p class="mb-2 text-gray-500 dark:text-gray-300">{{$candidate->description}}</p>
                                 </div>
                                 <div class="pt-5">
@@ -247,7 +247,7 @@
                                     </div>
                                 </div>
                                 <div class="pt-10">
-                                    <h6 class="mb-0 text-gray-900 text-17 fw-bold dark:text-gray-50">Projects</h6>
+                                    <h6 class="mb-0 text-gray-900 text-17 fw-bold dark:text-gray-50">Clients Feedback</h6>
                                     <div class="mt-4 ">
                                         <div class="grid grid-cols-12 gap-5">
                                             <div class="col-span-4">

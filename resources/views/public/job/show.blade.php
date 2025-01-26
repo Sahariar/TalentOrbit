@@ -99,8 +99,7 @@
                                     <div class="mt-5">
                                         <h5 class="mb-3 text-gray-900 dark:text-gray-50">Job Description</h5>
                                         <div>
-                                            <p class="mb-0 text-gray-500 dark:text-gray-300">
-                                                {{ $jobPost->description ?? 'N/A'}}</p>
+                                            <p class="mb-0 text-gray-500 dark:text-gray-300">{!! $jobPost->description ?? 'N/A' !!}</p>
                                         </div>
                                     </div>
 
@@ -376,7 +375,8 @@
                                                 <i class="uil uil-user icon group-data-[theme-color=violet]:bg-violet-500/20 group-data-[theme-color=sky]:bg-sky-500/20 group-data-[theme-color=red]:bg-red-500/20 group-data-[theme-color=green]:bg-green-500/20 group-data-[theme-color=pink]:bg-pink-500/20 group-data-[theme-color=blue]:bg-blue-500/20 h-12 w-12 text-center leading-[2.4] text-xl group-data-[theme-color=violet]:text-violet-500 group-data-[theme-color=sky]:text-sky-500 group-data-[theme-color=red]:text-red-500 group-data-[theme-color=green]:text-green-500 group-data-[theme-color=pink]:text-pink-500 group-data-[theme-color=blue]:text-blue-500 rounded-full"></i>
                                                 <div class="ltr:ml-4 rtl:mr-4">
                                                     <h6 class="mb-2 text-sm text-gray-900 dark:text-gray-50">Job Title</h6>
-                                                    <p class="text-gray-500 dark:text-gray-300">Product Designer</p>
+                                                    <p class="text-gray-500 dark:text-gray-300">{{$jobPost->title}}</p>
+                                                    
                                                 </div>
                                             </div>
                                         </li>
@@ -437,7 +437,7 @@
                                     </ul>
 
                                     <div class="mt-8 space-y-2">
-                                        <a href="https://{{$jobPost->apply_link}}" data-bs-toggle="modal" class="btn w-full group-data-[theme-color=violet]:bg-violet-500 group-data-[theme-color=sky]:bg-sky-500 group-data-[theme-color=red]:bg-red-500 group-data-[theme-color=green]:bg-green-500 group-data-[theme-color=pink]:bg-pink-500 group-data-[theme-color=blue]:bg-blue-500 border-transparent text-white hover:-translate-y-1.5">Apply Now <i class="uil uil-arrow-right"></i></a>
+                                        <a href="{{$jobPost->apply_link}}" data-bs-toggle="modal" class="btn w-full group-data-[theme-color=violet]:bg-violet-500 group-data-[theme-color=sky]:bg-sky-500 group-data-[theme-color=red]:bg-red-500 group-data-[theme-color=green]:bg-green-500 group-data-[theme-color=pink]:bg-pink-500 group-data-[theme-color=blue]:bg-blue-500 border-transparent text-white hover:-translate-y-1.5">Apply Now <i class="uil uil-arrow-right"></i></a>
                                         <a href="bookmark-jobs.html" class="btn w-full bg-yellow-500/20 border-transparent text-yellow-500 hover:-translate-y-1.5 dark:bg-yellow-500/30"><i class="uil uil-bookmark"></i> Add Bookmark</a>
                                     </div>
                                 </div>
