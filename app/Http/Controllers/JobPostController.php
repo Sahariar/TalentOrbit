@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\JobPost;
+use App\Models\{JobPost, Tag};
 use Illuminate\Http\Request;
 
 class JobPostController extends Controller
@@ -12,9 +12,16 @@ class JobPostController extends Controller
      */
     public function index()
     {
-        $jobPosts = JobPost::with(['company_profile', 'category'])->paginate(10);
+        $jobPosts = JobPost::where('is_public',true)->with(['company_profile', 'category'])->paginate(10);
 
-        return view('public.job.index', compact('jobPosts'));
+        $tags = Tag::select('id','title')->get();
+
+        return view('public.job.index', compact('jobPosts','tags'));
+    }
+
+    public function filter(Request $request)
+    {
+        dd($request->all());
     }
 
     /**

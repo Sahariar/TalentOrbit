@@ -96,6 +96,8 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
+Route::get('/jobs/filter', [JobPostController::class, 'filter'])->name('jobs.filter');
+
 Route::resource('jobs', JobPostController::class)->names([
     'index' => 'jobs',
     'show' => 'jobs.show',
