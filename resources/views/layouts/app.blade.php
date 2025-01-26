@@ -21,7 +21,7 @@
 
 
     <!-- Scripts -->
-    @vite(['resources/css/app.css','resources/css/public.css','resources/css/icons.min.css'])
+    @vite(['resources/css/app.css','resources/css/public.css','resources/css/icons.min.css','resources/css/nouislider.min.css'])
 </head>
 
 <body class="font-sans antialiased bg-white">
@@ -35,7 +35,7 @@
 
     @include('layouts.pb-footer')
     <script src="https://unicons.iconscout.com/release/v4.0.0/script/monochrome/bundle.js"></script>
-    @vite(['resources/js/app.js'])
+    @vite(['resources/js/nouislider.min.js','resources/js/app.js'])
 </body>
 
 </html>
