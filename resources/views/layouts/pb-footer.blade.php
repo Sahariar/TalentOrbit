@@ -48,21 +48,6 @@
                                     </a>
                                 </li>
                                 <li class="text-sm transition-all duration-500 ease-in-out text-white/50 hover:text-gray-50 hover:text-base dark:text-gray-300 dark:hover:text-gray-50">
-                                    <a href="services.html">
-                                        <i class="mdi mdi-chevron-right"></i> Services
-                                    </a>
-                                </li>
-                                <li class="text-sm transition-all duration-500 ease-in-out text-white/50 hover:text-gray-50 hover:text-base dark:text-gray-300 dark:hover:text-gray-50">
-                                    <a href="blog.html">
-                                        <i class="mdi mdi-chevron-right"></i> Blog
-                                    </a>
-                                </li>
-                                <li class="text-sm transition-all duration-500 ease-in-out text-white/50 hover:text-gray-50 hover:text-base dark:text-gray-300 dark:hover:text-gray-50">
-                                    <a href="team.html">
-                                        <i class="mdi mdi-chevron-right"></i> Team
-                                    </a>
-                                </li>
-                                <li class="text-sm transition-all duration-500 ease-in-out text-white/50 hover:text-gray-50 hover:text-base dark:text-gray-300 dark:hover:text-gray-50">
                                     <a href="pricing.html">
                                         <i class="mdi mdi-chevron-right"></i> Pricing
                                     </a>
@@ -73,7 +58,7 @@
                             <p class="mb-6 text-white text-16">For Jobs</p>
                             <ul class="space-y-4">
                                 <li class="text-sm transition-all duration-500 ease-in-out text-white/50 hover:text-gray-50 hover:text-base dark:text-gray-300 dark:hover:text-gray-50">
-                                    <a href="job-categories.html">
+                                    <a href="{{ route('category') }}">
                                         <i class="mdi mdi-chevron-right"></i> Browser Categories
                                     </a>
                                 </li>
@@ -88,7 +73,7 @@
                             <p class="mb-6 text-white text-16">For Candidates</p>
                             <ul class="space-y-4">
                                 <li class="text-sm transition-all duration-500 ease-in-out text-white/50 hover:text-gray-50 hover:text-base dark:text-gray-300 dark:hover:text-gray-50">
-                                    <a href="candidate-list.html">
+                                    <a href="{{ route('candidates') }}">
                                         <i class="mdi mdi-chevron-right"></i> All Candidate
                                     </a>
                                 </li>
@@ -98,27 +83,22 @@
                             <p class="mb-6 text-white text-16">Support</p>
                             <ul class="space-y-4">
                                 <li class="text-sm transition-all duration-500 ease-in-out text-white/50 hover:text-gray-50 hover:text-base dark:text-gray-300 dark:hover:text-gray-50">
-                                    <a href="contact.html">
-                                        <i class="mdi mdi-chevron-right"></i> Help Center
-                                    </a>
-                                </li>
-                                <li class="text-sm transition-all duration-500 ease-in-out text-white/50 hover:text-gray-50 hover:text-base dark:text-gray-300 dark:hover:text-gray-50">
-                                    <a href="faqs.html">
+                                    <a href="{{ route('faqs') }}">
                                         <i class="mdi mdi-chevron-right"></i> FAQ'S
                                     </a>
                                 </li>
                                 <li class="text-sm transition-all duration-500 ease-in-out text-white/50 hover:text-gray-50 hover:text-base dark:text-gray-300 dark:hover:text-gray-50">
-                                    <a href="privacy-policy.html">
+                                    <a href="{{ route('privacy_policy') }}">
                                         <i class="mdi mdi-chevron-right"></i> Privacy Policy
                                     </a>
                                 </li>
                                 <li class="text-sm transition-all duration-500 ease-in-out text-white/50 hover:text-gray-50 hover:text-base dark:text-gray-300 dark:hover:text-gray-50">
-                                    <a href="contact.html">
+                                    <a href="{{ route('about') }}">
                                         <i class="mdi mdi-chevron-right"></i> About Us
                                     </a>
                                 </li>
                                 <li class="text-sm transition-all duration-500 ease-in-out text-white/50 hover:text-gray-50 hover:text-base dark:text-gray-300 dark:hover:text-gray-50">
-                                    <a href="contact.html">
+                                    <a href="{{ route('contact') }}">
                                         <i class="mdi mdi-chevron-right"></i> Contact Us
                                     </a>
                                 </li>

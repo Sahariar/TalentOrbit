@@ -4,7 +4,6 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CandidateProfileController;
 use App\Http\Controllers\Company\JobPostController as CompanyJobPostController;
-
 use App\Http\Controllers\CompanyProfileController;
 use App\Http\Controllers\Public\CandidateController;
 use App\Http\Controllers\Public\CompanyController;
@@ -12,11 +11,25 @@ use App\Http\Controllers\Company\PaymentController;
 use App\Http\Controllers\RSSFeedController;
 use App\Http\Controllers\JobPostController;
 use App\Http\Controllers\ProfileController;
-
+use App\Models\Category;
+use App\Models\JobPost;
 use Illuminate\Support\Facades\Route;
 
+//Route::get('/', function () {
+//    return view('public.index')->with('layout', 'app');
+//})->name('home');
+
 Route::get('/', function () {
-    return view('public.index')->with('layout', 'app');
+    $recentJobs = JobPost::with('company_profile')
+        ->orderBy('created_at', 'desc')
+        ->take(4)->get();
+
+    $categories = Category::withCount('job_posts')->get();
+
+    return view('public.index')
+        ->with('layout', 'app')
+        ->with('recentJobs', $recentJobs)
+        ->with('categories', $categories);
 })->name('home');
 
 Route::middleware('guest')->group(function () {
@@ -115,6 +128,11 @@ Route::resource('candidate', CandidateController::class)->names([
     'show' => 'candidate.show'
 ]);
 
+Route::view('about', 'public.etc.about_us')->name('about');
+Route::view('category', 'public.etc.category')->name('category');
+Route::view('contact', 'public.etc.contact')->name('contact');
+Route::view('faqs', 'public.etc.faqs')->name('faqs');
+Route::view('privacy_policy', 'public.etc.privacy_policy')->name('privacy_policy');
 
 Route::get('/rss-feed', [RSSFeedController::class, 'index'])->name('rss.feed');
 

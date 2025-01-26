@@ -99,7 +99,7 @@
                                     <div class="mt-5">
                                         <h5 class="mb-3 text-gray-900 dark:text-gray-50">Job Description</h5>
                                         <div>
-                                            <p class="mb-0 text-gray-500 dark:text-gray-300">{{$jobPost->description ?? 'N/A'}}</p>
+                                            <p class="mb-0 text-gray-500 dark:text-gray-300">{!! $jobPost->description ?? 'N/A' !!}</p>
                                         </div>
                                     </div>
 
@@ -110,10 +110,10 @@
 
                                             <ul class="mb-0 text-gray-500 dark:text-gray-300">
                                                 <li class="mb-2 text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> Have sound knowledge of commercial activities.</li>
-                                                <li class="mb-2 text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> Build next-generation web applications with a focus on the client side</li> 
-                                                <li class="mb-2 text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> Work on multiple projects at once, and consistently meet draft deadlines</li> 
-                                                <li class="mb-2 text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> have already graduated or are currently in any year of study</li> 
-                                                <li class="text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> Revise the work of previous designers to create a unified aesthetic for our brand materials</li> 
+                                                <li class="mb-2 text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> Build next-generation web applications with a focus on the client side</li>
+                                                <li class="mb-2 text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> Work on multiple projects at once, and consistently meet draft deadlines</li>
+                                                <li class="mb-2 text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> have already graduated or are currently in any year of study</li>
+                                                <li class="text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> Revise the work of previous designers to create a unified aesthetic for our brand materials</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -123,8 +123,8 @@
                                         <div>
                                             <ul class="mb-0 text-gray-500 dark:text-gray-300">
                                                 <li class="mb-2 text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> B.C.A / M.C.A under National University course complete.</li>
-                                                <li class="mb-2 text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> 3 or more years of professional design experience</li> 
-                                                <li class="mb-2 text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> have already graduated or are currently in any year of study </li> 
+                                                <li class="mb-2 text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> 3 or more years of professional design experience</li>
+                                                <li class="mb-2 text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> have already graduated or are currently in any year of study </li>
                                                 <li class="mb-2 text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> Advanced degree or equivalent experience in graphic and web design</li>
                                             </ul>
                                         </div>
@@ -135,8 +135,8 @@
                                         <div>
                                             <ul class="mb-0 text-gray-500 dark:text-gray-300">
                                                 <li class="mb-2 text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> Understanding of key Design Principal</li>
-                                                <li class="mb-2 text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> Proficiency With HTML, CSS, Tailwind</li> 
-                                                <li class="mb-2 text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> Wordpress: 1 year (Required) </li> 
+                                                <li class="mb-2 text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> Proficiency With HTML, CSS, Tailwind</li>
+                                                <li class="mb-2 text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> Wordpress: 1 year (Required) </li>
                                                 <li class="mb-2 text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> Experience designing and developing responsive design websites </li>
                                                 <li class="mb-2 text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> web designing: 1 year (Preferred) </li>
                                             </ul>
@@ -168,7 +168,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                                
+
                             </div>
 
                             <!-- ---------  job start --------- -->
@@ -185,7 +185,7 @@
                                             </div>
                                             <!--end col-->
                                             <div class="col-span-12 lg:col-span-10">
-                                                <h5 class="mb-1 text-gray-900 fs-17"><a href="job-details.html" class="dark:text-gray-50">HTML Developer</a> 
+                                                <h5 class="mb-1 text-gray-900 fs-17"><a href="job-details.html" class="dark:text-gray-50">HTML Developer</a>
                                                     <small class="font-normal text-gray-500 dark:text-gray-300">(0-2 Yrs Exp.)</small>
                                                 </h5>
                                                 <ul class="flex flex-wrap gap-3 mb-0">
@@ -246,7 +246,7 @@
                                             </div>
                                             <!--end col-->
                                             <div class="col-span-10">
-                                                <h5 class="mb-1 text-gray-900 fs-17"><a href="job-details.html" class="dark:text-gray-50">Marketing Director</a> 
+                                                <h5 class="mb-1 text-gray-900 fs-17"><a href="job-details.html" class="dark:text-gray-50">Marketing Director</a>
                                                     <small class="font-normal text-gray-500 dark:text-gray-300">(2-4 Yrs Exp.)</small>
                                                 </h5>
                                                 <ul class="flex flex-wrap gap-3 mb-0">
@@ -306,7 +306,7 @@
                                             </div>
                                             <!--end col-->
                                             <div class="col-span-10">
-                                                <h5 class="mb-1 text-gray-900 fs-17"><a href="job-details.html" class="dark:text-gray-50">HTML Developer</a> 
+                                                <h5 class="mb-1 text-gray-900 fs-17"><a href="job-details.html" class="dark:text-gray-50">HTML Developer</a>
                                                     <small class="font-normal text-gray-500 dark:text-gray-300">(2-4 Yrs Exp.)</small>
                                                 </h5>
                                                 <ul class="flex flex-wrap gap-3 mb-0">
@@ -375,7 +375,7 @@
                                                 <i class="uil uil-user icon group-data-[theme-color=violet]:bg-violet-500/20 group-data-[theme-color=sky]:bg-sky-500/20 group-data-[theme-color=red]:bg-red-500/20 group-data-[theme-color=green]:bg-green-500/20 group-data-[theme-color=pink]:bg-pink-500/20 group-data-[theme-color=blue]:bg-blue-500/20 h-12 w-12 text-center leading-[2.4] text-xl group-data-[theme-color=violet]:text-violet-500 group-data-[theme-color=sky]:text-sky-500 group-data-[theme-color=red]:text-red-500 group-data-[theme-color=green]:text-green-500 group-data-[theme-color=pink]:text-pink-500 group-data-[theme-color=blue]:text-blue-500 rounded-full"></i>
                                                 <div class="ltr:ml-4 rtl:mr-4">
                                                     <h6 class="mb-2 text-sm text-gray-900 dark:text-gray-50">Job Title</h6>
-                                                    <p class="text-gray-500 dark:text-gray-300">Product Designer</p> 
+                                                    <p class="text-gray-500 dark:text-gray-300">{{$jobPost->title}}</p>
                                                 </div>
                                             </div>
                                         </li>
@@ -384,7 +384,7 @@
                                                 <i class="uil uil-star-half-alt icon group-data-[theme-color=violet]:bg-violet-500/20 group-data-[theme-color=sky]:bg-sky-500/20 group-data-[theme-color=red]:bg-red-500/20 group-data-[theme-color=green]:bg-green-500/20 group-data-[theme-color=pink]:bg-pink-500/20 group-data-[theme-color=blue]:bg-blue-500/20 h-12 w-12 text-center leading-[2.4] text-xl group-data-[theme-color=violet]:text-violet-500 group-data-[theme-color=sky]:text-sky-500 group-data-[theme-color=red]:text-red-500 group-data-[theme-color=green]:text-green-500 group-data-[theme-color=pink]:text-pink-500 group-data-[theme-color=blue]:text-blue-500 rounded-full"></i>
                                                 <div class="ltr:ml-4 rtl:mr-4">
                                                     <h6 class="mb-2 text-sm text-gray-900 dark:text-gray-50">Experience</h6>
-                                                    <p class="text-gray-500 dark:text-gray-300"> 0-3 Years</p> 
+                                                    <p class="text-gray-500 dark:text-gray-300"> 0-3 Years</p>
                                                 </div>
                                             </div>
                                         </li>
@@ -393,7 +393,7 @@
                                                 <i class="uil uil-location-point icon group-data-[theme-color=violet]:bg-violet-500/20 group-data-[theme-color=sky]:bg-sky-500/20 group-data-[theme-color=red]:bg-red-500/20 group-data-[theme-color=green]:bg-green-500/20 group-data-[theme-color=pink]:bg-pink-500/20 group-data-[theme-color=blue]:bg-blue-500/20 h-12 w-12 text-center leading-[2.4] text-xl group-data-[theme-color=violet]:text-violet-500 group-data-[theme-color=sky]:text-sky-500 group-data-[theme-color=red]:text-red-500 group-data-[theme-color=green]:text-green-500 group-data-[theme-color=pink]:text-pink-500 group-data-[theme-color=blue]:text-blue-500 rounded-full"></i>
                                                 <div class="ltr:ml-4 rtl:mr-4">
                                                     <h6 class="mb-2 text-sm text-gray-900 dark:text-gray-50">Location</h6>
-                                                    <p class="text-gray-500 dark:text-gray-300"> {{$jobPost->location}} </p> 
+                                                    <p class="text-gray-500 dark:text-gray-300"> {{$jobPost->location}} </p>
                                                 </div>
                                             </div>
                                         </li>
@@ -402,7 +402,7 @@
                                                 <i class="uil uil-usd-circle icon group-data-[theme-color=violet]:bg-violet-500/20 group-data-[theme-color=sky]:bg-sky-500/20 group-data-[theme-color=red]:bg-red-500/20 group-data-[theme-color=green]:bg-green-500/20 group-data-[theme-color=pink]:bg-pink-500/20 group-data-[theme-color=blue]:bg-blue-500/20 h-12 w-12 text-center leading-[2.4] text-xl group-data-[theme-color=violet]:text-violet-500 group-data-[theme-color=sky]:text-sky-500 group-data-[theme-color=red]:text-red-500 group-data-[theme-color=green]:text-green-500 group-data-[theme-color=pink]:text-pink-500 group-data-[theme-color=blue]:text-blue-500 rounded-full"></i>
                                                 <div class="ltr:ml-4 rtl:mr-4">
                                                     <h6 class="mb-2 text-sm text-gray-900 dark:text-gray-50">Offered Salary</h6>
-                                                    <p class="text-gray-500 dark:text-gray-300">${{$jobPost->salary_range}} Month</p> 
+                                                    <p class="text-gray-500 dark:text-gray-300">${{$jobPost->salary_range}} Month</p>
                                                 </div>
                                             </div>
                                         </li>
@@ -411,7 +411,7 @@
                                                 <i class="uil uil-graduation-cap icon group-data-[theme-color=violet]:bg-violet-500/20 group-data-[theme-color=sky]:bg-sky-500/20 group-data-[theme-color=red]:bg-red-500/20 group-data-[theme-color=green]:bg-green-500/20 group-data-[theme-color=pink]:bg-pink-500/20 group-data-[theme-color=blue]:bg-blue-500/20 h-12 w-12 text-center leading-[2.4] text-xl group-data-[theme-color=violet]:text-violet-500 group-data-[theme-color=sky]:text-sky-500 group-data-[theme-color=red]:text-red-500 group-data-[theme-color=green]:text-green-500 group-data-[theme-color=pink]:text-pink-500 group-data-[theme-color=blue]:text-blue-500 rounded-full"></i>
                                                 <div class="ltr:ml-4 rtl:mr-4">
                                                     <h6 class="mb-2 text-sm text-gray-900 dark:text-gray-50">Qualification</h6>
-                                                    <p class="text-gray-500 dark:text-gray-300">Bachelor Degree</p> 
+                                                    <p class="text-gray-500 dark:text-gray-300">Bachelor Degree</p>
                                                 </div>
                                             </div>
                                         </li>
@@ -420,7 +420,7 @@
                                                 <i class="uil uil-building icon group-data-[theme-color=violet]:bg-violet-500/20 group-data-[theme-color=sky]:bg-sky-500/20 group-data-[theme-color=red]:bg-red-500/20 group-data-[theme-color=green]:bg-green-500/20 group-data-[theme-color=pink]:bg-pink-500/20 group-data-[theme-color=blue]:bg-blue-500/20 h-12 w-12 text-center leading-[2.4] text-xl group-data-[theme-color=violet]:text-violet-500 group-data-[theme-color=sky]:text-sky-500 group-data-[theme-color=red]:text-red-500 group-data-[theme-color=green]:text-green-500 group-data-[theme-color=pink]:text-pink-500 group-data-[theme-color=blue]:text-blue-500 rounded-full"></i>
                                                 <div class="ltr:ml-4 rtl:mr-4">
                                                     <h6 class="mb-2 text-sm text-gray-900 dark:text-gray-50">Industry</h6>
-                                                    <p class="text-gray-500 dark:text-gray-300">Private</p> 
+                                                    <p class="text-gray-500 dark:text-gray-300">Private</p>
                                                 </div>
                                             </div>
                                         </li>
@@ -429,14 +429,14 @@
                                                 <i class="uil uil-history icon group-data-[theme-color=violet]:bg-violet-500/20 group-data-[theme-color=sky]:bg-sky-500/20 group-data-[theme-color=red]:bg-red-500/20 group-data-[theme-color=green]:bg-green-500/20 group-data-[theme-color=pink]:bg-pink-500/20 group-data-[theme-color=blue]:bg-blue-500/20 h-12 w-12 text-center leading-[2.4] text-xl group-data-[theme-color=violet]:text-violet-500 group-data-[theme-color=sky]:text-sky-500 group-data-[theme-color=red]:text-red-500 group-data-[theme-color=green]:text-green-500 group-data-[theme-color=pink]:text-pink-500 group-data-[theme-color=blue]:text-blue-500 rounded-full"></i>
                                                 <div class="ltr:ml-4 rtl:mr-4">
                                                     <h6 class="mb-2 text-sm text-gray-900 dark:text-gray-50">Date Posted</h6>
-                                                    <p class="text-gray-500 dark:text-gray-300">Posted {{$jobPost->created_at->diffForHumans() }} </p> 
+                                                    <p class="text-gray-500 dark:text-gray-300">Posted {{$jobPost->created_at->diffForHumans() }} </p>
                                                 </div>
                                             </div>
                                         </li>
                                     </ul>
 
                                     <div class="mt-8 space-y-2">
-                                        <a href="https://{{$jobPost->apply_link}}" data-bs-toggle="modal" class="btn w-full group-data-[theme-color=violet]:bg-violet-500 group-data-[theme-color=sky]:bg-sky-500 group-data-[theme-color=red]:bg-red-500 group-data-[theme-color=green]:bg-green-500 group-data-[theme-color=pink]:bg-pink-500 group-data-[theme-color=blue]:bg-blue-500 border-transparent text-white hover:-translate-y-1.5">Apply Now <i class="uil uil-arrow-right"></i></a>
+                                        <a href="{{$jobPost->apply_link}}" data-bs-toggle="modal" class="btn w-full group-data-[theme-color=violet]:bg-violet-500 group-data-[theme-color=sky]:bg-sky-500 group-data-[theme-color=red]:bg-red-500 group-data-[theme-color=green]:bg-green-500 group-data-[theme-color=pink]:bg-pink-500 group-data-[theme-color=blue]:bg-blue-500 border-transparent text-white hover:-translate-y-1.5">Apply Now <i class="uil uil-arrow-right"></i></a>
                                         <a href="bookmark-jobs.html" class="btn w-full bg-yellow-500/20 border-transparent text-yellow-500 hover:-translate-y-1.5 dark:bg-yellow-500/30"><i class="uil uil-bookmark"></i> Add Bookmark</a>
                                     </div>
                                 </div>
@@ -508,7 +508,7 @@
                 </div>
             </section>
         <!-- End grid -->
-    
+
     </div>
 </div>
 
