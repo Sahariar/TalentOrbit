@@ -11,6 +11,8 @@ use App\Http\Controllers\Public\CompanyController;
 use App\Http\Controllers\Company\PaymentController;
 use App\Http\Controllers\RSSFeedController;
 use App\Http\Controllers\JobPostController;
+use App\Http\Controllers\PaymentController as ControllersPaymentController;
+use App\Http\Controllers\PricingPlanController;
 use App\Http\Controllers\ProfileController;
 
 use Illuminate\Support\Facades\Route;
@@ -21,10 +23,10 @@ Route::get('/', function () {
 
 Route::middleware('guest')->group(function () {
     // Route::get('/register', [RegisteredUserController::class, 'showRegisterationForm'])->name('register');
-    Route::get('/register/CompanyProfile', [RegisteredUserController::class, 'showCompanyProfileRegistrationForm'])->name('register.CompanyProfile');
+    Route::get('/register/CompanyProfile', [RegisteredUserController::class, 'showCompanyProfileRegistrationForm'])->name('register.companyProfile');
     Route::get('/register/candidate', [RegisteredUserController::class, 'showCandidateRegistrationForm'])->name('register.candidate');
 
-    Route::post('/register/CompanyProfile', [RegisteredUserController::class, 'registerCompanyProfile'])->name('register.CompanyProfile.submit');
+    Route::post('/register/CompanyProfile', [RegisteredUserController::class, 'registerCompanyProfile'])->name('register.companyProfile.submit');
     Route::post('/register/candidate', [RegisteredUserController::class, 'registerCandidate'])->name('register.candidate.submit');
 });
 
@@ -66,6 +68,12 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
         Route::get('/{candidate}', [AdminController::class, 'candidateProfileShow'])->name('show');
         Route::delete('/{candidate}', [AdminController::class, 'candidateDelete'])->name('delete');
     });
+    // Price Plans management
+    Route::prefix('price-plans')->name('price-plans.')->group(function () {
+        Route::get('/', [AdminController::class, 'pricePlans'])->name('index');
+        Route::get('/{price-plans}', [AdminController::class, 'pricePlansShow'])->name('show');
+        Route::delete('/{price-plans}', [AdminController::class, 'pricePlansDelete'])->name('delete');
+    });
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -94,10 +102,16 @@ Route::middleware(['auth'])->group(function () {
         ]);
         // Route::get('/profile/{profile}',[CompanyProfileController::class,'show'])->name('company.profile.show');
     });
-    Route::middleware(['role:candidate'])->group(function () {
-        Route::get('/candidate/dashboard', [CandidateProfileController::class, 'dashboard'])->name('candidate.dashboard');
-        // Route::resource('jobs', JobController::class);
+
+    Route::prefix('/candidate')->middleware(['role:candidate'])->group(function () {
+        Route::get('/dashboard', [CandidateProfileController::class, 'dashboard'])->name('candidate.dashboard');
+        Route::get('/categories', [CandidateProfileController::class, 'categories'])->name('candidate.categories');
+        Route::post('/subscribe', [CandidateProfileController::class, 'subscribe'])->name('candidate.subscribe');
     });
+
+    Route::get('/priceplan/chose', [PricingPlanController::class, 'choseplan'])->name('priceplan.choseplan');
+    Route::post('/payment/process', [ControllersPaymentController::class, 'processPayment'])->name('payment.process');
+    Route::get('/payment/confirm', [ControllersPaymentController::class, 'confirmPayment'])->name('payment.confirm');
 });
 
 Route::resource('jobs', JobPostController::class)->names([

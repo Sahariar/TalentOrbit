@@ -56,7 +56,7 @@
 
                                                     <th
                                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                                                        Status</th>
+                                                        Public</th>
                                                     <th
                                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
                                                         Actions</th>
@@ -96,8 +96,8 @@
                                                         </td>
                                                         <td class="px-6 py-4">
                                                             <span
-                                                                class="px-2 py-1 text-xs rounded-full {{ $job->is_approved ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
-                                                                {{ $job->is_approved ? 'Approved' : 'Pending' }}
+                                                                class="px-2 py-1 text-xs rounded-full {{ $job->is_public ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
+                                                                {{ $job->is_public ? 'Yes' : 'No' }}
                                                             </span>
                                                         </td>
                                                         <td class="px-6 py-4">

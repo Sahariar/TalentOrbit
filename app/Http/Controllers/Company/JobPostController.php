@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Company;
 
+use App\Events\JobPosted;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\{FetchCompanyProfileJobPosts,FetchCategories,FetchAuthCompanyProfile};
@@ -54,7 +55,7 @@ class JobPostController extends Controller
     public function store(CreateOrUpdateCompanyJobPostRequest $request,FetchAuthCompanyProfile $fetchAuthCompanyProfile)
     {
         $validated = $request->validated();
-        
+
         if ($request->hasFile('featured_image')) {
             $featuredImage = $request->featured_image->getClientOriginalName();
 
@@ -79,6 +80,8 @@ class JobPostController extends Controller
         ]);
 
         if (!empty($newJobPost) && !is_null($newJobPost)) {
+            // Fire the event
+            event(new JobPosted($newJobPost));
             return back()->with(['msg' => 'Job Post Created Successfully']);
         }
 
@@ -109,7 +112,7 @@ class JobPostController extends Controller
     public function update(CreateOrUpdateCompanyJobPostRequest $request, JobPost $job_post, FetchAuthCompanyProfile $fetchAuthCompanyProfile)
     {
         $validated = $request->validated();
-        
+
         if ($request->hasFile('featured_image')) {
             $featuredImage = $request->featured_image->getClientOriginalName();
 

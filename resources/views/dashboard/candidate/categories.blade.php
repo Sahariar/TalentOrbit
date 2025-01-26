@@ -23,31 +23,31 @@
                     </nav>
                 </div>
             </div>
-            <div class="grid grid-cols-1 gap-6 gap-y-0 2xl:gap-6 md:grid-cols-2 2xl:grid-cols-4">
+            <div class="grid grid-cols-4 gap-6 gap-y-0">
                 <div class="card dark:bg-zinc-800 dark:border-zinc-600">
                     <div class="card-body">
-                        <div>
-                            <div class="grid items-center grid-cols-12 gap-6">
-                                <div class="col-span-6">
-                                    <span class="text-gray-700 dark:text-zinc-100">Cateogries Subscribed</span>
-                                    <h4 class="my-4 font-medium text-gray-800 text-21 dark:text-gray-100">
-                                        <span class="counter-value" data-target="{{ $subscribedCategoriesCount }}">
-                                            {{ $subscribedCategoriesCount }}
-                                    </h4>
+                        <form action="{{ route('candidate.subscribe') }}" method="POST">
+                            @csrf
+                            @foreach ($categories as $category)
+                                <div>
+                                    <label>
+                                        <input type="checkbox" name="categories[]" value="{{ $category->id }}" class=""
+                                        {{ in_array($category->id, $subscribedCategories) ? 'checked' : '' }}>
+
+                                        {{ $category->name }}
+                                    </label>
                                 </div>
-                                <div class="col-span-6">
-                                    <div id="mini-chart1" data-colors='["#5156be"]' class="mb-2 apex-charts"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex items-center mt-1">
-                            <span class="text-[10px] py-[1px] px-1 bg-green-500/40 text-green-500 rounded font-medium dark:bg-green-500/30">+ {{ $subscribedCategoriesCount }}</span>
-                            <span class="ltr:ml-1.5 rtl:mr-1.5 text-gray-700 text-13 dark:text-zinc-100">Since last week</span>
-                        </div>
+                            @endforeach
+                            <x-primary-button class="mt-3 w-full text-center">
+                                {{ __('Update Subscriptions') }}
+                            </x-primary-button>
+                        </form>
                     </div>
                 </div>
-
             </div>
+
+
+
         </div>
     </div>
 

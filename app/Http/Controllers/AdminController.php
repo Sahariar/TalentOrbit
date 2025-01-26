@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CandidateProfile;
 use App\Models\CompanyProfile;
 use App\Models\JobPost;
+use App\Models\PricingPlan;
 use App\Models\User;
 use App\Notifications\CompanyProfileApprove;
 use App\Notifications\CompanyProfileReject;
@@ -22,7 +23,7 @@ class AdminController extends Controller
                 ->count(),
             'total_jobs' => JobPost::count(),
             'active_jobs' => JobPost::where('is_active', true)
-                ->where('expiration_date', '>=', now())->count(),
+                ->count(),
             'total_candidates' => CandidateProfile::count(),
         ];
 
@@ -136,4 +137,12 @@ class AdminController extends Controller
 
         return redirect()->back()->with('success', $job->is_active ? 'Job has been activated.' : 'Job has been deactivated.');
     }
+
+    public function pricePlans()
+    {
+        $pricePlans = PricingPlan::latest()->paginate(10);
+
+        return view('dashboard.admin.pricePlan.index', compact('pricePlans'));
+    }
+
 }

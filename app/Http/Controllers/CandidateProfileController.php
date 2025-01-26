@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\CandidateProfile;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CandidateProfileController extends Controller
 {
@@ -15,11 +17,41 @@ class CandidateProfileController extends Controller
         return view('public.candidate.index', compact('candidates'));
     }
 
+    public function categories()
+    {
+        $user = Auth::user();
+        // Get subscribed category IDs or an empty array
+        $subscribedCategories = $user->candidate_profile
+        ? $user->candidate_profile->subscribedCategories->pluck('id')->toArray()
+        : [];
+        //
+        $categories = Category::all();
+        // dd($categories);
+        return view('dashboard.candidate.categories' , compact('categories' , 'subscribedCategories'));
+    }
     public function dashboard()
     {
         //
-        return view('dashboard.candidate.index');
+        $user = Auth::user();
+        $subscribedCategoriesCount = $user->candidate_profile && $user->candidate_profile->subscribedCategories
+    ? $user->candidate_profile->subscribedCategories->count()
+    : 0;
+
+        return view('dashboard.candidate.index' , compact('subscribedCategoriesCount'))->with('layout', 'dashboard');
     }
+    public function subscribe(Request $request)
+    {
+
+    $user = Auth::user();
+        // dd($user, $user->candidate_profile);
+        if ($user->candidate_profile) {
+            $user->candidate_profile->subscribedCategories()->sync($request->categories);
+            return redirect()->back()->with('success', 'Your subscriptions have been updated!');
+        }
+        //
+        return redirect()->back()->with('success', 'Your subscriptions have been updated!');
+    }
+
 
     /**
      * Show the form for creating a new resource.

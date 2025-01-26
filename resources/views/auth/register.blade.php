@@ -14,8 +14,8 @@
                             <div class="my-auto">
                                 <h2 class="text-2xl text-center font-bold mb-6">Choose Registration Type</h2>
                                 <div class="space-y-4">
-                                    <a href="{{ route('register.company') }}"
-                                       class="block w-full p-4 bg-sky-500 text-white rounded hover:bg-sky-600 text-center">
+                                    <a href="{{ route('register.companyProfile') }}"
+                                        class="block w-full p-4 bg-sky-500 text-white rounded hover:bg-sky-600 text-center">
                                         Register as Company
                                     </a>
 
