@@ -4,11 +4,11 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CandidateProfileController;
 use App\Http\Controllers\Company\JobPostController as CompanyJobPostController;
-
 use App\Http\Controllers\CompanyProfileController;
 use App\Http\Controllers\Public\CandidateController;
 use App\Http\Controllers\Public\CompanyController;
 use App\Http\Controllers\Company\PaymentController;
+use App\Http\Controllers\Company\PaymentController as CompanyPaymentController;
 use App\Http\Controllers\RSSFeedController;
 use App\Http\Controllers\JobPostController;
 use App\Http\Controllers\ProfileController;
@@ -84,8 +84,8 @@ Route::middleware(['auth'])->group(function () {
             'destroy' => 'company.job-posts.destroy',
         ]);
         Route::resource('company-profile', CompanyProfileController::class);
-        Route::get('/payments/search',[PaymentController::class,'search'])->name('company.payments.search');
-        Route::resource('payments',PaymentController::class)->except(['create','store'])->names([
+        Route::get('/payments/search',[CompanyPaymentController::class,'search'])->name('company.payments.search');
+        Route::resource('payments',CompanyPaymentController::class)->except(['create','store'])->names([
             'index'     => 'company.payments.index',
             'show'      => 'company.payments.show',
             'destroy'   => 'company.payments.destroy',
@@ -99,6 +99,8 @@ Route::middleware(['auth'])->group(function () {
         // Route::resource('jobs', JobController::class);
     });
 });
+
+Route::get('/jobs/filter', [JobPostController::class, 'filter'])->name('jobs.filter');
 
 Route::resource('jobs', JobPostController::class)->names([
     'index' => 'jobs',

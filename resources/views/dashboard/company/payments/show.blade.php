@@ -7,7 +7,12 @@
                 <div class="col-span-12 xl:col-span-12">
                     <div class="card dark:bg-zinc-800 dark:border-zinc-600">
                         <div class="card-body border-b border-gray-100 dark:border-zinc-600">
-                            <h6 class="mb-1 text-gray-700 text-15 dark:text-gray-100">Payment <strong>{{ $payment->id }}</strong></h6>
+                            <div class="grid grid-cols-2">
+                                <h6 class="mb-1 text-gray-700 text-15 dark:text-gray-100">Payment <strong>{{ $payment->id }}</strong></h6>
+                                <div class="text-right">
+                                    <a href="{{ route('company.payments.index') }}" role="button" class="text-white btn bg-sky-500 border-sky-500 hover:bg-sky-600 hover:border-sky-600 focus:bg-sky-600 focus:border-sky-600 focus:ring focus:ring-sky-500/30 active:bg-sky-600 active:border-sky-600">Back</a>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="relative overflow-x-auto w-full">
