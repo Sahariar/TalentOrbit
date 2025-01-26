@@ -33,4 +33,8 @@ class CompanyProfile extends Model
     {
         return $this->hasOne(Payment::class);
     }
+    public function plan()
+    {
+        return $this->belongsTo(PricingPlan::class);
+    }
 }

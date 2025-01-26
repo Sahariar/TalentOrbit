@@ -64,7 +64,6 @@
                         </ul>
                     </div>
                 </div>
-
                 <div>
                     <div class="relative dropdown text-gray-600">
                         <div class="relative">

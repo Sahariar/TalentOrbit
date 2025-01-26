@@ -19,10 +19,8 @@
     </li>
 @endif
 <li>
-    <a class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-sky-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white" href="{{ route('company.payments.index') }}">
+    <a href="{{ route('company.payments.index') }}" class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-sky-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white" >
         <i data-feather="dollar-sign" fill="#545a6d33"></i>
         Payments
     </a>
 </li>
-
-

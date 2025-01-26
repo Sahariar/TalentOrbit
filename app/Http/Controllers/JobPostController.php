@@ -30,6 +30,7 @@ class JobPostController extends Controller
     public function create()
     {
         //
+        // event(new JobPosted($job));
     }
 
     /**

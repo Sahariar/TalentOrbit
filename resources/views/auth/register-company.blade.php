@@ -16,7 +16,7 @@
                                     <p class="mt-1 text-gray-500 dark:text-zinc-100/60"> Create your Company account</p>
                                 </div>
 
-                                <form method="POST" action="{{ route('register.company.submit') }}"
+                                <form method="POST" action="{{ route('register.companyProfile.submit') }}"
                                     enctype="multipart/form-data" class="grid grid-cols-2 gap-4 p-4">
                                     @csrf
 

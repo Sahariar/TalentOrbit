@@ -17,8 +17,8 @@ class Category extends Model
         return $this->hasMany(JobPost::class);
     }
 
-    public function candidate_profiles()
+    public function candidateProfiles()
     {
-        return $this->belongsToMany(CandidateProfile::class);
+        return $this->belongsToMany(CandidateProfile::class ,'candidate_profile_category');
     }
 }
