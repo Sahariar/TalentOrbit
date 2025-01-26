@@ -10,6 +10,13 @@ class PricingPlanController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function choseplan()
+    {
+        //
+        $pricingPlans = PricingPlan::all();
+        return view('dashboard.priceplan.index', compact('pricingPlans'));
+    }
     public function index()
     {
         //

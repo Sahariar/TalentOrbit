@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Company;
 
+use App\Events\JobPosted;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Services\{FetchCompanyProfileJobPosts,FetchCategories,FetchAuthCompanyProfile};
+use App\Services\{FetchCompanyProfileJobPosts,FetchCategories,FetchAuthCompanyProfile,CheckActiveJobCount};
 use App\Http\Requests\{CreateOrUpdateCompanyJobPostRequest};
 use App\Models\{JobPost};
 
@@ -19,7 +20,7 @@ class JobPostController extends Controller
 
         $jobPosts       = $fetchCompanyProfileJobPosts->fetch()['jobPosts'];
 
-        return view('dashboard.company.job-posts.index', compact('jobPosts'));
+        return view('dashboard.company.job-posts.index', compact('jobPosts', 'companyProfile'));
     }
 
     public function search(Request $request,FetchAuthCompanyProfile $fetchAuthCompanyProfile)
@@ -41,20 +42,28 @@ class JobPostController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(FetchCategories $fetchCategories)
+    public function create(FetchCategories $fetchCategories, FetchAuthCompanyProfile $fetchAuthCompanyProfile)
     {
         $categories = $fetchCategories->fetch();
 
-        return view('dashboard.company.job-posts.create-or-edit',compact('categories'));
+        $companyProfile = $fetchAuthCompanyProfile->fetch();
+
+        return view('dashboard.company.job-posts.create-or-edit',compact('categories', 'companyProfile'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CreateOrUpdateCompanyJobPostRequest $request,FetchAuthCompanyProfile $fetchAuthCompanyProfile)
+    public function store(CreateOrUpdateCompanyJobPostRequest $request,FetchAuthCompanyProfile $fetchAuthCompanyProfile, CheckActiveJobCount $checkActiveJobCount)
     {
+        $companyProfile = $fetchAuthCompanyProfile->fetch();
+
+        if ($checkActiveJobCount->check($companyProfile) >= 3) {
+            return back()->with(['msg' => 'Sorry, there are already 3 active job posts. Please delete one to create a new one']);
+        }
+
         $validated = $request->validated();
-        
+
         if ($request->hasFile('featured_image')) {
             $featuredImage = $request->featured_image->getClientOriginalName();
 
@@ -62,8 +71,6 @@ class JobPostController extends Controller
         }else {
             $featuredImage = null;
         }
-
-        $companyProfile = $fetchAuthCompanyProfile->fetch();
 
         $newJobPost = JobPost::create([
             'company_profile_id'=> $companyProfile->id,
@@ -79,6 +86,8 @@ class JobPostController extends Controller
         ]);
 
         if (!empty($newJobPost) && !is_null($newJobPost)) {
+            // Fire the event
+            event(new JobPosted($newJobPost));
             return back()->with(['msg' => 'Job Post Created Successfully']);
         }
 
@@ -96,11 +105,13 @@ class JobPostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(JobPost $job_post,FetchCategories $fetchCategories)
+    public function edit(JobPost $job_post,FetchCategories $fetchCategories, FetchAuthCompanyProfile $fetchAuthCompanyProfile)
     {
         $categories = $fetchCategories->fetch();
 
-        return view('dashboard.company.job-posts.create-or-edit',compact('categories','job_post'));
+        $companyProfile = $fetchAuthCompanyProfile->fetch();
+
+        return view('dashboard.company.job-posts.create-or-edit',compact('categories','job_post', 'companyProfile'));
     }
 
     /**
@@ -109,7 +120,7 @@ class JobPostController extends Controller
     public function update(CreateOrUpdateCompanyJobPostRequest $request, JobPost $job_post, FetchAuthCompanyProfile $fetchAuthCompanyProfile)
     {
         $validated = $request->validated();
-        
+
         if ($request->hasFile('featured_image')) {
             $featuredImage = $request->featured_image->getClientOriginalName();
 

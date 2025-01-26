@@ -60,7 +60,7 @@ class RegisteredUserController extends Controller
         return redirect(route('dashboard', absolute: false));
     }
 
-    public function showCompanyRegistrationForm()
+    public function showCompanyProfileRegistrationForm()
     {
         return view('auth.register-company');
     }
@@ -70,7 +70,7 @@ class RegisteredUserController extends Controller
         return view('auth.register-candidate');
     }
 
-    public function registerCompany(Request $request)
+    public function registerCompanyProfile(Request $request)
     {
 
         // dd($request->all());

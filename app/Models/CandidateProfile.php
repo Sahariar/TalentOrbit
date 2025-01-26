@@ -32,4 +32,9 @@ class CandidateProfile extends Model
     {
         return $this->belongsToMany(Tag::class);
     }
+
+    public function subscribedCategories()
+    {
+        return $this->belongsToMany(Category::class, 'candidate_profile_category');
+    }
 }

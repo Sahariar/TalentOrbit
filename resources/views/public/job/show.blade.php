@@ -376,6 +376,7 @@
                                                 <div class="ltr:ml-4 rtl:mr-4">
                                                     <h6 class="mb-2 text-sm text-gray-900 dark:text-gray-50">Job Title</h6>
                                                     <p class="text-gray-500 dark:text-gray-300">{{$jobPost->title}}</p>
+                                                    
                                                 </div>
                                             </div>
                                         </li>

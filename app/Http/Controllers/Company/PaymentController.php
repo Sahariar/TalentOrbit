@@ -18,7 +18,7 @@ class PaymentController extends Controller
 
         $payments       = $fetchCompanyPayments->fetch($companyProfile->id);
 
-        return view('dashboard.company.payments.index', compact('payments'));
+        return view('dashboard.company.payments.index', compact('payments','companyProfile'));
     }
 
     public function search(Request $request,FetchAuthCompanyProfile $fetchAuthCompanyProfile)
@@ -51,9 +51,11 @@ class PaymentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Payment $payment)
+    public function show(Payment $payment, FetchAuthCompanyProfile $fetchAuthCompanyProfile)
     {
-        return view('dashboard.company.payments.show', compact('payment'));
+        $companyProfile = $fetchAuthCompanyProfile->fetch();
+
+        return view('dashboard.company.payments.show', compact('payment', 'companyProfile'));
     }
 
     /**
