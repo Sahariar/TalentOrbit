@@ -130,6 +130,8 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/jobs/filter', [JobPostController::class, 'filter'])->name('jobs.filter');
 
+Route::get('/jobs/{job}/apply', [JobPostController::class, 'apply'])->name('jobs.apply');
+
 Route::resource('jobs', JobPostController::class)->names([
     'index' => 'jobs',
     'show' => 'jobs.show',

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Company;
 use App\Events\JobPosted;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Services\{FetchCompanyProfileJobPosts,FetchCategories,FetchAuthCompanyProfile,CheckActiveJobCount};
+use App\Services\{FetchCompanyProfileJobPosts,FetchCategories,FetchAuthCompanyProfile,CheckActiveJobCount,CheckJobCount};
 use App\Http\Requests\{CreateOrUpdateCompanyJobPostRequest};
 use App\Models\{JobPost};
 
@@ -54,12 +54,18 @@ class JobPostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CreateOrUpdateCompanyJobPostRequest $request,FetchAuthCompanyProfile $fetchAuthCompanyProfile, CheckActiveJobCount $checkActiveJobCount)
+    public function store(CreateOrUpdateCompanyJobPostRequest $request,FetchAuthCompanyProfile $fetchAuthCompanyProfile, CheckActiveJobCount $checkActiveJobCount, CheckJobCount $checkJobCount)
     {
         $companyProfile = $fetchAuthCompanyProfile->fetch();
 
         if ($checkActiveJobCount->check($companyProfile) >= 3) {
             return back()->with(['msg' => 'Sorry, there are already 3 active job posts. Please delete one to create a new one']);
+        }
+
+        $maxJobLimit = $companyProfile->payment->pricing_plan->max_jobs;
+
+        if ($checkJobCount->check($companyProfile) >= $maxJobLimit) {
+            return back()->with(['msg' => 'Sorry, you have reached the maximum job post limit for the pricing plan you have']);
         }
 
         $validated = $request->validated();

@@ -271,7 +271,7 @@
                                     <div class="block accordion-body">
                                         <div class="p-5">
                                             <div class="area-range">
-                                                <div class="mb-3 form-label dark:text-gray-300">Salary Range: <span class="mt-2 example-val" id="slider1-span">20,000-40,000</span> BDT</div>
+                                                <div class="mb-3 form-label dark:text-gray-300">Salary Range: <span class="mt-2 example-val" id="slider1-span">20,000</span> BDT</div>
                                                 <div id="slider1" class="noUi-target noUi-ltr noUi-horizontal noUi-txt-dir-ltr">
                                                 </div>
                                             </div>
@@ -291,8 +291,15 @@
                                     <div class="block accordion-body">
                                         <div class="flex flex-wrap gap-2 p-5">
                                             @foreach ($tags as $tag)
-                                                <input type="hidden" name="tags[]" value="{{ $tag->id }}">
-                                                <a href="" class="bg-gray-50 text-13 rounded px-2 py-0.5 font-medium text-gray-500 group-data-[theme-color=violet]:hover:bg-violet-500 group-data-[theme-color=sky]:hover:bg-sky-500 group-data-[theme-color=red]:hover:bg-red-500 group-data-[theme-color=green]:hover:bg-green-500 group-data-[theme-color=pink]:hover:bg-pink-500 group-data-[theme-color=blue]:hover:bg-blue-500 hover:text-white transition-all duration-300 ease-in-out dark:text-gray-50 dark:bg-neutral-600/40">{{ $tag->title }}</a>
+                                                <input type="hidden" name="tag_id" value="{{ $tag->id }}">
+                                                <button type="button"
+                                                    class="
+                                                        rounded px-2 py-0.5 font-medium text-13 transition-all duration-300 ease-in-out
+                                                        {{ request('tag_id') == $tag->id ? 'bg-violet-500 text-white dark:bg-violet-500/80' : 'bg-gray-50 text-gray-500 hover:text-white group-data-[theme-color=violet]:hover:bg-violet-500 group-data-[theme-color=sky]:hover:bg-sky-500 group-data-[theme-color=red]:hover:bg-red-500 group-data-[theme-color=green]:hover:bg-green-500 group-data-[theme-color=pink]:hover:bg-pink-500 group-data-[theme-color=blue]:hover:bg-blue-500 dark:text-gray-50 dark:bg-neutral-600/40' }}
+                                                    ">
+                                                    {{ $tag->title }}
+                                                </button>
+                                                {{-- <button type="button" class="bg-gray-50 text-13 rounded px-2 py-0.5 font-medium text-gray-500 group-data-[theme-color=violet]:hover:bg-violet-500 group-data-[theme-color=sky]:hover:bg-sky-500 group-data-[theme-color=red]:hover:bg-red-500 group-data-[theme-color=green]:hover:bg-green-500 group-data-[theme-color=pink]:hover:bg-pink-500 group-data-[theme-color=blue]:hover:bg-blue-500 hover:text-white transition-all duration-300 ease-in-out dark:text-gray-50 dark:bg-neutral-600/40">{{ $tag->title }}</button> --}}
                                             @endforeach
                                         </div>
                                     </div>

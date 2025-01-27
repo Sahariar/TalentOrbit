@@ -70,6 +70,9 @@
                                                 Apply Count
                                             </th>
                                             <th scope="col" class="px-6 py-3">
+                                                View Count
+                                            </th>
+                                            <th scope="col" class="px-6 py-3">
                                                 Action
                                             </th>
                                         </tr>
@@ -106,6 +109,9 @@
                                                 <td class="px-6 py-4 dark:text-zinc-100/80">
                                                     {{ $jobPost->apply_count }}
                                                 </td>
+                                                <td class="px-6 py-4 dark:text-zinc-100/80">
+                                                    {{ $jobPost->view_count }}
+                                                </td>
                                                 <td class="px-6 py-4">
                                                     <a href="{{ route('company.job-posts.show',$jobPost->id) }}" title="View Job Post" class="font-medium text-blue-600 hover:underline">
                                                         <i class="fas fa-eye"></i>
@@ -113,12 +119,12 @@
                                                     <a href="{{ route('company.job-posts.edit',$jobPost->id) }}" title="Edit Job Post" class="font-medium text-blue-600 hover:underline">
                                                         <i class="fas fa-pencil-alt"></i>
                                                     </a>
-                                                    <a href="#" role="button" class="text-white btn bg-violet-500 border-violet-500 hover:bg-violet-600 focus:ring ring-violet-50focus:bg-violet-600" title="Delete Job Post" data-tw-toggle="modal" data-tw-target="#delete-job-post">
+                                                    <a href="#" role="button" class="text-white btn bg-violet-500 border-violet-500 hover:bg-violet-600 focus:ring ring-violet-50focus:bg-violet-600" title="Delete Job Post" data-tw-toggle="modal" data-tw-target="#delete-job-post{{ $jobPost->id }}">
                                                         <i class="fas fa-trash"></i>
                                                     </a>
 
                                                     <!-- Delete Job Post Modal -->
-                                                    <div class="relative z-50 hidden modal" id="delete-job-post" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                                                    <div class="relative z-50 hidden modal" id="delete-job-post{{ $jobPost->id }}" aria-labelledby="modal-title" role="dialog" aria-modal="true">
                                                         <div class="fixed inset-0 z-50 overflow-hidden">
                                                             <div class="absolute inset-0 transition-opacity bg-black bg-opacity-50 modal-overlay"></div>
                                                             <div class="p-4 mx-auto animate-translate sm:max-w-lg">

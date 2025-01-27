@@ -19,6 +19,17 @@ class JobPostController extends Controller
         return view('public.job.index', compact('jobPosts','tags'));
     }
 
+    public function apply(Request $request, JobPost $job)
+    {
+        if (!is_null($job->apply_link)) {
+            $job->increment('apply_count');
+
+            return redirect($job->apply_link);
+        }
+
+        return back()->with(['msg' => 'Sorry, could not redirect to apply link']);
+    }
+
     public function filter(Request $request)
     {
         dd($request->all());
@@ -46,6 +57,7 @@ class JobPostController extends Controller
      */
     public function show(JobPost $job)
     {
+        $job->increment('view_count');
         $job->load('company_profile', 'category');
         $jobPost = $job;
 
