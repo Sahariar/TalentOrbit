@@ -129,10 +129,31 @@
                         </div>
                     </div>
                 </div>
+                <div class="card dark:bg-zinc-800 dark:border-zinc-600">
+                    <div class="card-body">
+                        <div>
+                            <div class="grid items-center grid-cols-12 gap-6">
+                                <div class="col-span-6">
+                                    <span class="text-gray-700 dark:text-zinc-100">Total Sale</span>
+                                    <h4 class="my-4 font-medium text-gray-800 text-21 dark:text-gray-100">
+                                        <span class="counter-value" data-target="{{ $total_sale }}">$ {{ $total_sale }}</span>
+                                    </h4>
+                                </div>
+                                <div class="col-span-6">
+                                    <div id="mini-chart4" data-colors='["#5156be"]' class="mb-2 apex-charts"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-[10px] py-[1px] px-1 bg-green-500/40 text-green-500 rounded font-medium dark:bg-green-500/30">{{ $total_sale }}</span>
+                            <span class="ltr:ml-1.5 rtl:mr-1.5 text-gray-700 text-13 dark:text-zinc-100">Since last week</span>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="space-y-6">
                 {{-- Recent Activity --}}
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
                     {{-- Recent Companies --}}
                     <div class="bg-white rounded-lg shadow">
                         <div class="p-4 border-b">
@@ -200,6 +221,36 @@
                                         <div class="ml-3">
                                             <p class="font-medium">{{ $candidate->name }}</p>
                                             <p class="text-sm text-gray-500">{{ $candidate->user->email }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow">
+                        <div class="p-4 border-b">
+                            <h2 class="text-lg font-semibold">Recent Transaction</h2>
+                        </div>
+                        <div class="p-4">
+                            <div class="space-y-4">
+                                @foreach($recent_sale as $sale)
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <div class="ml-3">
+                                            <p class="font-normal">{{ $sale->transaction_id }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="ml-3">
+                                            <p class="font-normal">{{ $sale->created_at->format('F j, Y') }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="ml-3">
+                                            <p class="font-normal">$ {{ $sale->amount }}
+                                            </p>
                                         </div>
                                     </div>
                                 </div>

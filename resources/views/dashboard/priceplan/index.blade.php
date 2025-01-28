@@ -4,8 +4,8 @@
     <div class="page-content">
         <div class="container-fluid px-[0.625rem]">
             <div class="grid grid-cols-12 gap-6">
-                <div class="col-span-12 xl:col-span-12 py-24 gap-6 space-y-7">
-                    <div class="relative isolate bg-white px-6 space-y-8 mx-4 py-24 sm:py-32 lg:px-8 mb-12">
+                <div class="col-span-12 xl:col-span-12 py-6 gap-6 space-y-7">
+                    <div class="relative isolate bg-white px-6 space-y-8 mx-4 sm:py-12 lg:px-8 mb-12">
                         <div class="mx-auto max-w-4xl text-center my-6">
                           <h2 class="text-base/7 font-semibold text-sky-600">Pricing</h2>
                           <p class="mt-2 text-balance text-5xl font-semibold tracking-tight text-gray-900 sm:text-6xl">Choose the right plan for you</p>
@@ -20,7 +20,7 @@
                               <span class="text-base text-gray-500">/month</span>
                             </p>
                             <p class="mt-6 text-base/7 text-gray-600">{!!  $plan->description !!}</p>
-                            <form action="{{ route('payment.process') }}" method="POST">
+                            <form method="POST" action="{{ route('payment.process') }}" >
                                 @csrf
                                 <input type="hidden" name="pricing_plan_id" value="{{ $plan->id }}">
                                 <x-primary-button class="mt-3 text-center">

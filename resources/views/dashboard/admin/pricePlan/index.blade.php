@@ -73,10 +73,9 @@
 
                                                         <td class="px-6 py-4">
                                                             <div class="flex space-x-2">
-                                                                {{-- <x-viewbtn
-                                                                href="{{ route('admin.pricePlansShow.show', $plan->company_profile) }}">
-                                                                {{ __('View') }}
-                                                                </x-viewbtn> --}}
+                                                            <x-viewbtn href="{{ route('admin.price-plans.show', $plan) }}">
+                                                            {{ __('View') }}
+                                                            </x-viewbtn>
 
                                                                 {{-- <form action="{{ route('admin.pricePlansShow.delete', $plan) }}"
                                                                     method="POST" class="inline"

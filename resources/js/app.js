@@ -117,12 +117,13 @@ var swiper = new Swiper(".homeslider", {
 
 var slider1 = document.getElementById('slider1');
 
+
 noUiSlider.create(slider1, {
-    start: [9],
-    step: 1,
+    start: [10, 70],
+    connect: true,
     range: {
-        'min': [1],
-        'max': [15]
+        'min': 0,
+        'max': 100
     }
 });
 
