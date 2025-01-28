@@ -22,8 +22,7 @@
                     </div>
                 </div>
             </div>
-            <img src="assets/images/about/shape.png" alt="" class="absolute block bg-cover -bottom-0 dark:hidden">
-            <img src="assets/images/about/shape-dark.png" alt="" class="absolute hidden bg-cover -bottom-0 dark:block">
+            <img src="{{ asset('storage/images/about/shape.png') }}" alt="" class="absolute block bg-cover -bottom-0 dark:hidden">
         </section>
 
         <!-- Start team -->
@@ -45,7 +44,8 @@
                                     <div class="grid items-center grid-cols-12">
                                         <div class="col-span-12 lg:col-span-2">
                                             <div class="mb-4 text-center mb-md-0">
-                                                <a href="company-details.html"><img src="{{ $jobPost->featured_image }}" alt="post_image" class="mx-auto img-fluid rounded-3"></a>
+                                                {{-- <a href="company-details.html"><img src="{{ asset('storage/images/featured-job/img-01.png') }}" alt="" class="mx-auto img-fluid rounded-3"></a> --}}
+                                                <a href="company-details.html"><img src="{{ url('storage/images/' . $jobPost->featured_image) }}" alt="post_image" class="mx-auto img-fluid rounded-3"></a>
                                             </div>
                                         </div>
 
@@ -92,7 +92,7 @@
                                         <!--end col-->
                                         <div class="col-span-12 mt-2 lg:col-span-6 lg:mt-0">
                                             <div class="ltr:lg:text-right rtl:lg:text-left dark:text-gray-50">
-                                                <a href="{{ $jobPost->apply_link }}" data-bs-toggle="modal">Apply Now <i class="mdi mdi-chevron-double-right"></i></a>
+                                                <a href="{{ route('jobs.apply',$jobPost->id) }}" data-bs-toggle="modal">Apply Now <i class="mdi mdi-chevron-double-right"></i></a>
                                             </div>
                                         </div>
                                         <!--end col-->
@@ -208,7 +208,10 @@
                                     <div class="block accordion-body">
                                         <div class="p-5">
                                             <div class="area-range">
-                                                <div class="mb-3 form-label dark:text-gray-300">Salary Range: <span class="mt-2 example-val" id="slider1-span">20,000-40,000</span> BDT</div>
+                                                <div class="mb-3 form-label dark:text-gray-300">Salary Range: 
+                                                    <span class="mt-2 example-val" id="slider1-span">
+                                                        <input type="hidden" name="salary_range" value="" id="input-value">
+                                                    </span> $</div>
                                                 <div id="slider1" class="noUi-target noUi-ltr noUi-horizontal noUi-txt-dir-ltr">
                                                 </div>
                                             </div>
@@ -227,16 +230,23 @@
                                     </h6>
                                     <div class="block accordion-body">
                                         <div class="flex flex-wrap gap-2 p-5">
-                                            @foreach ($tags as $tag)
-                                                <input type="hidden" name="tags[]" value="{{ $tag->id }}">
-                                                <a href="" class="bg-gray-50 text-13 rounded px-2 py-0.5 font-medium text-gray-500 group-data-[theme-color=violet]:hover:bg-violet-500 group-data-[theme-color=sky]:hover:bg-sky-500 group-data-[theme-color=red]:hover:bg-red-500 group-data-[theme-color=green]:hover:bg-green-500 group-data-[theme-color=pink]:hover:bg-pink-500 group-data-[theme-color=blue]:hover:bg-blue-500 hover:text-white transition-all duration-300 ease-in-out dark:text-gray-50 dark:bg-neutral-600/40">{{ $tag->title }}</a>
-                                            @endforeach
+                                            <select name="tag_id" class="w-full px-3 py-2 border rounded-md border-gray-100/50 dark:bg-neutral-700 dark:border-gray-100/20 dark:text-gray-300">
+                                                <option value="">Select a tag</option>
+                                                @foreach ($tags as $tag)
+                                                    <option value="{{ $tag->id }}">{{ $tag->title }}</option>
+                                                @endforeach
+                                            </select>
+                                            {{-- @foreach ($tags as $tag)
+                                                <input type="hidden" name="tag_id" value="{{ $tag->id }}">
+                                                <button type="button" class="bg-gray-50 text-13 rounded px-2 py-0.5 font-medium text-gray-500 group-data-[theme-color=violet]:hover:bg-violet-500 group-data-[theme-color=sky]:hover:bg-sky-500 group-data-[theme-color=red]:hover:bg-red-500 group-data-[theme-color=green]:hover:bg-green-500 group-data-[theme-color=pink]:hover:bg-pink-500 group-data-[theme-color=blue]:hover:bg-blue-500 hover:text-white transition-all duration-300 ease-in-out dark:text-gray-50 dark:bg-neutral-600/40">{{ $tag->title }}</button>
+                                            @endforeach --}}
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <!--Filter Button-->
                             <div class="col-span-12 xl:col-span-3">
+                                <input type="hidden" name="salary_range" value="" id="input-value">
                                 <button type="submit" class="w-full text-white border-transparent btn group-data-[theme-color=violet]:bg-violet-500 group-data-[theme-color=sky]:bg-sky-500 group-data-[theme-color=red]:bg-red-500 group-data-[theme-color=green]:bg-green-500 group-data-[theme-color=pink]:bg-pink-500 group-data-[theme-color=blue]:bg-blue-500 focus:ring focus:ring-custom-500/30">
                                     <i class="uil uil-filter"></i> Filter
                                 </button>

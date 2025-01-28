@@ -18,19 +18,20 @@
                                                  applications.Carefully crafted after analyzing the needs of different
                                                  industries.</p>
                                         </div>
-                                        <form action="#">
+                                        <form action="{{ route('find-jobs') }}" method="GET">
                                             <div class="registration-form">
                                                 <div class="grid grid-cols-12">
                                                     <div class="col-span-12 xl:col-span-4">
                                                         <div class="mt-3 rounded-l filter-search-form filter-border mt-md-0">
                                                             <i class="uil uil-briefcase-alt"></i>
-                                                            <input type="search" id="job-title" class="md:w-full filter-input-box placeholder:text-gray-100 placeholder:text-13 dark:text-gray-100" placeholder="Job, Company name...">
+                                                            <input type="search" name="name" id="job-title" class="md:w-full filter-input-box placeholder:text-gray-100 placeholder:text-13 dark:text-gray-100" placeholder="Job, Company name...">
                                                         </div>
                                                     </div><!--end col-->
                                                     <div class="col-span-12 xl:col-span-4">
                                                         <div class="mt-3 filter-search-form mt-md-0">
                                                             <i class="uil uil-map-marker"></i>
-                                                            <select class="form-select" data-trigger name="choices-single-location" id="choices-single-location" aria-label="Default select example">
+                                                            <input type="search" name="location" id="job-location" class="md:w-full filter-input-box placeholder:text-gray-100 placeholder:text-13 dark:text-gray-100" placeholder="Location...">
+                                                            {{-- <select class="form-select" data-trigger name="choices-single-location" id="choices-single-location" aria-label="Default select example">
                                                                 <option value="AF">Afghanistan</option>
                                                                 <option value="AX">&Aring;land Islands</option>
                                                                 <option value="AL">Albania</option>
@@ -277,7 +278,7 @@
                                                                 <option value="YE">Yemen</option>
                                                                 <option value="ZM">Zambia</option>
                                                                 <option value="ZW">Zimbabwe</option>
-                                                            </select>
+                                                            </select> --}}
                                                         </div>
                                                     </div><!--end col-->
                                                     <div class="col-span-12 xl:col-span-4">
@@ -355,23 +356,24 @@
 {{--                            </div>--}}
 {{--                            <div class="grid grid-cols-12 gap-5">--}}
 
-{{--                                @foreach ($categories as $category)--}}
-{{--                                <div class="col-span-12 md:col-span-6 lg:col-span-3">--}}
-{{--                                    <div class="mt-4">--}}
-{{--                                        <div class="px-6 py-5 transition-all duration-500 ease-in-out cursor-pointer lg:py-10 hover:-translate-y-2">--}}
-{{--                                            <div class="job-categorie h-16 w-16 group-data-[theme-color=violet]:bg-violet-500/20 bg-sky-500/20 rounded-lg text-center leading-[4.4] mx-auto">--}}
-{{--                                                <i class="uim uim-briefcase"></i>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="mt-4 text-center">--}}
-{{--                                                <a href="job-categories.html" class="text-gray-900">--}}
-{{--                                                    <h5 class="text-lg dark:text-gray-50">{{$category->name}}</h5>--}}
-{{--                                                </a>--}}
-{{--                                                <p class="mt-1 font-medium text-gray-500 dark:text-gray-300">{{$category->job_posts_count}} Positions</p>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                @endforeach--}}
+
+                                @foreach ($categories as $category)
+                                <div class="col-span-12 md:col-span-6 lg:col-span-3">
+                                    <div class="mt-4">
+                                        <div class="px-6 py-5 transition-all duration-500 ease-in-out cursor-pointer lg:py-10 hover:-translate-y-2">
+                                            <div class="job-categorie h-16 w-16 group-data-[theme-color=violet]:bg-violet-500/20 bg-sky-500/20 rounded-lg text-center leading-[4.4] mx-auto">
+                                                <i class="uim uim-layers-alt"></i>
+                                            </div>
+                                            <div class="mt-4 text-center">
+                                                <a href="{{ route('category.jobs',$category->id) }}" class="text-gray-900">
+                                                    <h5 class="text-lg dark:text-gray-50">{{$category->name}}</h5>
+                                                </a>
+                                                <p class="mt-1 font-medium text-gray-500 dark:text-gray-300">{{$category->job_posts_count}} Jobs</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
 
 {{--                            </div>--}}
 {{--                            <div class="grid grid-cols-1">--}}

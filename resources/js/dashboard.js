@@ -12,6 +12,7 @@ import 'alertifyjs/build/css/alertify.css';
 import ApexCharts from 'apexcharts';
 
 
+
 window.Alpine = Alpine;
 
 Alpine.start();

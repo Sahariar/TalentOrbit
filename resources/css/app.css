@@ -2,3 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+.noUi-horizontal .noUi-handle {
+    width: 28px;
+    height: 28px;
+    right: -17px;
+    top: -6px;
+}
