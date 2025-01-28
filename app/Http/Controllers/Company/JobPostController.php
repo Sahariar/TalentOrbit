@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\{FetchCompanyProfileJobPosts,FetchCategories,FetchAuthCompanyProfile,CheckActiveJobCount,CheckJobCount};
 use App\Http\Requests\{CreateOrUpdateCompanyJobPostRequest};
-use App\Models\{JobPost};
+use App\Models\{JobPost,Tag};
 
 class JobPostController extends Controller
 {
@@ -48,7 +48,9 @@ class JobPostController extends Controller
 
         $companyProfile = $fetchAuthCompanyProfile->fetch();
 
-        return view('dashboard.company.job-posts.create-or-edit',compact('categories', 'companyProfile'));
+        $tags = Tag::select('id','title')->get();
+
+        return view('dashboard.company.job-posts.create-or-edit',compact('categories', 'companyProfile','tags'));
     }
 
     /**
@@ -73,7 +75,7 @@ class JobPostController extends Controller
         if ($request->hasFile('featured_image')) {
             $featuredImage = $request->featured_image->getClientOriginalName();
 
-            $request->featured_image->storeAs('images',$featuredImage);
+            $request->featured_image->storeAs('images',$featuredImage,'public');
         }else {
             $featuredImage = null;
         }
@@ -91,6 +93,10 @@ class JobPostController extends Controller
             'featured_image'    => $featuredImage
         ]);
 
+        if (isset($validated['tag_id']) && is_array($validated['tag_id'])) {
+            $newJobPost->tags()->attach($validated['tag_id']);
+        }
+
         if (!empty($newJobPost) && !is_null($newJobPost)) {
             // Fire the event
             event(new JobPosted($newJobPost));
@@ -103,9 +109,24 @@ class JobPostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(JobPost $job_post)
+    public function show(JobPost $job_post, FetchAuthCompanyProfile $fetchAuthCompanyProfile)
     {
-        return view('dashboard.company.job-posts.show',compact('job_post'));
+        $companyProfile = $fetchAuthCompanyProfile->fetch();
+
+        return view('dashboard.company.job-posts.show',compact('job_post','companyProfile'));
+    }
+
+    public function toggle(JobPost $jobPost)
+    {
+        $toggledJobPost = $jobPost->update([
+            'is_active' => !$jobPost->is_active
+        ]);
+
+        if ($toggledJobPost) {
+            return back()->with(['msg' => 'Job Post Toggled']);
+        }
+
+        return back()->with(['msg' => 'Sorry, could not toggle job post']);
     }
 
     /**
@@ -117,7 +138,9 @@ class JobPostController extends Controller
 
         $companyProfile = $fetchAuthCompanyProfile->fetch();
 
-        return view('dashboard.company.job-posts.create-or-edit',compact('categories','job_post', 'companyProfile'));
+        $tags = Tag::select('id','title')->get();
+
+        return view('dashboard.company.job-posts.create-or-edit',compact('categories','job_post', 'companyProfile', 'tags'));
     }
 
     /**
@@ -130,7 +153,7 @@ class JobPostController extends Controller
         if ($request->hasFile('featured_image')) {
             $featuredImage = $request->featured_image->getClientOriginalName();
 
-            $request->featured_image->storeAs('images',$featuredImage);
+            $request->featured_image->storeAs('images',$featuredImage,'public');
         }else {
             $featuredImage = null;
         }

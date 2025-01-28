@@ -30,7 +30,8 @@ class CreateOrUpdateCompanyJobPostRequest extends FormRequest
             'is_available'          => 'boolean',
             'location'              => 'required|string|max:255',
             'salary_range'          => 'required|string',
-            'featured_image'        => 'file'
+            'featured_image'        => 'file',
+            'tag_id'                => 'array',  
         ];
     }
 }

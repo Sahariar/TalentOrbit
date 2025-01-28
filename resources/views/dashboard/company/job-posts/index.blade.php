@@ -58,9 +58,6 @@
                                                 Job Title
                                             </th>
                                             <th scope="col" class="px-6 py-3">
-                                                Apply Link
-                                            </th>
-                                            <th scope="col" class="px-6 py-3">
                                                 Expiration Date
                                             </th>
                                             <th scope="col" class="px-6 py-3">
@@ -90,9 +87,6 @@
                                                     {{ $jobPost->title }}
                                                 </td>
                                                 <td class="px-6 py-4 dark:text-zinc-100/80">
-                                                    {{ $jobPost->apply_link }}
-                                                </td>
-                                                <td class="px-6 py-4 dark:text-zinc-100/80">
                                                     {{ $jobPost->expiration_date }}
                                                 </td>
                                                 <td class="px-6 py-4">
@@ -112,16 +106,29 @@
                                                 <td class="px-6 py-4 dark:text-zinc-100/80">
                                                     {{ $jobPost->view_count }}
                                                 </td>
-                                                <td class="px-6 py-4">
-                                                    <a href="{{ route('company.job-posts.show',$jobPost->id) }}" title="View Job Post" class="font-medium text-blue-600 hover:underline">
-                                                        <i class="fas fa-eye"></i>
-                                                    </a>
-                                                    <a href="{{ route('company.job-posts.edit',$jobPost->id) }}" title="Edit Job Post" class="font-medium text-blue-600 hover:underline">
-                                                        <i class="fas fa-pencil-alt"></i>
-                                                    </a>
-                                                    <a href="#" role="button" class="text-white btn bg-violet-500 border-violet-500 hover:bg-violet-600 focus:ring ring-violet-50focus:bg-violet-600" title="Delete Job Post" data-tw-toggle="modal" data-tw-target="#delete-job-post{{ $jobPost->id }}">
-                                                        <i class="fas fa-trash"></i>
-                                                    </a>
+                                                <td class="px-6 py-4" style="min-width: 250px;">
+                                                    <div class="grid grid-cols-4">
+                                                        <div class="p-2">
+                                                            <a href="{{ route('company.job-posts.show',$jobPost->id) }}" title="View Job Post" class="font-medium text-blue-600 hover:underline">
+                                                                <i class="fas fa-eye"></i>
+                                                            </a>
+                                                        </div>
+                                                        <div class="p-2">
+                                                            <a href="{{ route('company.job-posts.edit',$jobPost->id) }}" title="Edit Job Post" class="font-medium text-blue-600 hover:underline">
+                                                                <i class="fas fa-pencil-alt"></i>
+                                                            </a>
+                                                        </div>
+                                                        <div class="p-2">
+                                                            <a href="{{ route('company.job-posts.toggle-activity', $jobPost->id) }}" role="button" class="text-white btn bg-green-500 border-green-500 hover:bg-gray-600 focus:ring ring-violet-50focus:bg-gray-600" title="{{ $jobPost->is_active ? 'Inactivate' : 'Activate' }} Job Post">
+                                                                <i class="fas fa-toggle-{{ $jobPost->is_active ? 'on' : 'off' }}"></i>
+                                                            </a>
+                                                        </div>
+                                                        <div class="p-2">
+                                                            <a href="#" role="button" class="text-white btn bg-violet-500 border-violet-500 hover:bg-violet-600 focus:ring ring-violet-50focus:bg-violet-600" title="Delete Job Post" data-tw-toggle="modal" data-tw-target="#delete-job-post{{ $jobPost->id }}">
+                                                                <i class="fas fa-trash"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
 
                                                     <!-- Delete Job Post Modal -->
                                                     <div class="relative z-50 hidden modal" id="delete-job-post{{ $jobPost->id }}" aria-labelledby="modal-title" role="dialog" aria-modal="true">

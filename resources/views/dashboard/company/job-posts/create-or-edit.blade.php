@@ -47,7 +47,7 @@
                                     <div class="mb-4">
                                         <label for="job-description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Job Description:</label>
                                         <textarea id="job_description_editor" name="description" rows="4" placeholder="Write Job Title Description">
-                                            {{ $currentRouteName == 'company.job-posts.edit' ? $job_post->description : old('description') }}
+                                            {!! $currentRouteName == 'company.job-posts.edit' ? $job_post->description : old('description') !!}
                                         </textarea>
                                     </div>
                                     <div class="mb-4">
@@ -86,6 +86,14 @@
                                     <div class="mb-4">                                        
                                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="featured-image">Featured Image:</label>
                                         <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-white-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="featured-image" name="featured_image" type="file">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="block mb-2 font-medium text-gray-700 dark:text-zinc-100">Tags:</label>
+                                        <select name="tag_id[]" class="dark:bg-zinc-800 dark:border-zinc-700 w-full rounded border-gray-100 py-2.5 text-sm text-gray-500 focus:border focus:border-violet-500 focus:ring-0 dark:bg-zinc-700/50 dark:text-zinc-100" multiple>
+                                            @foreach ($tags as $tag)
+                                                <option value="{{ $tag->id }}">{{ $tag->title }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <br>
                                     <div class="mb-4">
