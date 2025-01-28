@@ -363,7 +363,7 @@
                                             </span>
                                         </div>
                                         <div class="ltr:ml-3 rtl:mr-3">
-                                            <a href="candidate-details.html"><h5 class="mb-2 text-17 dark:text-white">{{$candidate->name}}</h5></a>
+                                            <a href="{{route('candidate.show', $candidate)}}"><h5 class="mb-2 text-17 dark:text-white">{{$candidate->name}}</h5></a>
                                             <span class="text-13 bg-sky-500/20 text-sky-500 px-1.5 py-1 rounded">$800/month</span>
                                         </div>
                                     </div>

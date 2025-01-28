@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{JobPost, Tag};
+use App\Models\{Category, JobPost, Tag};
 use Illuminate\Http\Request;
 
 class JobPostController extends Controller
@@ -14,9 +14,11 @@ class JobPostController extends Controller
     {
         $jobPosts = JobPost::where('is_public',true)->with(['company_profile', 'category'])->paginate(10);
 
+        $categories = Category::withCount(['job_posts'])->paginate(6);
+
         $tags = Tag::select('id','title')->get();
 
-        return view('public.job.index', compact('jobPosts','tags'));
+        return view('public.job.index', compact('jobPosts','tags', 'categories'));
     }
 
     public function filter(Request $request)

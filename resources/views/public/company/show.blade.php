@@ -46,7 +46,7 @@
                                                 <a href="https://wa.me/{{ $id->phone_number }}" class="social-link"><i class="uil uil-whatsapp"></i></a>
                                             </li>
                                             <li class="h-10 w-10 text-center leading-[2.2] bg-gray-50 rounded-full text-lg text-gray-500 group-data-[theme-color=violet]:hover:bg-violet-500 group-data-[theme-color=sky]:hover:bg-sky-500 group-data-[theme-color=red]:hover:bg-red-500 group-data-[theme-color=green]:hover:bg-green-500 group-data-[theme-color=pink]:hover:bg-pink-500 group-data-[theme-color=blue]:hover:bg-blue-500 hover:text-white cursor-pointer transition-all duration-300 ease-in dark:bg-neutral-700 dark:text-white dark:hover:bg-violet-500/20">
-                                                <a href="javascript:void(0)" class="social-link"><i class="uil uil-phone-alt"></i></a>
+                                                <a href="tell:{{ $id->phone_number }}" class="social-link"><i class="uil uil-phone-alt"></i></a>
                                             </li>
                                         </ul>
                                     </div>
@@ -74,7 +74,7 @@
                                             <div class="flex flex-wrap">
                                                 <label class="text-gray-900 w-[118px] font-medium dark:text-gray-50">Location</label>
                                                 <div>
-                                                    <p class="mb-0 text-gray-500 dark:text-gray-300">{{$id->location ?? 'Location not set'}}</p>
+                                                    <p class="mb-0 text-gray-500 dark:text-gray-300">{{$id->location ?? 'Dhaka'}}</p>
                                                 </div>
                                             </div>
                                         </li>
@@ -119,44 +119,12 @@
                             <div class="p-6 border rounded border-gray-100/50 dark:border-neutral-600">
                                 <div>
                                     <h6 class="mb-3 text-gray-900 text-17 dark:text-gray-50">About Company</h6>
-                                    <p class="mb-4 text-gray-500 dark:text-gray-300">{{$id->description ?? "No description set or null"}}</p>
-                                </div>
-                                <div class="pt-8">
-                                    <h6 class="mb-5 text-gray-900 text-17 fw-bold dark:text-gray-50">Gallery</h6>
-                                    <div class="grid grid-cols-12 gap-y-5 lg:gap-5">
-                                        <div class="col-span-6">
-                                            <div class="relative overflow-hidden rounded-md group/gallery">
-                                                <img src="assets/images/blog/img-01.jpg" alt="" class="transition-all duration-300 ease-in-out group-hover/gallery:scale-110">
-                                                <div class="transition-all duration-300 ease-in-out group-hover/gallery:bg-black/40 group-hover/gallery:absolute group-hover/gallery:inset-0"></div>
-                                                <div class="absolute top-[50%] left-[50%] -translate-x-5 -translate-y-5 group-hover/gallery:block hidden transition-all duration-300 ease-in-out text-2xl">
-                                                    <a href="assets/images/blog/img-01.jpg" class="text-white image-popup" data-title="Project Leader" data-description="There are many variations of passages of available, but the majority alteration in some form."><i class="uil uil-search-alt"></i></a>
-                                                </div>
-                                            </div>
-                                        </div><!-- end col -->
-                                        <div class="col-span-6">
-                                            <div class="relative overflow-hidden rounded-md group/gallery">
-                                                <img src="assets/images/blog/img-03.jpg" alt="" class="transition-all duration-300 ease-in-out group-hover/gallery:scale-110">
-                                                <div class="transition-all duration-300 ease-in-out group-hover/gallery:bg-black/40 group-hover/gallery:absolute group-hover/gallery:inset-0"></div>
-                                                <div class="absolute top-[50%] left-[50%] -translate-x-5 -translate-y-5 group-hover/gallery:block hidden transition-all duration-300 ease-in-out text-2xl">
-                                                    <a href="assets/images/blog/img-03.jpg" class="text-white image-popup" data-title="Project Leader" data-description="There are many variations of passages of available, but the majority alteration in some form."><i class="uil uil-search-alt"></i></a>
-                                                </div>
-                                            </div>
-                                        </div><!-- end col -->
-                                        <div class="col-span-12">
-                                            <div class="relative overflow-hidden rounded-md group/gallery">
-                                                <img src="assets/images/blog/img-12.jpg" alt="" class="transition-all duration-300 ease-in-out group-hover/gallery:scale-110">
-                                                <div class="transition-all duration-300 ease-in-out group-hover/gallery:bg-black/40 group-hover/gallery:absolute group-hover/gallery:inset-0"></div>
-                                                <div class="absolute top-[50%] left-[50%] -translate-x-5 -translate-y-5 group-hover/gallery:block hidden transition-all duration-300 ease-in-out text-2xl">
-                                                    <a href="assets/images/blog/img-12.jpg" class="text-white image-popup" data-title="Project Leader" data-description="There are many variations of passages of available, but the majority alteration in some form."><i class="uil uil-search-alt"></i></a>
-                                                </div>
-                                            </div>
-                                        </div><!-- end col -->
-                                    </div>
+                                    <p class="mb-4 text-gray-500 dark:text-gray-300">{!! $id->description ?? "No description set or null" !!}</p>
                                 </div>
                                 <div class="pt-10">
                                     <h6 class="mb-0 text-gray-900 text-17 fw-bold dark:text-gray-50">{{ $id->job_posts_count }} Current Opening Job</h6>
                                     <div class="mt-5 space-y-5">
-                                        
+
 
                                         @if($id->job_posts->isEmpty())
                                             <div class="p-6 bg-gray-100 rounded-lg text-center">
@@ -168,18 +136,18 @@
                                             </div>
                                         @else
                                                 @foreach($id->job_posts as $jobPost)
-                                                    
+
                                                     <div class="relative overflow-hidden transition-all duration-500 ease-in-out bg-white border rounded-md border-gray-100/50 group group-data-[theme-color=violet]:hover:border-violet-500 group-data-[theme-color=sky]:hover:border-sky-500 group-data-[theme-color=red]:hover:border-red-500 group-data-[theme-color=green]:hover:border-green-500 group-data-[theme-color=pink]:hover:border-pink-500 group-data-[theme-color=blue]:hover:border-blue-500 hover:-translate-y-2 dark:bg-neutral-900 dark:border-neutral-600">
                                                         <div class="p-6">
                                                             <div class="grid grid-cols-12 gap-y-5 lg:gap-5">
                                                                 <div class="col-span-12 lg:col-span-2">
                                                                     <div class="text-center">
-                                                                        <a href="company-details.html"><img src="{{ Storage::url('app/public/assets/images/featured-job/' . $id->image ) }}" alt="job_image" class="md:mx-auto img-fluid rounded-3"></a>
+                                                                        <a href="{{$id->id}}"><img src="{{ asset('storage/images/featured-job/' . $id->image ) }}" alt="job_image" class="md:mx-auto img-fluid rounded-3"></a>
                                                                     </div>
                                                                 </div>
                                                                 <!--end col-->
                                                                 <div class="col-span-10">
-                                                                    <h5 class="mb-1 fs-17"><a href="job-details.html" class="text-gray-900 dark:text-gray-50">{{ $jobPost->title }}</a>
+                                                                    <h5 class="mb-1 fs-17"><a href="{{route('jobs') . '/' . $jobPost->id}}" class="text-gray-900 dark:text-gray-50">{{ $jobPost->title }}</a>
                                                                         <small class="font-normal text-gray-500 dark:text-gray-300">(0-2 Yrs Exp.)</small>
                                                                     </h5>
                                                                     <ul class="flex flex-wrap gap-3 mb-0">
@@ -193,13 +161,6 @@
                                                                             <p class="mb-0 text-sm text-gray-500 dark:text-gray-300"><i class="uil uil-wallet ltr:mr-2 rtl:ml-2"></i> {{$jobPost->salary_range}} / month</p>
                                                                         </li>
                                                                     </ul>
-                                                                    <div class="mt-4">
-                                                                        <div class="flex flex-wrap gap-1.5">
-                                                                            <span class="badge bg-green-500/20 text-green-500 text-11 px-2 py-0.5 font-medium rounded">Full Time</span>
-                                                                            <span class="badge bg-yellow-500/20 text-yellow-500 text-11 px-2 py-0.5 font-medium rounded">Urgent</span>
-                                                                            <span class="badge bg-sky-500/20 text-sky-500 text-11 px-2 py-0.5 font-medium rounded">Private</span>
-                                                                        </div>
-                                                                    </div>
                                                                 </div>
                                                             </div>
                                                             <!--end row-->
@@ -216,7 +177,7 @@
                                                                 <!--end col-->
                                                                 <div class="col-span-12 mt-2 lg:col-span-6 lg:mt-0">
                                                                     <div class="ltr:lg:text-right rtl:lg:text-left dark:text-gray-50">
-                                                                        <a href="#applyNow" data-bs-toggle="modal">Apply Now <i class="mdi mdi-chevron-double-right"></i></a>
+                                                                        <a href="{{$jobPost->apply_link}}" data-bs-toggle="modal">Apply Now <i class="mdi mdi-chevron-double-right"></i></a>
                                                                     </div>
                                                                 </div>
                                                                 <!--end col-->

@@ -1,4 +1,12 @@
 @extends('layouts.' . ($layout ?? 'app'))  <!-- Default to 'app' layout -->
+@section('js')
+    <script>
+        function toggleFAQ(id) {
+            const faq = document.getElementById(id);
+            faq.classList.toggle('hidden');
+        }
+    </script>
+@endsection
 @section('content')
 
 <div class="main-content">
@@ -13,8 +21,8 @@
                             <div class="page-next">
                                 <nav class="inline-block" aria-label="breadcrumb text-center">
                                     <ol class="flex justify-center text-sm font-medium uppercase">
-                                        <li><a href="index.html">Home</a></li>
-                                        <li><i class="bx bxs-chevron-right align-middle px-2.5"></i><a href="javascript:void(0)">Company</a></li>
+                                        <li><a href="{{route('home')}}">Home</a></li>
+                                        <li><i class="bx bxs-chevron-right align-middle px-2.5"></i><a href="{{route('companies')}}">Company</a></li>
                                         <li class="active" aria-current="page"><i class="bx bxs-chevron-right align-middle px-2.5"></i> Faq's </li>
                                     </ol>
                                 </nav>
@@ -23,457 +31,121 @@
                     </div>
                 </div>
             </div>
-            <img src="assets/images/about/shape.png" alt="" class="absolute block bg-cover -bottom-0 dark:hidden">
-            <img src="assets/images/about/shape-dark.png" alt="" class="absolute hidden bg-cover -bottom-0 dark:block">
+            <img src="{{asset('storage/imagess/about/shape.png' )}}" alt="" class="absolute block bg-cover -bottom-0 dark:hidden">
+            <img src="{{asset('storage/imagess/shape-dark.png' )}}" alt="" class="absolute hidden bg-cover -bottom-0 dark:block">
         </section>
-        
+
         <!-- Start faqs -->
-            <section class="py-20">
-                <div class="container mx-auto">
-                    <div class="nav-tabs line-tab">
-                        <div class="grid grid-cols-12">
-                            <div class="col-span-12 lg:col-span-8 lg:col-start-3">
-                                <ul class="items-center text-sm font-medium text-center text-gray-700 nav-pill md:flex">
-                                    <li class="w-full">
-                                        <a href="javascript:void(0);" data-tw-toggle="tab" data-tw-target="recent-job" class="inline-block w-full text-16 py-4 px-[18px] active" aria-current="page">Recent Jobs</a>
-                                    </li>
-                                    <li class="w-full">
-                                        <a href="javascript:void(0);" data-tw-toggle="tab" data-tw-target="featured-jobs-tab" class="inline-block w-full text-16 py-4 px-[18px]">Featured Jobs</a>
-                                    </li>
-                                    <li class="w-full">
-                                        <a href="javascript:void(0);" data-tw-toggle="tab" data-tw-target="freelancer-tab" class="inline-block w-full text-16 py-4 px-[18px]">Freelancer</a>
-                                    </li>
-                                    <li class="w-full">
-                                        <a href="javascript:void(0);" data-tw-toggle="tab" data-tw-target="part-time-tab" class="inline-block w-full text-16 py-4 px-[18px]">Part Time</a>
-                                    </li>
-                                </ul>
-                            </div> 
-                        </div>
-                        <div class="grid grid-cols-1">
-                            <div class="tab-content">
-                                <div class="block w-full tab-pane" id="recent-job">
-                                    <div class="pt-14">
-                                        <div class="grid grid-cols-12 gap-y-10 lg:gap-10">
-                                            <div class="col-span-12 xl:col-span-6">
-                                                <div>
-                                                    <div data-tw-accordion="collapse">
-                                                        <div class="text-gray-700 accordion-item dark:text-gray-300">
-                                                            <h6>
-                                                                <button type="button" class="flex items-center justify-between w-full px-4 py-2 font-medium text-left accordion-header group active ">
-                                                                    <span class="group-data-[theme-color=violet]:group-[.active]:text-violet-500">Where does it come from ?</span>
-                                                                    <i class="mdi mdi-chevron-down text-2xl group-[.active]:rotate-180 group-data-[theme-color=violet]:group-[.active]:text-violet-500"></i>
-                                                                </button>
-                                                            </h6>
-                        
-                                                            <div class="block accordion-body">
-                                                                <div class="p-5 font-light">
-                                                                    <p class="mb-2 text-gray-500 dark:text-gray-300">If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the individual languages. The new common language will be more simple and regular than the existing European languages.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+        <div class="max-w-4xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
 
-                                                        <div class="text-gray-700 accordion-item dark:text-gray-300">
-                                                            <h6>
-                                                                <button type="button" class="flex items-center justify-between w-full px-4 py-2 font-medium text-left accordion-header group">
-                                                                    <span class="text-15">Is there a Figma file available?</span>
-                                                                    <i class="mdi mdi-chevron-down text-2xl group-[.active]:rotate-180"></i>
-                                                                </button>
-                                                            </h6>
-                                                            <div class="hidden accordion-body">
-                                                                <div class="p-5 font-light ">
-                                                                    <p class="mb-2 text-gray-500 dark:text-gray-300">To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental is. The European languages are members of the same family. Their separate existence is a myth.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="text-gray-700 accordion-item dark:text-gray-300">
-                                                            <h6>
-                                                                <button type="button" class="flex items-center justify-between w-full px-4 py-2 font-medium text-left accordion-header group">
-                                                                    <span class="text-15">What are the differences between Flowbite and Tailwind UI?</span>
-                                                                    <i class="mdi mdi-chevron-down text-2xl group-[.active]:rotate-180"></i>
-                                                                </button>
-                                                            </h6>
-                                                            <div class="hidden accordion-body">
-                                                                <div class="p-5 font-light dark:border-gray-700">
-                                                                    <p class="mb-2 text-gray-500 dark:text-gray-400">Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators. To achieve this, it would be necessary to have uniform grammar, pronunciation and more common words.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div> 
-                                            <div class="col-span-12 xl:col-span-6">
-                                                <div>
-                                                    <div data-tw-accordion="collapse">
-                                                        <div class="text-gray-700 accordion-item dark:text-gray-300">
-                                                            <h6>
-                                                                <button type="button" class="flex items-center justify-between w-full px-4 py-2 font-medium text-left accordion-header group active ">
-                                                                    <span class="group-data-[theme-color=violet]:group-[.active]:text-violet-500">Where To Place A FAQ Page</span>
-                                                                    <i class="mdi mdi-chevron-down text-2xl group-[.active]:rotate-180 group-data-[theme-color=violet]:group-[.active]:text-violet-500"></i>
-                                                                </button>
-                                                            </h6>
-                        
-                                                            <div class="block accordion-body">
-                                                                <div class="p-5 font-light">
-                                                                    <p class="mb-2 text-gray-500 dark:text-gray-300">Just as the name suggests, a FAQ page is all about simple questions and answers. Gather common questions your customers have asked from your support team and include them in the FAQ, Use categories to organize questions related to specific topics.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="text-gray-700 accordion-item dark:text-gray-300">
-                                                            <h6>
-                                                                <button type="button" class="flex items-center justify-between w-full px-4 py-2 font-medium text-left accordion-header group">
-                                                                    <span class="text-15">Why do we use it ?</span>
-                                                                    <i class="mdi mdi-chevron-down text-2xl group-[.active]:rotate-180"></i>
-                                                                </button>
-                                                            </h6>
-                                                            <div class="hidden accordion-body">
-                                                                <div class="p-5 font-light ">
-                                                                    <p class="mb-2 text-gray-500 dark:text-gray-300">It will be as simple as Occidental; in fact, it will be Occidental. To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="text-gray-700 accordion-item dark:text-gray-300">
-                                                            <h6>
-                                                                <button type="button" class="flex items-center justify-between w-full px-4 py-2 font-medium text-left accordion-header group">
-                                                                    <span class="text-15"> Where can I get some ?</span>
-                                                                    <i class="mdi mdi-chevron-down text-2xl group-[.active]:rotate-180"></i>
-                                                                </button>
-                                                            </h6>
-                                                            <div class="hidden accordion-body">
-                                                                <div class="p-5 font-light dark:border-gray-700">
-                                                                    <p class="mb-2 text-gray-500 dark:text-gray-400">To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental is. The European languages are members of the same family. Their separate existence is a myth.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>   
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="hidden w-full tab-pane" id="featured-jobs-tab">
-                                    <div class="pt-14">
-                                        <div class="grid grid-cols-12 gap-y-10 lg:gap-10">
-                                            <div class="col-span-12 xl:col-span-6">
-                                                <div>
-                                                    <div data-tw-accordion="collapse">
-                                                        <div class="text-gray-700 accordion-item dark:text-gray-300">
-                                                            <h6>
-                                                                <button type="button" class="flex items-center justify-between w-full px-4 py-2 font-medium text-left accordion-header group active ">
-                                                                    <span class="group-data-[theme-color=violet]:group-[.active]:text-violet-500">Where does it come from ?</span>
-                                                                    <i class="mdi mdi-chevron-down text-2xl group-[.active]:rotate-180 group-data-[theme-color=violet]:group-[.active]:text-violet-500"></i>
-                                                                </button>
-                                                            </h6>
-                        
-                                                            <div class="block accordion-body">
-                                                                <div class="p-5 font-light">
-                                                                    <p class="mb-2 text-gray-500 dark:text-gray-300">If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the individual languages. The new common language will be more simple and regular than the existing European languages.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="text-gray-700 accordion-item dark:text-gray-300">
-                                                            <h6>
-                                                                <button type="button" class="flex items-center justify-between w-full px-4 py-2 font-medium text-left accordion-header group">
-                                                                    <span class="text-15">Is there a Figma file available?</span>
-                                                                    <i class="mdi mdi-chevron-down text-2xl group-[.active]:rotate-180"></i>
-                                                                </button>
-                                                            </h6>
-                                                            <div class="hidden accordion-body">
-                                                                <div class="p-5 font-light ">
-                                                                    <p class="mb-2 text-gray-500 dark:text-gray-300">To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental is. The European languages are members of the same family. Their separate existence is a myth.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="text-gray-700 accordion-item dark:text-gray-300">
-                                                            <h6>
-                                                                <button type="button" class="flex items-center justify-between w-full px-4 py-2 font-medium text-left accordion-header group">
-                                                                    <span class="text-15">What are the differences between Flowbite and Tailwind UI?</span>
-                                                                    <i class="mdi mdi-chevron-down text-2xl group-[.active]:rotate-180"></i>
-                                                                </button>
-                                                            </h6>
-                                                            <div class="hidden accordion-body">
-                                                                <div class="p-5 font-light dark:border-gray-700">
-                                                                    <p class="mb-2 text-gray-500 dark:text-gray-400">Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators. To achieve this, it would be necessary to have uniform grammar, pronunciation and more common words.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div> 
-                                            <div class="col-span-12 xl:col-span-6">
-                                                <div>
-                                                    <div data-tw-accordion="collapse">
-                                                        <div class="text-gray-700 accordion-item dark:text-gray-300">
-                                                            <h6>
-                                                                <button type="button" class="flex items-center justify-between w-full px-4 py-2 font-medium text-left accordion-header group active ">
-                                                                    <span class="group-data-[theme-color=violet]:group-[.active]:text-violet-500">Where To Place A FAQ Page</span>
-                                                                    <i class="mdi mdi-chevron-down text-2xl group-[.active]:rotate-180 group-data-[theme-color=violet]:group-[.active]:text-violet-500"></i>
-                                                                </button>
-                                                            </h6>
-                        
-                                                            <div class="block accordion-body">
-                                                                <div class="p-5 font-light">
-                                                                    <p class="mb-2 text-gray-500 dark:text-gray-300">Just as the name suggests, a FAQ page is all about simple questions and answers. Gather common questions your customers have asked from your support team and include them in the FAQ, Use categories to organize questions related to specific topics.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="text-gray-700 accordion-item dark:text-gray-300">
-                                                            <h6>
-                                                                <button type="button" class="flex items-center justify-between w-full px-4 py-2 font-medium text-left accordion-header group">
-                                                                    <span class="text-15">Why do we use it ?</span>
-                                                                    <i class="mdi mdi-chevron-down text-2xl group-[.active]:rotate-180"></i>
-                                                                </button>
-                                                            </h6>
-                                                            <div class="hidden accordion-body">
-                                                                <div class="p-5 font-light ">
-                                                                    <p class="mb-2 text-gray-500 dark:text-gray-300">It will be as simple as Occidental; in fact, it will be Occidental. To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="text-gray-700 accordion-item dark:text-gray-300">
-                                                            <h6>
-                                                                <button type="button" class="flex items-center justify-between w-full px-4 py-2 font-medium text-left accordion-header group">
-                                                                    <span class="text-15"> Where can I get some ?</span>
-                                                                    <i class="mdi mdi-chevron-down text-2xl group-[.active]:rotate-180"></i>
-                                                                </button>
-                                                            </h6>
-                                                            <div class="hidden accordion-body">
-                                                                <div class="p-5 font-light dark:border-gray-700">
-                                                                    <p class="mb-2 text-gray-500 dark:text-gray-400">To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental is. The European languages are members of the same family. Their separate existence is a myth.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>      
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="hidden w-full tab-pane" id="freelancer-tab">
-                                    <div class="pt-14">
-                                        <div class="grid grid-cols-12 gap-y-10 lg:gap-10">
-                                            <div class="col-span-12 xl:col-span-6">
-                                                <div>
-                                                    <div data-tw-accordion="collapse">
-                                                        <div class="text-gray-700 accordion-item dark:text-gray-300">
-                                                            <h6>
-                                                                <button type="button" class="flex items-center justify-between w-full px-4 py-2 font-medium text-left accordion-header group active ">
-                                                                    <span class="group-data-[theme-color=violet]:group-[.active]:text-violet-500">Where does it come from ?</span>
-                                                                    <i class="mdi mdi-chevron-down text-2xl group-[.active]:rotate-180 group-data-[theme-color=violet]:group-[.active]:text-violet-500"></i>
-                                                                </button>
-                                                            </h6>
-                        
-                                                            <div class="block accordion-body">
-                                                                <div class="p-5 font-light">
-                                                                    <p class="mb-2 text-gray-500 dark:text-gray-300">If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the individual languages. The new common language will be more simple and regular than the existing European languages.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="text-gray-700 accordion-item dark:text-gray-300">
-                                                            <h6>
-                                                                <button type="button" class="flex items-center justify-between w-full px-4 py-2 font-medium text-left accordion-header group">
-                                                                    <span class="text-15">Is there a Figma file available?</span>
-                                                                    <i class="mdi mdi-chevron-down text-2xl group-[.active]:rotate-180"></i>
-                                                                </button>
-                                                            </h6>
-                                                            <div class="hidden accordion-body">
-                                                                <div class="p-5 font-light ">
-                                                                    <p class="mb-2 text-gray-500 dark:text-gray-300">To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental is. The European languages are members of the same family. Their separate existence is a myth.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="text-gray-700 accordion-item dark:text-gray-300">
-                                                            <h6>
-                                                                <button type="button" class="flex items-center justify-between w-full px-4 py-2 font-medium text-left accordion-header group">
-                                                                    <span class="text-15">What are the differences between Flowbite and Tailwind UI?</span>
-                                                                    <i class="mdi mdi-chevron-down text-2xl group-[.active]:rotate-180"></i>
-                                                                </button>
-                                                            </h6>
-                                                            <div class="hidden accordion-body">
-                                                                <div class="p-5 font-light dark:border-gray-700">
-                                                                    <p class="mb-2 text-gray-500 dark:text-gray-400">Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators. To achieve this, it would be necessary to have uniform grammar, pronunciation and more common words.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div> 
-                                            <div class="col-span-12 xl:col-span-6">
-                                                <div>
-                                                    <div data-tw-accordion="collapse">
-                                                        <div class="text-gray-700 accordion-item dark:text-gray-300">
-                                                            <h6>
-                                                                <button type="button" class="flex items-center justify-between w-full px-4 py-2 font-medium text-left accordion-header group active ">
-                                                                    <span class="group-data-[theme-color=violet]:group-[.active]:text-violet-500">Where To Place A FAQ Page</span>
-                                                                    <i class="mdi mdi-chevron-down text-2xl group-[.active]:rotate-180 group-data-[theme-color=violet]:group-[.active]:text-violet-500"></i>
-                                                                </button>
-                                                            </h6>
-                        
-                                                            <div class="block accordion-body">
-                                                                <div class="p-5 font-light">
-                                                                    <p class="mb-2 text-gray-500 dark:text-gray-300">Just as the name suggests, a FAQ page is all about simple questions and answers. Gather common questions your customers have asked from your support team and include them in the FAQ, Use categories to organize questions related to specific topics.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="text-gray-700 accordion-item dark:text-gray-300">
-                                                            <h6>
-                                                                <button type="button" class="flex items-center justify-between w-full px-4 py-2 font-medium text-left accordion-header group">
-                                                                    <span class="text-15">Why do we use it ?</span>
-                                                                    <i class="mdi mdi-chevron-down text-2xl group-[.active]:rotate-180"></i>
-                                                                </button>
-                                                            </h6>
-                                                            <div class="hidden accordion-body">
-                                                                <div class="p-5 font-light ">
-                                                                    <p class="mb-2 text-gray-500 dark:text-gray-300">It will be as simple as Occidental; in fact, it will be Occidental. To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="text-gray-700 accordion-item dark:text-gray-300">
-                                                            <h6>
-                                                                <button type="button" class="flex items-center justify-between w-full px-4 py-2 font-medium text-left accordion-header group">
-                                                                    <span class="text-15"> Where can I get some ?</span>
-                                                                    <i class="mdi mdi-chevron-down text-2xl group-[.active]:rotate-180"></i>
-                                                                </button>
-                                                            </h6>
-                                                            <div class="hidden accordion-body">
-                                                                <div class="p-5 font-light dark:border-gray-700">
-                                                                    <p class="mb-2 text-gray-500 dark:text-gray-400">To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental is. The European languages are members of the same family. Their separate existence is a myth.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>      
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="hidden w-full tab-pane" id="part-time-tab">
-                                    <div class="pt-14">
-                                        <div class="grid grid-cols-12 gap-y-10 lg:gap-10">
-                                            <div class="col-span-12 xl:col-span-6">
-                                                <div>
-                                                    <div data-tw-accordion="collapse">
-                                                        <div class="text-gray-700 accordion-item dark:text-gray-300">
-                                                            <h6>
-                                                                <button type="button" class="flex items-center justify-between w-full px-4 py-2 font-medium text-left accordion-header group active ">
-                                                                    <span class="group-data-[theme-color=violet]:group-[.active]:text-violet-500">Where does it come from ?</span>
-                                                                    <i class="mdi mdi-chevron-down text-2xl group-[.active]:rotate-180 group-data-[theme-color=violet]:group-[.active]:text-violet-500"></i>
-                                                                </button>
-                                                            </h6>
-                        
-                                                            <div class="block accordion-body">
-                                                                <div class="p-5 font-light">
-                                                                    <p class="mb-2 text-gray-500 dark:text-gray-300">If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the individual languages. The new common language will be more simple and regular than the existing European languages.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="text-gray-700 accordion-item dark:text-gray-300">
-                                                            <h6>
-                                                                <button type="button" class="flex items-center justify-between w-full px-4 py-2 font-medium text-left accordion-header group">
-                                                                    <span class="text-15">Is there a Figma file available?</span>
-                                                                    <i class="mdi mdi-chevron-down text-2xl group-[.active]:rotate-180"></i>
-                                                                </button>
-                                                            </h6>
-                                                            <div class="hidden accordion-body">
-                                                                <div class="p-5 font-light ">
-                                                                    <p class="mb-2 text-gray-500 dark:text-gray-300">To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental is. The European languages are members of the same family. Their separate existence is a myth.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="text-gray-700 accordion-item dark:text-gray-300">
-                                                            <h6>
-                                                                <button type="button" class="flex items-center justify-between w-full px-4 py-2 font-medium text-left accordion-header group">
-                                                                    <span class="text-15">What are the differences between Flowbite and Tailwind UI?</span>
-                                                                    <i class="mdi mdi-chevron-down text-2xl group-[.active]:rotate-180"></i>
-                                                                </button>
-                                                            </h6>
-                                                            <div class="hidden accordion-body">
-                                                                <div class="p-5 font-light dark:border-gray-700">
-                                                                    <p class="mb-2 text-gray-500 dark:text-gray-400">Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators. To achieve this, it would be necessary to have uniform grammar, pronunciation and more common words.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div> 
-                                            <div class="col-span-12 xl:col-span-6">
-                                                <div>
-                                                    <div data-tw-accordion="collapse">
-                                                        <div class="text-gray-700 accordion-item dark:text-gray-300">
-                                                            <h6>
-                                                                <button type="button" class="flex items-center justify-between w-full px-4 py-2 font-medium text-left accordion-header group active ">
-                                                                    <span class="group-data-[theme-color=violet]:group-[.active]:text-violet-500">Where To Place A FAQ Page</span>
-                                                                    <i class="mdi mdi-chevron-down text-2xl group-[.active]:rotate-180 group-data-[theme-color=violet]:group-[.active]:text-violet-500"></i>
-                                                                </button>
-                                                            </h6>
-                        
-                                                            <div class="block accordion-body">
-                                                                <div class="p-5 font-light">
-                                                                    <p class="mb-2 text-gray-500 dark:text-gray-300">Just as the name suggests, a FAQ page is all about simple questions and answers. Gather common questions your customers have asked from your support team and include them in the FAQ, Use categories to organize questions related to specific topics.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="text-gray-700 accordion-item dark:text-gray-300">
-                                                            <h6>
-                                                                <button type="button" class="flex items-center justify-between w-full px-4 py-2 font-medium text-left accordion-header group">
-                                                                    <span class="text-15">Why do we use it ?</span>
-                                                                    <i class="mdi mdi-chevron-down text-2xl group-[.active]:rotate-180"></i>
-                                                                </button>
-                                                            </h6>
-                                                            <div class="hidden accordion-body">
-                                                                <div class="p-5 font-light ">
-                                                                    <p class="mb-2 text-gray-500 dark:text-gray-300">It will be as simple as Occidental; in fact, it will be Occidental. To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="text-gray-700 accordion-item dark:text-gray-300">
-                                                            <h6>
-                                                                <button type="button" class="flex items-center justify-between w-full px-4 py-2 font-medium text-left accordion-header group">
-                                                                    <span class="text-15"> Where can I get some ?</span>
-                                                                    <i class="mdi mdi-chevron-down text-2xl group-[.active]:rotate-180"></i>
-                                                                </button>
-                                                            </h6>
-                                                            <div class="hidden accordion-body">
-                                                                <div class="p-5 font-light dark:border-gray-700">
-                                                                    <p class="mb-2 text-gray-500 dark:text-gray-400">To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental is. The European languages are members of the same family. Their separate existence is a myth.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>     
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-5">
-                            <div class="grid grid-cols-1">
-                                <div class="mt-5 text-center">
-                                    <a href="contact.html" class="btn group-data-[theme-color=violet]:bg-violet-500 group-data-[theme-color=sky]:bg-sky-500 group-data-[theme-color=red]:bg-red-500 group-data-[theme-color=green]:bg-green-500 group-data-[theme-color=pink]:bg-pink-500 group-data-[theme-color=blue]:bg-blue-500 border-transparent text-white hover:-translate-y-1.5 transition-all duration-500 ease-in-out mt-2"><i class="uil uil-phone"></i> Contact Us</a>
-                                    <a href="javascript:void(0)" class="btn bg-yellow-500 border-transparent text-white hover:-translate-y-1.5 transition-all duration-500 ease-in-out mt-2 ltr:ml-2 rtl:mr-2"><i class="uil uil-envelope"></i> Email Now</a>
-                                </div>
-                            </div>
-                        </div>
+            <div class="space-y-6">
+                <!-- FAQ 1 -->
+                <div class="bg-white shadow-md rounded-lg">
+                    <div class="p-4 flex justify-between items-center cursor-pointer" onclick="toggleFAQ('faq1')">
+                        <h2 class="text-lg font-semibold">How do I create an account on TalentOrbit?</h2>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                        </svg>
+                    </div>
+                    <div id="faq1" class="hidden p-4 border-t border-gray-200">
+                        <p>Creating an account on TalentOrbit is simple. Click on the "Sign Up" button at the top-right corner, fill in your details, and follow the verification process to activate your account.</p>
                     </div>
                 </div>
-            </section>
+
+                <!-- FAQ 2 -->
+                <div class="bg-white shadow-md rounded-lg">
+                    <div class="p-4 flex justify-between items-center cursor-pointer" onclick="toggleFAQ('faq2')">
+                        <h2 class="text-lg font-semibold">How can I apply for jobs?</h2>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                        </svg>
+                    </div>
+                    <div id="faq2" class="hidden p-4 border-t border-gray-200">
+                        <p>Once you have an account, log in and browse the job listings. Click on the job you are interested in, review the details, and click "Apply Now" to submit your application.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="bg-white shadow-md rounded-lg">
+                    <div class="p-4 flex justify-between items-center cursor-pointer" onclick="toggleFAQ('faq3')">
+                        <h2 class="text-lg font-semibold">How do I contact an employer?</h2>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                        </svg>
+                    </div>
+                    <div id="faq3" class="hidden p-4 border-t border-gray-200">
+                        <p>You can contact an employer through the messaging feature on TalentOrbit once the employer has viewed your application. Keep an eye on your inbox for responses.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="bg-white shadow-md rounded-lg">
+                    <div class="p-4 flex justify-between items-center cursor-pointer" onclick="toggleFAQ('faq4')">
+                        <h2 class="text-lg font-semibold">Can I save jobs to apply later?</h2>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                        </svg>
+                    </div>
+                    <div id="faq4" class="hidden p-4 border-t border-gray-200">
+                        <p>Yes, you can save jobs by clicking the "Save" button on the job listing. You can view all your saved jobs under the "Saved Jobs" section in your profile.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="bg-white shadow-md rounded-lg">
+                    <div class="p-4 flex justify-between items-center cursor-pointer" onclick="toggleFAQ('faq5')">
+                        <h2 class="text-lg font-semibold">What should I do if I forget my password?</h2>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                        </svg>
+                    </div>
+                    <div id="faq5" class="hidden p-4 border-t border-gray-200">
+                        <p>If you forget your password, click on the "Forgot Password" link on the login page. Enter your registered email address, and we will send you a link to reset your password.</p>
+                    </div>
+                </div>
+
+                <!-- Pricing FAQ 1 -->
+                <div class="bg-white shadow-md rounded-lg">
+                    <div class="p-4 flex justify-between items-center cursor-pointer" onclick="toggleFAQ('faq6')">
+                        <h2 class="text-lg font-semibold">What is included in the free plan?</h2>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                        </svg>
+                    </div>
+                    <div id="faq6" class="hidden p-4 border-t border-gray-200">
+                        <p>Our free plan allows companies to post up to 3 jobs. This is ideal for small businesses or startups just getting started.</p>
+                    </div>
+                </div>
+
+                <!-- Pricing FAQ 2 -->
+                <div class="bg-white shadow-md rounded-lg">
+                    <div class="p-4 flex justify-between items-center cursor-pointer" onclick="toggleFAQ('faq7')">
+                        <h2 class="text-lg font-semibold">What are the benefits of the premium plan?</h2>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                        </svg>
+                    </div>
+                    <div id="faq7" class="hidden p-4 border-t border-gray-200">
+                        <p>The premium plan offers unlimited job postings, advanced analytics, priority support, and access to a larger talent pool, making it perfect for growing businesses.</p>
+                    </div>
+                </div>
+
+                <!-- Pricing FAQ 3 -->
+                <div class="bg-white shadow-md rounded-lg">
+                    <div class="p-4 flex justify-between items-center cursor-pointer" onclick="toggleFAQ('faq8')">
+                        <h2 class="text-lg font-semibold">Can I switch plans later?</h2>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                        </svg>
+                    </div>
+                    <div id="faq8" class="hidden p-4 border-t border-gray-200">
+                        <p>Yes, you can upgrade or downgrade your plan at any time by visiting the billing section in your account settings.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- End faqs -->
-     
+
     </div>
 </div>
 

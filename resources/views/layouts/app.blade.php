@@ -22,6 +22,9 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css','resources/css/public.css','resources/css/icons.min.css'])
+
+    @yield('one.section')
+    @yield('js')
 </head>
 
 <body class="font-sans antialiased bg-white">
