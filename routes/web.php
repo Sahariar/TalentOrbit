@@ -9,9 +9,9 @@ use App\Http\Controllers\Public\CandidateController;
 use App\Http\Controllers\Public\CompanyController;
 use App\Http\Controllers\Company\PaymentController;
 use App\Http\Controllers\Company\PaymentController as CompanyPaymentController;
+use App\Http\Controllers\CpaymentController;
 use App\Http\Controllers\RSSFeedController;
 use App\Http\Controllers\JobPostController;
-use App\Http\Controllers\PaymentController as ControllersPaymentController;
 use App\Http\Controllers\PricingPlanController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Category;
@@ -85,9 +85,17 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     // Price Plans management
     Route::prefix('price-plans')->name('price-plans.')->group(function () {
         Route::get('/', [AdminController::class, 'pricePlans'])->name('index');
-        Route::get('/{price-plans}', [AdminController::class, 'pricePlansShow'])->name('show');
+        Route::get('/{pricingplan}', [AdminController::class, 'pricePlansShow'])->name('show');
         Route::delete('/{price-plans}', [AdminController::class, 'pricePlansDelete'])->name('delete');
     });
+    // Payment management
+    Route::prefix('payments')->name('payments.')->group(function () {
+        Route::get('/', [AdminController::class, 'payments'])->name('index');
+        Route::get('/{payment}', [AdminController::class, 'paymentShow'])->name('show');
+        Route::delete('/{payments}', [AdminController::class, 'paymentDelete'])->name('delete');
+    });
+
+
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -125,8 +133,9 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::get('/priceplan/chose', [PricingPlanController::class, 'choseplan'])->name('priceplan.choseplan');
-    Route::post('/payment/process', [ControllersPaymentController::class, 'processPayment'])->name('payment.process');
-    Route::get('/payment/confirm', [ControllersPaymentController::class, 'confirmPayment'])->name('payment.confirm');
+    Route::post('/payment/process', [CpaymentController::class, 'processPayment'])->name('payment.process');
+    Route::get('/payment/confirm', [CpaymentController::class, 'confirmPayment'])->name('payment.confirm');
+    Route::get('/payment-success', [CpaymentController::class, 'success'])->name('payment.success');
 });
 
 Route::get('/find-jobs',[JobPostController::class,'find'])->name('find-jobs');

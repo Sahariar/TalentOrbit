@@ -19,4 +19,13 @@ class PricingPlan extends Model
     public function companyProfile(){
         return $this->hasMany(CompanyProfile::class);
     }
+
+    public function isPremium()
+    {
+        return $this->max_jobs > 0 && $this->price > 0;
+    }
+    public function pricingPlan()
+    {
+        return $this->belongsTo(PricingPlan::class);
+    }
 }

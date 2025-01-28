@@ -27,6 +27,18 @@
         <span data-key="t-dashboard"> Job Posts</span>
     </a>
 </li>
+<li>
+    <a href="{{ route('admin.price-plans.index') }}" class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:bg-sky-900 hover:text-white">
+        <i data-feather="dollar-sign" fill="#545a6d33"></i>
+        <span data-key="t-dashboard">Pricing Plan</span>
+    </a>
+</li>
+<li>
+    <a href="{{ route('admin.payments.index') }}" class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:bg-sky-900 hover:text-white">
+        <i data-feather="credit-card" fill="#545a6d33"></i>
+        <span data-key="t-dashboard">Payments</span>
+    </a>
+</li>
 
 <li>
     <a href="{{ route('profile.edit') }}" class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:bg-sky-900 hover:text-white">

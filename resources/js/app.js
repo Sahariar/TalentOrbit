@@ -117,6 +117,7 @@ var swiper = new Swiper(".homeslider", {
 
 var slider1 = document.getElementById('slider1');
 
+
 noUiSlider.create(slider1, {
     start: [200,2000],
     connect: true,

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CandidateProfile;
 use App\Models\CompanyProfile;
 use App\Models\JobPost;
+use App\Models\Payment;
 use App\Models\PricingPlan;
 use App\Models\User;
 use App\Notifications\CompanyProfileApprove;
@@ -35,8 +36,11 @@ class AdminController extends Controller
 
         $recent_candidates = CandidateProfile::with('user')
             ->latest()->take(5)->get();
+        $total_sale  = Payment::sum('amount');
 
-        return view('dashboard.index', compact('stats', 'recent_companies', 'recent_jobs', 'recent_candidates'));
+        $recent_sale = Payment::latest()->take(5)->get();
+
+        return view('dashboard.index', compact('stats', 'recent_companies', 'recent_jobs', 'recent_candidates' , 'total_sale' , 'recent_sale'));
     }
 
     public function companies()
@@ -143,6 +147,20 @@ class AdminController extends Controller
         $pricePlans = PricingPlan::latest()->paginate(10);
 
         return view('dashboard.admin.pricePlan.index', compact('pricePlans'));
+    }
+    public function pricePlansShow(PricingPlan $pricingplan)
+    {
+        return view('dashboard.admin.pricePlan.show', compact('pricingplan'));
+    }
+    public function payments()
+    {
+        $payments = Payment::latest()->paginate(10);
+
+        return view('dashboard.admin.payment.index', compact('payments'));
+    }
+    public function paymentShow(PricingPlan $payment)
+    {
+        return view('dashboard.admin.pricePlan.show', compact('payment'));
     }
 
 }

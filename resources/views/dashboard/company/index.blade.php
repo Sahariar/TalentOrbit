@@ -67,6 +67,27 @@
                         </div>
                     </div>
                 </div>
+                <div class="card dark:bg-zinc-800 dark:border-zinc-600">
+                    <div class="card-body">
+                        <div>
+                            <div class="grid items-center grid-cols-12 gap-6">
+                                <div class="col-span-6">
+                                    <span class="text-gray-700 dark:text-zinc-100">Active Plan</span>
+                                    @if ($activePlan)
+                                    <h4 class="my-4 font-medium text-gray-800 text-21 dark:text-gray-100">
+                                        <span class="counter-value">{{ $activePlan->title }}</span>
+                                    </h4>
+                                        <p>Price: ${{ $activePlan->price }} / month</p>
+                                    @else
+                                    <h4 class="my-4 font-medium text-gray-800 text-21 dark:text-gray-100">
+                                        <span class="counter-value">Free</span>
+                                    </h4>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>

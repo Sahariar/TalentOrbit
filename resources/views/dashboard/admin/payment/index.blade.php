@@ -5,7 +5,7 @@
         <div class="container-fluid px-[0.625rem]">
             <div class="grid grid-cols-1 pb-6">
                 <div class="md:flex items-center justify-between px-[2px]">
-                    <h4 class="text-[18px] font-medium text-gray-800 mb-sm-0 grow dark:text-gray-100 mb-2 md:mb-0">Job Post
+                    <h4 class="text-[18px] font-medium text-gray-800 mb-sm-0 grow dark:text-gray-100 mb-2 md:mb-0">Transaction
                         List</h4>
                     <nav class="flex" aria-label="Breadcrumb">
                         <ol class="inline-flex items-center space-x-1 ltr:md:space-x-3 rtl:md:space-x-0">
@@ -27,7 +27,7 @@
                     </nav>
                 </div>
             </div>
-            {{-- <div class="grid grid-cols-12 gap-6">
+                <div class="grid grid-cols-12 gap-6">
                 <div class="col-span-12">
                     <div class="card dark:bg-zinc-800 dark:border-zinc-600">
                         <div class="card-body border-b border-gray-100 dark:border-zinc-600">
@@ -39,46 +39,58 @@
                                                 <tr>
                                                     <th
                                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                                                        Plan Name</th>
+                                                        payment</th>
                                                         <th
                                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
                                                         Price
                                                     </th>
                                                     <th
                                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                                                        Job quote
+                                                        Date
                                                     </th>
+                                                    <th
+                                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                                                        Transaction ID</th>
+                                                    <th
+                                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                                                        Company Name</th>
                                                     <th
                                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
                                                         Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody class="divide-y divide-gray-200">
-                                                @foreach ($pricePlans as $plan)
+                                                @foreach ($payments as $payment)
                                                     <tr
                                                         class="text-sm text-gray-700 transition-all duration-200 border-b dark:text-gray-100 border-gray-50 dark:border-zinc-600 hover:bg-gray-50/50">
                                                         <td class="px-6 py-4">
                                                             <div class="flex items-center">
                                                                 <div class="ml-0">
-                                                                    <p class="font-medium">{{ $plan->title }}</p>
+                                                                    <p class="font-medium">{{ $payment->pricing_plan->title }}</p>
                                                                 </div>
                                                             </div>
                                                         </td>
                                                         <td class="px-6 py-4">
-                                                        ${{ $plan->price }} Per Year
+                                                        ${{ $payment->pricing_plan->price }} Per Year
                                                         </td>
                                                         <td class="px-6 py-4">
-                                                            {{ $plan->max_jobs }}
+                                                            {{ $payment->created_at->format('F j, Y') }}
+                                                        </td>
+                                                        <td class="px-6 py-4">
+                                                            {{ $payment->transaction_id }}
+                                                        </td>
+                                                        <td class="px-6 py-4">
+                                                            {{ $payment->company_profile->name }}
                                                         </td>
 
                                                         <td class="px-6 py-4">
                                                             <div class="flex space-x-2">
                                                                 {{-- <x-viewbtn
-                                                                href="{{ route('admin.pricePlansShow.show', $plan->company_profile) }}">
+                                                                href="{{ route('admin.paymentShow.show', $payment->company_profile) }}">
                                                                 {{ __('View') }}
                                                                 </x-viewbtn> --}}
 
-                                                                {{-- <form action="{{ route('admin.pricePlansShow.delete', $plan) }}"
+                                                                {{-- <form action="{{ route('admin.payment.delete', $payment) }}"
                                                                     method="POST" class="inline"
                                                                     onsubmit="return confirm('Are you sure?')">
                                                                     @csrf
@@ -97,11 +109,11 @@
                             </div>
 
                             <div class="p-4">
-                                {{ $pricePlans->links() }}
+                                {{ $payments->links() }}
                             </div>
                         </div>
                     </div>
                 </div>
-            </div> --}}
+            </div>
         </div>
     @endsection

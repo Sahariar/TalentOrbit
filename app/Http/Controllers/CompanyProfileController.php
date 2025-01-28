@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\{CompanyProfile,JobPost,CandidateProfile};
+use App\Models\{CompanyProfile,JobPost,CandidateProfile, Payment};
 use Illuminate\Http\Request;
 use App\Services\{FetchAuthCompanyProfile,FetchCompanyStats};
 use App\Http\Requests\{CreateOrUpdateCompanyProfileRequest};
+use Illuminate\Support\Facades\Auth;
 
 class CompanyProfileController extends Controller
 {
-
     public function dashboard(FetchAuthCompanyProfile $fetchAuthCompanyProfile,FetchCompanyStats $fetchCompanyStats)
     {
         $companyProfile = $fetchAuthCompanyProfile->fetch();
@@ -19,8 +19,12 @@ class CompanyProfileController extends Controller
             'total_jobs'        => $fetchCompanyStats->total_jobs($companyProfile),
             'active_jobs'       => $fetchCompanyStats->active_jobs($companyProfile),
         ];
-
-        return view('dashboard.company.index', compact('stats','companyProfile'))->with('layout', 'dashboard');
+        // Get the latest payment for the logged-in user's company
+        $recentPayment = Auth::user()->company_profile->payments()->latest()->first();
+        // dd($recentPayment);
+        $activePlan = $recentPayment ? $recentPayment->pricing_plan : null;
+        // dd($activePlan);
+        return view('dashboard.company.index', compact('stats','companyProfile' , 'activePlan'))->with('layout', 'dashboard');
     }
 
     public function index(FetchAuthCompanyProfile $fetchAuthCompanyProfile)
@@ -38,7 +42,7 @@ class CompanyProfileController extends Controller
 
     public function store(Request $request)
     {
-    
+
     }
 
     /**
