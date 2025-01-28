@@ -14,19 +14,20 @@
                                                  applications.Carefully crafted after analyzing the needs of different
                                                  industries.</p>
                                         </div>
-                                        <form action="#">
+                                        <form action="{{ route('find-jobs') }}" method="GET">
                                             <div class="registration-form">
                                                 <div class="grid grid-cols-12">
                                                     <div class="col-span-12 xl:col-span-4">
                                                         <div class="mt-3 rounded-l filter-search-form filter-border mt-md-0">
                                                             <i class="uil uil-briefcase-alt"></i>
-                                                            <input type="search" id="job-title" class="md:w-full filter-input-box placeholder:text-gray-100 placeholder:text-13 dark:text-gray-100" placeholder="Job, Company name...">
+                                                            <input type="search" name="name" id="job-title" class="md:w-full filter-input-box placeholder:text-gray-100 placeholder:text-13 dark:text-gray-100" placeholder="Job, Company name...">
                                                         </div>
                                                     </div><!--end col-->
                                                     <div class="col-span-12 xl:col-span-4">
                                                         <div class="mt-3 filter-search-form mt-md-0">
                                                             <i class="uil uil-map-marker"></i>
-                                                            <select class="form-select" data-trigger name="choices-single-location" id="choices-single-location" aria-label="Default select example">
+                                                            <input type="search" name="location" id="job-location" class="md:w-full filter-input-box placeholder:text-gray-100 placeholder:text-13 dark:text-gray-100" placeholder="Location...">
+                                                            {{-- <select class="form-select" data-trigger name="choices-single-location" id="choices-single-location" aria-label="Default select example">
                                                                 <option value="AF">Afghanistan</option>
                                                                 <option value="AX">&Aring;land Islands</option>
                                                                 <option value="AL">Albania</option>
@@ -273,7 +274,7 @@
                                                                 <option value="YE">Yemen</option>
                                                                 <option value="ZM">Zambia</option>
                                                                 <option value="ZW">Zimbabwe</option>
-                                                            </select>
+                                                            </select> --}}
                                                         </div>
                                                     </div><!--end col-->
                                                     <div class="col-span-12 xl:col-span-4">
@@ -359,7 +360,7 @@
                                                 <i class="uim uim-layers-alt"></i>
                                             </div>
                                             <div class="mt-4 text-center">
-                                                <a href="job-categories.html" class="text-gray-900">
+                                                <a href="{{ route('category.jobs',$category->id) }}" class="text-gray-900">
                                                     <h5 class="text-lg dark:text-gray-50">{{$category->name}}</h5>
                                                 </a>
                                                 <p class="mt-1 font-medium text-gray-500 dark:text-gray-300">{{$category->job_posts_count}} Jobs</p>

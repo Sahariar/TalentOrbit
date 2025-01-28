@@ -11,7 +11,9 @@ export default defineConfig({
                 'resources/css/dashboard.css',
                 'resources/css/icons.min.css',
                 'resources/js/dashboard.js',
-                'resources/css/public.css'
+                'resources/css/public.css',
+                'resources/css/nouislider.min.css',
+                'resources/js/nouislider.min.js',
             ],
             refresh: true,
         }),

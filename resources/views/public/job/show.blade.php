@@ -222,7 +222,7 @@
                                             <!--end col-->
                                             <div class="col-span-12 mt-2 lg:col-span-6 lg:mt-0">
                                                 <div class="ltr:lg:text-end rtl:lg:text-start dark:text-gray-50">
-                                                    <a href="#applyNow" data-bs-toggle="modal">Apply Now <i class="mdi mdi-chevron-double-right"></i></a>
+                                                    <a href="{{ route('jobs.apply', $jobPost->id) }}" data-bs-toggle="modal">Apply Now <i class="mdi mdi-chevron-double-right"></i></a>
                                                 </div>
                                             </div>
                                             <!--end col-->
@@ -437,9 +437,15 @@
                                     </ul>
 
                                     <div class="mt-8 space-y-2">
-                                        <a href="{{$jobPost->apply_link}}" data-bs-toggle="modal" class="btn w-full group-data-[theme-color=violet]:bg-violet-500 group-data-[theme-color=sky]:bg-sky-500 group-data-[theme-color=red]:bg-red-500 group-data-[theme-color=green]:bg-green-500 group-data-[theme-color=pink]:bg-pink-500 group-data-[theme-color=blue]:bg-blue-500 border-transparent text-white hover:-translate-y-1.5">Apply Now <i class="uil uil-arrow-right"></i></a>
+                                        <a href="{{ route('jobs.apply', $jobPost->id) }}" data-bs-toggle="modal" class="btn w-full group-data-[theme-color=violet]:bg-violet-500 group-data-[theme-color=sky]:bg-sky-500 group-data-[theme-color=red]:bg-red-500 group-data-[theme-color=green]:bg-green-500 group-data-[theme-color=pink]:bg-pink-500 group-data-[theme-color=blue]:bg-blue-500 border-transparent text-white hover:-translate-y-1.5">Apply Now <i class="uil uil-arrow-right"></i></a>
                                         <a href="bookmark-jobs.html" class="btn w-full bg-yellow-500/20 border-transparent text-yellow-500 hover:-translate-y-1.5 dark:bg-yellow-500/30"><i class="uil uil-bookmark"></i> Add Bookmark</a>
                                     </div>
+                                    <br>
+                                    @if (request()->session()->has('msg'))
+                                        <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-gray-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+                                            {{ session('msg') }}
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
 

@@ -27,7 +27,7 @@ Route::get('/', function () {
         ->orderBy('created_at', 'desc')
         ->take(4)->get();
 
-    $categories = Category::withCount('job_posts')->get();
+    $categories = Category::withCount('job_posts')->paginate(10);
 
     return view('public.index')
         ->with('layout', 'app')
@@ -96,6 +96,7 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('/company')->middleware(['role:company'])->group(function () {
         Route::get('/dashboard', [CompanyProfileController::class, 'dashboard'])->name('company.dashboard');
         Route::get('/job-posts/search',[CompanyJobPostController::class,'search'])->name('company.job-posts.search');
+        Route::get('/job-posts/{job_post}/toggle-activity',[CompanyJobPostController::class,'toggle'])->name('company.job-posts.toggle-activity');
         Route::resource('job-posts', CompanyJobPostController::class)->names([
             'index' => 'company.job-posts.index',
             'show' => 'company.job-posts.show',
@@ -128,7 +129,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/payment/confirm', [ControllersPaymentController::class, 'confirmPayment'])->name('payment.confirm');
 });
 
+Route::get('/find-jobs',[JobPostController::class,'find'])->name('find-jobs');
+
+Route::get('category/{category}/jobs',[JobPostController::class,'categoryJobs'])->name('category.jobs');
+
 Route::get('/jobs/filter', [JobPostController::class, 'filter'])->name('jobs.filter');
+
+Route::get('/jobs/{job}/apply', [JobPostController::class, 'apply'])->name('jobs.apply');
 
 Route::resource('jobs', JobPostController::class)->names([
     'index' => 'jobs',
