@@ -48,7 +48,7 @@
                                     </a>
                                 </li>
                                 <li class="text-sm transition-all duration-500 ease-in-out text-white/50 hover:text-gray-50 hover:text-base dark:text-gray-300 dark:hover:text-gray-50">
-                                    <a href="pricing.html">
+                                    <a href="{{route('pricing')}}">
                                         <i class="mdi mdi-chevron-right"></i> Pricing
                                     </a>
                                 </li>

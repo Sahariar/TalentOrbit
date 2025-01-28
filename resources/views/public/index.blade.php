@@ -1,4 +1,8 @@
 @extends('layouts.' . ($layout ?? 'app'))  <!-- Default to 'app' layout -->
+{{--@section('one.section')--}}
+{{--    <link rel="stylesheet" href="{{ asset('css/one_section.css?v=1.0') }}">--}}
+{{--    <link rel="stylesheet" href="{{ asset('css/animate.min.css') }}" />--}}
+{{--@endsection--}}
 @section('content')
         <div class="main-content">
             <div class="page-content">
@@ -341,16 +345,17 @@
                 <!-- end home -->
 
                 <!-- start category -->
-                    <section class="py-20 dark:bg-neutral-800">
-                        <div class="container mx-auto">
-                            <div class="grid grid-cols-1 gap-5">
-                                <div class="text-center">
-                                    <h3 class="mb-3 text-3xl text-gray-900 dark:text-gray-50">Browser Jobs Categories</h3>
-                                    <p class="mb-5 text-gray-500 whitespace-pre-line dark:text-gray-300">Post a job to tell us about your project. We'll quickly match you with the
-                                            right freelancers.</p>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-12 gap-5">
+{{--                    <section class="py-20 dark:bg-neutral-800">--}}
+{{--                        <div class="container mx-auto">--}}
+{{--                            <div class="grid grid-cols-1 gap-5">--}}
+{{--                                <div class="text-center">--}}
+{{--                                    <h3 class="mb-3 text-3xl text-gray-900 dark:text-gray-50">Browse Jobs Categories</h3>--}}
+{{--                                    <p class="mb-5 text-gray-500 whitespace-pre-line dark:text-gray-300">Post a job to tell us about your project. We'll quickly match you with the--}}
+{{--                                            right freelancers.</p>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="grid grid-cols-12 gap-5">--}}
+
 
                                 @foreach ($categories as $category)
                                 <div class="col-span-12 md:col-span-6 lg:col-span-3">
@@ -370,14 +375,14 @@
                                 </div>
                                 @endforeach
 
-                            </div>
-                            <div class="grid grid-cols-1">
-                                <div class="mt-5 text-center">
-                                    <a href="{{route('category')}}" class="text-white border-transparent btn hover:-translate-y-2 bg-sky-900">Browse All Categories <i class="uil uil-arrow-right ms-1"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+{{--                            </div>--}}
+{{--                            <div class="grid grid-cols-1">--}}
+{{--                                <div class="mt-5 text-center">--}}
+{{--                                    <a href="{{route('category')}}" class="text-white border-transparent btn hover:-translate-y-2 bg-sky-900">Browse All Categories <i class="uil uil-arrow-right ms-1"></i></a>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </section>--}}
                 <!-- end category -->
 
                 <!-- start job list -->
@@ -385,27 +390,11 @@
                         <div class="container mx-auto">
                             <div class="grid grid-cols-1 gap-5">
                                 <div class="mb-5 text-center">
-                                    <h3 class="mb-3 text-3xl text-gray-900 dark:text-gray-50">New & Random Jobs</h3>
+                                    <h3 class="mb-3 text-3xl text-gray-900 dark:text-gray-50">Recent Jobs</h3>
                                     <p class="mb-5 text-gray-500 whitespace-pre-line dark:text-gray-300">Post a job to tell us about your project. We'll quickly match you with the right <br> freelancers.</p>
                                 </div>
                             </div>
                             <div class="nav-tabs chart-tabpill">
-                                <div class="grid grid-cols-12">
-
-                                    <div class="col-span-12 lg:col-span-8 lg:col-start-3 flex justify-center">
-                                        <div class="p-4 bg-white dark:bg-neutral-900 shadow-lg shadow-gray-100/30 rounded-lg dark:shadow-neutral-700">
-                                            <ul class="items-center text-lg font-bold text-center text-gray-700 nav md:flex">
-                                                <li>
-                                                    <a href="javascript:void(0);"
-                                                       data-tw-toggle="tab" data-tw-target="recent-job" class="inline-block py-3 px-16 dark:text-gray-50 active text-base rounded-lg" aria-current="page">
-                                                        Recent Jobs
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                </div>
                                 <div class="tab-content">
                                     <div class="block w-full tab-pane" id="recent-job">
                                         <div class="pt-8 ">
@@ -448,13 +437,6 @@
                                                                     </div>
                                                                 </div>
                                                                 <!--end col-->
-                                                                <div class="col-span-12 lg:col-span-2">
-                                                                    <div class="flex flex-wrap gap-1.5">
-                                                                        <span class="badge bg-green-500/20 text-green-500 text-13 px-2 py-0.5 font-medium rounded">Full Time</span>
-                                                                        <span class="badge bg-sky-500/20  text-sky-500 text-13 px-2 py-0.5 font-medium rounded">Private</span>
-                                                                    </div>
-                                                                </div>
-                                                                <!--end col-->
                                                             </div>
                                                             <!--end row-->
                                                         </div>
@@ -468,15 +450,12 @@
                                                                 </div>
                                                                 <!--end col-->
                                                                 <div class="col-span-12 lg:col-span-6">
-{{--                                                                    <div>--}}
-{{--                                                                        <p class="mb-0 text-gray-500 dark:text-gray-300"><span class="text-gray-900 dark:text-gray-50">Notes :</span>--}}
-{{--                                                                            languages only differ in their grammar. </p>--}}
-{{--                                                                    </div>--}}
+
                                                                 </div>
                                                                 <!--end col-->
                                                                 <div class="col-span-3 lg:col-span-2">
                                                                     <div class="text-start text-md-end dark:text-gray-50">
-                                                                        <a href="#applyNow" data-bs-toggle="modal">Apply Now <i class="mdi mdi-chevron-double-right"></i></a>
+                                                                        <a href="{{$job->apply_link}}" data-bs-toggle="modal">Apply Now <i class="mdi mdi-chevron-double-right"></i></a>
                                                                     </div>
                                                                 </div>
                                                                 <!--end col-->
@@ -504,82 +483,32 @@
                 <!-- end job list -->
 
                 <!-- start process -->
-                    <section class="py-20 dark:bg-neutral-800">
-                        <div class="container mx-auto">
-                            <div class="nav-tabs round-pill">
-                                <div class="grid items-center grid-cols-12 gap-5">
-                                    <div class="col-span-12 lg:col-span-6">
-                                        <h3 class="mb-3 text-3xl text-gray-900 dark:text-gray-50">How It Work</h3>
-                                        <p class="text-gray-500 dark:text-gray-300">Post a job to tell us about your project. We'll quickly match you with the
-                                            right freelancers.</p>
-
-                                        <div class="mt-5">
-                                            <ul class="text-gray-700 nav">
-                                                <li class="w-full mb-[22px]">
-                                                    <a href="javascript:void(0);" data-tw-toggle="tab" data-tw-target="v-pills-home-tab" class="relative inline-block w-full p-2 active group/active" aria-current="page">
-                                                    <div class="after:content-[''] after:h-[65px] after:border after:border-dashed after:border-gray-100 after:absolute ltr:after:left-7 rtl:after:right-7 after:-bottom-5 after:group-[.active]:bg-violet-300 hidden md:block"></div>
-                                                        <div class="flex">
-                                                            <div class="shrink-0 h-10 w-10 rounded-full text-center bg-gray-500/20 group-[.active]:group-data-[theme-color=violet]:bg-violet-500 group-data-[theme-color=sky]:group-[.active]:bg-sky-500 group-data-[theme-color=red]:group-[.active]:bg-red-500 group-data-[theme-color=green]:group-[.active]:bg-green-500 group-data-[theme-color=pink]:group-[.active]:bg-pink-500 group-data-[theme-color=blue]:group-[.active]:bg-blue-500">
-                                                                <span class="text-gray-900 group-[.active]:text-white text-16 leading-[2.5] dark:text-gray-50">1</span>
-                                                            </div>
-                                                            <div class="grow ltr:ml-4 rtl:mr-4">
-                                                                <h5 class="fs-18 text-gray-900 group-data-[theme-color=violet]:group-[.active]:text-violet-500 group-data-[theme-color=sky]:group-[.active]:text-sky-500 dark:text-gray-50">Register an account</h5>
-                                                                <p class="mt-1 mb-2 text-gray-500 dark:text-gray-300">Due to its widespread use as filler text for layouts, non-readability
-                                                                is of great importance.</p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="w-full mb-[22px]">
-                                                    <a href="javascript:void(0);" data-tw-toggle="tab" data-tw-target="v-pills-profile" class="relative inline-block w-full p-2 group" aria-current="page">
-                                                    <div class="after:content-[''] after:h-[65px] after:border after:border-dashed after:border-gray-100 after:absolute ltr:after:left-7 rtl:after:right-7 after:-bottom-5 after:group-[.active]:bg-violet-300 hidden md:block"></div>
-                                                        <div class="flex">
-                                                            <div class="shrink-0 h-10 w-10 rounded-full text-center bg-gray-500/20 group-[.active]:bg-violet-500">
-                                                                <span class="text-gray-900 group-[.active]:text-white text-16 leading-[2.5] dark:text-gray-50">2</span>
-                                                            </div>
-                                                            <div class="grow ltr:ml-4 rtl:mr-4">
-                                                                <h5 class="fs-18 text-gray-900 group-[.active]:text-violet-500 dark:text-gray-50">Find your job</h5>
-                                                                <p class="mt-1 mb-2 text-gray-500">There are many variations of passages of avaibookmark-label, but the majority
-                                                                alteration in some form.</p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="w-full mb-[22px]">
-                                                    <a href="javascript:void(0);" data-tw-toggle="tab" data-tw-target="v-pills-messages" class="relative inline-block w-full p-2 group" aria-current="page">
-                                                        <div class="flex">
-                                                            <div class="shrink-0 h-10 w-10 rounded-full text-center bg-gray-500/20 group-[.active]:bg-violet-500">
-                                                                <span class="text-gray-900 group-[.active]:text-white text-16 leading-[2.5] dark:text-gray-50">3</span>
-                                                            </div>
-                                                            <div class="grow ltr:ml-4 rtl:mr-4">
-                                                                <h5 class="fs-18 text-gray-900 group-[.active]:text-violet-500 dark:text-gray-50">Apply for job</h5>
-                                                                <p class="mt-1 mb-2 text-gray-500">It is a long established fact that a reader will be distracted by the
-                                                                readable content of a page.</p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-span-12 lg:col-span-6">
-                                        <div class="tab-content">
-                                            <div class="block tab-pane" id="v-pills-home-tab">
-                                                <img src="{{ asset('storage/images/process-01.png') }}" alt="" class="max-w-full">
-                                            </div>
-                                            <div class="hidden tab-pane" id="v-pills-profile">
-                                                <img src="{{ asset('storage/images/process-02.png') }}" alt="" class="max-w-full">
-                                            </div>
-                                            <div class="hidden tab-pane" id="v-pills-messages">
-                                                <img src="{{ asset('storage/images/process-03.png') }}" alt="" class="max-w-full">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+{{--                <section class="section-box mt-90 mb-80">--}}
+{{--                    <div class="container">--}}
+{{--                        <div class="block-job-bg block-job-bg-homepage-2">--}}
+{{--                            <div class="row">--}}
+{{--                                <div class="col-lg-6 col-md-12 col-sm-12 col-12 d-none d-md-block">--}}
+{{--                                    <div class="box-image-findjob findjob-homepage-2 ml-0 wow animate__animated animate__fadeIn">--}}
+{{--                                        <figure><img alt="jobhub" src="{{ asset('storage/images/home/img-findjob.png') }}" /></figure>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-lg-6 col-md-12 col-sm-12 col-12">--}}
+{{--                                    <div class="box-info-job pl-90 pt-30 pr-90">--}}
+{{--                                        <span class="text-blue wow animate__animated animate__fadeInUp">Find jobs</span>--}}
+{{--                                        <h5 class="heading-36 mb-30 mt-30 wow animate__animated animate__fadeInUp">Create free count and start apply your dream job today</h5>--}}
+{{--                                        <p class="text-lg wow animate__animated animate__fadeInUp">--}}
+{{--                                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is--}}
+{{--                                            simply dummy.--}}
+{{--                                        </p>--}}
+{{--                                        <div class="box-button-shadow mt-30 wow animate__animated animate__fadeInUp">--}}
+{{--                                            <a href="{{route('jobs')}}" class="btn btn-default">Explore more</a>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </section>--}}
                 <!-- end process -->
 
                 <!-- start cta -->
@@ -594,7 +523,7 @@
                                             <p class="text-gray-500 dark:text-gray-300">Post a job to tell us about your project. We'll quickly match you with
                                                 the right freelancers.</p>
                                             <div class="pt-2 mt-5">
-                                                <a href="javascript:void(0)" class="text-white border-transparent btn hover:-translate-y-2 bg-sky-900">Started Now <i class="align-middle uil uil-rocket ms-1"></i></a>
+                                                <a href="{{route('jobs')}}" class="text-white border-transparent btn hover:-translate-y-2 bg-sky-900">Started Now <i class="align-middle uil uil-rocket ms-1"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -665,97 +594,6 @@
                         </div>
                     </section>
                 <!-- end testimonial -->
-
-                <!-- start blog -->
-                    <section class="py-20 bg-gray-50 dark:bg-neutral-700">
-                        <div class="container mx-auto">
-                            <div class="grid grid-cols-1 gap-5">
-                                <div class="mb-5 text-center">
-                                    <h3 class="mb-3 text-3xl text-gray-900 dark:text-gray-50">Quick Career Tips</h3>
-                                    <p class="mb-5 text-gray-500 whitespace-pre-line dark:text-gray-300">Post a job to tell us about your project. We'll quickly match you with the right <br> freelancers.</p>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-12 gap-5">
-                                <div class="col-span-12 md:col-span-6 lg:col-span-4">
-                                    <div class="p-2 mt-3 transition-all duration-500 bg-white rounded shadow-lg shadow-gray-100/50 card dark:bg-neutral-800 dark:shadow-neutral-600/20 group/blog">
-                                        <div class="relative overflow-hidden">
-                                            <img src="{{ asset('storage/images/blog/img-01.jpg') }}" alt="" class="rounded">
-                                            <div class="absolute inset-0 hidden transition-all duration-500 rounded-md bg-black/30 group-hover/blog:block"></div>
-                                            <div class="hidden text-white transition-all duration-500 top-2 left-2 group-hover/blog:block author group-hover/blog:absolute">
-                                                <p class="mb-0 "><i class="mdi mdi-account text-light"></i> <a href="javascript:void(0)" class="text-light user">Dirio Walls</a></p>
-                                                <p class="mb-0 text-light date"><i class="mdi mdi-calendar-check"></i> 01 July, 2021</p>
-                                            </div>
-                                            <div class="hidden bottom-2 right-2 group-hover/blog:block author group-hover/blog:absolute">
-                                                <ul class="mb-0 list-unstyled">
-                                                    <li class="list-inline-item"><a href="javascript:void(0)" class="text-white"><i class="mdi mdi-heart-outline me-1"></i> 33</a></li>
-                                                    <li class="list-inline-item"><a href="javascript:void(0)" class="text-white"><i class="mdi mdi-comment-outline me-1"></i> 08</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="p-5">
-                                            <a href="blog-details.html" class="primary-link">
-                                                <h5 class="mb-1 text-gray-900 fs-17 dark:text-gray-50">How apps is the IT world ?</h5>
-                                            </a>
-                                            <p class="mb-3 text-gray-500 dark:text-gray-300">The final text is not yet avaibookmark-label. Dummy texts have Internet tend
-                                                been in use by typesetters.</p>
-                                            <a href="blog-details.html" class="font-medium group-data-[theme-color=violet]:text-violet-500 group-data-[theme-color=sky]:text-sky-500 group-data-[theme-color=red]:text-red-500 group-data-[theme-color=green]:text-green-500 group-data-[theme-color=pink]:text-pink-500 group-data-[theme-color=blue]:text-blue-500">Read more <i class="align-middle mdi mdi-chevron-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-span-12 md:col-span-6 lg:col-span-4">
-                                    <div class="p-2 mt-3 transition-all duration-500 bg-white rounded shadow-lg shadow-gray-100/50 card dark:bg-neutral-800 dark:shadow-neutral-600/20 group/blog">
-                                        <div class="relative overflow-hidden">
-                                            <img src="{{ asset('storage/images/blog/img-02.jpg') }}" alt="" class="rounded">
-                                            <div class="absolute inset-0 hidden transition-all duration-500 rounded-md bg-black/30 group-hover/blog:block"></div>
-                                            <div class="hidden text-white transition-all duration-500 top-2 left-2 group-hover/blog:block author group-hover/blog:absolute">
-                                                <p class="mb-0 "><i class="mdi mdi-account text-light"></i> <a href="javascript:void(0)" class="text-light user">Dirio Walls</a></p>
-                                                <p class="mb-0 text-light date"><i class="mdi mdi-calendar-check"></i> 01 July, 2021</p>
-                                            </div>
-                                            <div class="hidden bottom-2 right-2 group-hover/blog:block author group-hover/blog:absolute">
-                                                <ul class="mb-0 list-unstyled">
-                                                    <li class="list-inline-item"><a href="javascript:void(0)" class="text-white"><i class="mdi mdi-heart-outline me-1"></i> 33</a></li>
-                                                    <li class="list-inline-item"><a href="javascript:void(0)" class="text-white"><i class="mdi mdi-comment-outline me-1"></i> 08</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="p-5">
-                                            <a href="blog-details.html" class="primary-link">
-                                                <h5 class="mb-1 text-gray-900 fs-17 dark:text-gray-50">Smartest Applications for Business ?</h5>
-                                            </a>
-                                            <p class="mb-3 text-gray-500 dark:text-gray-300">Due to its widespread use as filler text for layouts, non-readability is of great importance: human perception.</p>
-                                            <a href="blog-details.html" class="font-medium group-data-[theme-color=violet]:text-violet-500 group-data-[theme-color=sky]:text-sky-500 group-data-[theme-color=red]:text-red-500 group-data-[theme-color=green]:text-green-500 group-data-[theme-color=pink]:text-pink-500 group-data-[theme-color=blue]:text-blue-500">Read more <i class="align-middle mdi mdi-chevron-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-span-12 md:col-span-6 lg:col-span-4">
-                                    <div class="p-2 mt-3 transition-all duration-500 bg-white rounded shadow-lg shadow-gray-100/50 card dark:bg-neutral-800 dark:shadow-neutral-600/20 group/blog">
-                                        <div class="relative overflow-hidden">
-                                            <img src="{{ asset('storage/images/blog/img-03.jpg') }}" alt="" class="rounded">
-                                            <div class="absolute inset-0 hidden transition-all duration-500 rounded-md bg-black/30 group-hover/blog:block"></div>
-                                            <div class="hidden text-white transition-all duration-500 top-2 left-2 group-hover/blog:block author group-hover/blog:absolute">
-                                                <p class="mb-0 "><i class="mdi mdi-account text-light"></i> <a href="javascript:void(0)" class="text-light user">Dirio Walls</a></p>
-                                                <p class="mb-0 text-light date"><i class="mdi mdi-calendar-check"></i> 01 July, 2021</p>
-                                            </div>
-                                            <div class="hidden bottom-2 right-2 group-hover/blog:block author group-hover/blog:absolute">
-                                                <ul class="mb-0 list-unstyled">
-                                                    <li class="list-inline-item"><a href="javascript:void(0)" class="text-white"><i class="mdi mdi-heart-outline me-1"></i> 33</a></li>
-                                                    <li class="list-inline-item"><a href="javascript:void(0)" class="text-white"><i class="mdi mdi-comment-outline me-1"></i> 08</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="p-5">
-                                            <a href="blog-details.html" class="primary-link">
-                                                <h5 class="mb-1 text-gray-900 fs-17 dark:text-gray-50">Design your apps in your own way ?</h5>
-                                            </a>
-                                            <p class="mb-3 text-gray-500 dark:text-gray-300">One disadvantage of Lorum Ipsum is that in Latin certain letters appear more frequently than others.</p>
-                                            <a href="blog-details.html" class="font-medium group-data-[theme-color=violet]:text-violet-500 group-data-[theme-color=sky]:text-sky-500 group-data-[theme-color=red]:text-red-500 group-data-[theme-color=green]:text-green-500 group-data-[theme-color=pink]:text-pink-500 group-data-[theme-color=blue]:text-blue-500">Read more <i class="align-middle mdi mdi-chevron-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                <!-- end blog -->
 
                 <!-- start client -->
                     <section class="py-10 dark:bg-neutral-800">

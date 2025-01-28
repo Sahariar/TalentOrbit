@@ -62,9 +62,6 @@
                                                 <div class="w-8 h-8 text-center text-gray-100 transition-all duration-300 bg-transparent border rounded cursor-pointer border-gray-100/50 hover:bg-red-600 hover:text-white hover:border-transparent dark:border-zinc-700">
                                                     <a href="javascript:void(0)"><i class="uil uil-heart-alt text-lg leading-[1.8]"></i></a>
                                                 </div>
-                                                <div class="w-8 h-8 text-center text-gray-100 transition-all duration-300 bg-transparent border rounded cursor-pointer border-gray-100/50 hover:bg-red-600 hover:text-white hover:border-transparent dark:border-zinc-700">
-                                                    <a href="javascript:void(0)"><i class="uil uil-setting text-lg leading-[1.8]"></i></a>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -76,12 +73,7 @@
                                                 <p class="font-medium text-gray-900 dark:text-gray-50">Minimum 1 Year</p>
                                             </div>
                                         </div>
-                                        <div class="col-span-12 lg:col-span-3">
-                                            <div class="p-4 border rounded border-gray-100/50 dark:border-neutral-600/80">
-                                                <p class="mb-1 text-gray-500 dark:text-gray-300 text-13">Employee type</p>
-                                                <p class="font-medium text-gray-900 dark:text-gray-50">Full Time</p>
-                                            </div>
-                                        </div>
+
                                         <div class="col-span-12 lg:col-span-3">
                                             <div class="p-4 border rounded border-gray-100/50 dark:border-neutral-600/80">
                                                 <p class="mb-1 text-gray-500 dark:text-gray-300 text-13">Position</p>
@@ -103,45 +95,6 @@
                                         </div>
                                     </div>
 
-                                    <div class="mt-5">
-                                        <h5 class="mb-3 text-gray-900 dark:text-gray-50">Responsibilities</h5>
-                                        <div>
-                                            <p class="mb-3 text-gray-500 dark:text-gray-300">As a Product Designer, you will work within a Product Delivery Team fused with UX, engineering, product and data talent.</p>
-
-                                            <ul class="mb-0 text-gray-500 dark:text-gray-300">
-                                                <li class="mb-2 text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> Have sound knowledge of commercial activities.</li>
-                                                <li class="mb-2 text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> Build next-generation web applications with a focus on the client side</li>
-                                                <li class="mb-2 text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> Work on multiple projects at once, and consistently meet draft deadlines</li>
-                                                <li class="mb-2 text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> have already graduated or are currently in any year of study</li>
-                                                <li class="text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> Revise the work of previous designers to create a unified aesthetic for our brand materials</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                    <div class="mt-5">
-                                        <h5 class="mb-3 text-gray-900 dark:text-gray-50">Qualification</h5>
-                                        <div>
-                                            <ul class="mb-0 text-gray-500 dark:text-gray-300">
-                                                <li class="mb-2 text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> B.C.A / M.C.A under National University course complete.</li>
-                                                <li class="mb-2 text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> 3 or more years of professional design experience</li>
-                                                <li class="mb-2 text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> have already graduated or are currently in any year of study </li>
-                                                <li class="mb-2 text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> Advanced degree or equivalent experience in graphic and web design</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                    <div class="mt-5">
-                                        <h5 class="mb-3 text-gray-900 dark:text-gray-50">Skill & Requirements</h5>
-                                        <div>
-                                            <ul class="mb-0 text-gray-500 dark:text-gray-300">
-                                                <li class="mb-2 text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> Understanding of key Design Principal</li>
-                                                <li class="mb-2 text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> Proficiency With HTML, CSS, Tailwind</li>
-                                                <li class="mb-2 text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> Wordpress: 1 year (Required) </li>
-                                                <li class="mb-2 text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> Experience designing and developing responsive design websites </li>
-                                                <li class="mb-2 text-gray-500 dark:text-gray-300"><i class="mr-2 uil uil-circle"></i> web designing: 1 year (Preferred) </li>
-                                            </ul>
-                                        </div>
-                                    </div>
 
                                     <div class="mt-4">
                                         <span class="px-2 py-1 text-white rounded text-11 group-data-[theme-color=violet]:bg-violet-500 group-data-[theme-color=sky]:bg-sky-500 group-data-[theme-color=red]:bg-red-500 group-data-[theme-color=green]:bg-green-500 group-data-[theme-color=pink]:bg-pink-500 group-data-[theme-color=blue]:bg-blue-500">PHP</span>
@@ -357,7 +310,7 @@
                                 </div>
 
                                 <div class="mt-4 text-center">
-                                    <a href="job-list.html" class="font-medium text-gray-900 dark:text-gray-50">View More <i class="mdi mdi-arrow-right"></i></a>
+                                    <a href="{{route('jobs')}}" class="font-medium text-gray-900 dark:text-gray-50">View More <i class="mdi mdi-arrow-right"></i></a>
                                 </div>
                             </div>
                             <!-- ---------  job end --------- -->
@@ -376,7 +329,7 @@
                                                 <div class="ltr:ml-4 rtl:mr-4">
                                                     <h6 class="mb-2 text-sm text-gray-900 dark:text-gray-50">Job Title</h6>
                                                     <p class="text-gray-500 dark:text-gray-300">{{$jobPost->title}}</p>
-                                                    
+
                                                 </div>
                                             </div>
                                         </li>
@@ -500,7 +453,7 @@
                                         </ul>
 
                                         <div class="mt-6">
-                                            <a href="company-details.html" class="w-full text-white border-transparent btn group-data-[theme-color=violet]:bg-violet-500 group-data-[theme-color=sky]:bg-sky-500 group-data-[theme-color=red]:bg-red-500 group-data-[theme-color=green]:bg-green-500 group-data-[theme-color=pink]:bg-pink-500 group-data-[theme-color=blue]:bg-blue-500"><i class="mdi mdi-eye"></i> View Profile</a>
+                                            <a href="{{ route('company.show', $jobPost->company_profile_id) }}" class="w-full text-white border-transparent btn group-data-[theme-color=violet]:bg-violet-500 group-data-[theme-color=sky]:bg-sky-500 group-data-[theme-color=red]:bg-red-500 group-data-[theme-color=green]:bg-green-500 group-data-[theme-color=pink]:bg-pink-500 group-data-[theme-color=blue]:bg-blue-500"><i class="mdi mdi-eye"></i> View Profile</a>
                                         </div>
                                     </div>
                                 </div>

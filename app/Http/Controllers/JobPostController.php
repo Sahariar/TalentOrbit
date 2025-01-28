@@ -14,7 +14,6 @@ class JobPostController extends Controller
     public function index(FetchTags $fetchTags)
     {
         $jobPosts   = JobPost::where('is_public',true)->with(['company_profile', 'category'])->paginate(10);
-
         $tags       = $fetchTags->fetch();
 
         $categories = Category::query()->with(['job_posts:id,category_id,title'])->select('id','name')->paginate(10);
@@ -55,7 +54,6 @@ class JobPostController extends Controller
         $tags = $fetchTags->fetch();
 
         $categories = Category::query()->with(['job_posts:id,category_id,title'])->select('id','name')->paginate(10);
-
         return view('public.job.index', compact('jobPosts','tags', 'categories'));
     }
 

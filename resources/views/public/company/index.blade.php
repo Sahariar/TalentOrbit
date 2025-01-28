@@ -33,7 +33,7 @@
                     <div class="grid items-center grid-cols-12 mb-4">
                         <div class="col-span-12 lg:col-span-8">
                             <div class="mb-3 mb-lg-0">
-                                <h6 class="text-gray-900 text-16 dark:text-gray-50"> Showing 1 – 8 of 11 results </h6>
+                                <h6 class="text-gray-900 text-16 dark:text-gray-50"> Showing {{ $companies->firstItem() }} – {{ $companies->lastItem() }} of {{ $companies->total() }} results </h6>
                             </div>
                         </div><!--end col-->
 
@@ -71,16 +71,16 @@
                             @foreach ($companies as $company)
                                 <div class="col-span-12 lg:col-span-4">
                                     <div class="relative px-6 py-12 border rounded-md border-gray-100/50 dark:border-neutral-600">
-                                        <img src="{{ Storage::url('app/public/assets/images/featured-job/' . $company->image ) }}" alt="company_image" class="mx-auto">
+                                        <img src=" {{ asset('storage/images/featured-job/' . $company->image ) }}" alt="company_image" class="mx-auto">
                                         <div class="mt-5 text-center">
                                             <a href=" {{ route('company.show', $company) }} ">
                                                 <h6 class="mb-3 text-lg text-gray-900 dark:text-white">{{ $company->name }}</h6>
                                             </a>
-                                            <p class="mb-6 text-gray-500 dark:text-gray-300">{{ $company->location ?? 'Location not set!'}}</p>
+                                            <p class="mb-6 text-gray-500 dark:text-gray-300">{{ $company->location ?? 'Dhaka'}}</p>
 
                                             <a href=" {{ route('company.show', $company) }} "
                                                class="text-white border-transparent btn group-data-[theme-color=violet]:bg-violet-500 group-data-[theme-color=sky]:bg-sky-500 group-data-[theme-color=red]:bg-red-500 group-data-[theme-color=green]:bg-green-500 group-data-[theme-color=pink]:bg-pink-500 group-data-[theme-color=blue]:bg-blue-500 focus:ring focus:ring-custom-500/30">
-                                                {{ $company->job_posts_count }} Opening Jobs
+                                                {{ $company->job_posts_count }} Job posts
                                             </a>
                                         </div>
                                         <div class="absolute px-2 text-white bg-violet-500 top-3 ltr:right-0 rtl:left-0">
