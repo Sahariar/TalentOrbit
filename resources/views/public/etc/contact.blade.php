@@ -80,7 +80,7 @@
                                         <i class="uil uil-map-marker"></i>
                                     </div>
                                     <div class="ltr:ml-2 rtl:mr-2 grow-1">
-                                        <p class="mb-0 dark:text-gray-300">2453 Clinton StreetLittle Rock, California, USA</p>
+                                        <p class="mb-0 dark:text-gray-300">Savar bus stand, Savar, Dhaka</p>
                                     </div>
                                 </div>
                                 <div class="flex items-center mt-2 text-gray-500">
@@ -88,7 +88,7 @@
                                         <i class="uil uil-envelope"></i>
                                     </div>
                                     <div class="ltr:ml-2 rtl:mr-2 grow-1">
-                                        <p class="mb-0 dark:text-gray-300">contactus@Jobcy.com</p>
+                                        <p class="mb-0 dark:text-gray-300">contactus@talentorbit.com</p>
                                     </div>
                                 </div>
                                 <div class="flex items-center mt-2 text-gray-500">
@@ -96,7 +96,7 @@
                                         <i class="uil uil-phone-alt"></i>
                                     </div>
                                     <div class="ltr:ml-2 rtl:mr-2 grow-1">
-                                        <p class="mb-0 dark:text-gray-300">(+245) 223 1245</p>
+                                        <p class="mb-0 dark:text-gray-300">(+88) 01542 415522</p>
                                     </div>
                                 </div>
                             </div>
@@ -106,7 +106,9 @@
                 </div>
             </section>
         <!-- End grid -->
-       
+        <div class="mt-9">
+        </div>
+
     </div>
 </div>
 

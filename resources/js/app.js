@@ -119,16 +119,22 @@ var slider1 = document.getElementById('slider1');
 
 
 noUiSlider.create(slider1, {
-    start: [10, 70],
+    start: [200,2000],
     connect: true,
     range: {
-        'min': 0,
-        'max': 100
+        'min': [100],
+        'max': [3000]
     }
 });
 
 var slider1Value = document.getElementById('slider1-span');
 
+var inputValue = document.getElementById('input-value');
+
 slider1.noUiSlider.on('update', function (values, handle) {
     slider1Value.innerHTML = values[handle];
+});
+
+slider1.noUiSlider.on('update', function (values, handle) {
+    inputValue.value = values[handle];
 });
