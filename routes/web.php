@@ -14,6 +14,7 @@ use App\Http\Controllers\RSSFeedController;
 use App\Http\Controllers\JobPostController;
 use App\Http\Controllers\PricingPlanController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\EtcController;
 use App\Models\Category;
 use App\Models\JobPost;
 use Illuminate\Support\Facades\Route;
@@ -165,7 +166,7 @@ Route::view('about', 'public.etc.about_us')->name('about');
 Route::view('category', 'public.etc.category')->name('category');
 Route::view('contact', 'public.etc.contact')->name('contact');
 Route::view('faqs', 'public.etc.faqs')->name('faqs');
-Route::view('price', 'public.etc.pricing')->name('pricing');
+Route::get('/price', [EtcController::class,'price'])->name('pricing');
 Route::view('privacy_policy', 'public.etc.privacy_policy')->name('privacy_policy');
 
 Route::get('/rss-feed', [RSSFeedController::class, 'index'])->name('rss.feed');

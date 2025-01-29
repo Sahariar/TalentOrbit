@@ -15,14 +15,15 @@
         </div>
         <div class="flex justify-between w-full items-center border-b border-[#e9e9ef] dark:border-zinc-600 ltr:pl-6 rtl:pr-6">
             <div>
-                <form class="hidden app-search xl:block">
+                <a href="{{ route('home') }}" role="button" class="text-white btn bg-sky-500 border-sky-500 hover:bg-sky-600 hover:border-sky-600 focus:bg-sky-600 focus:border-sky-600 focus:ring focus:ring-sky-500/30 active:bg-sky-600 active:border-sky-600">Visit Website</a>
+                {{-- <form class="hidden app-search xl:block">
                     <div class="relative inline-block">
                         <input type="text" class="pl-4 pr-[40px] border-0 rounded bg-[#f8f9fa] dark:bg-[#363a38] focus:ring-0 text-13 placeholder:text-13 dark:placeholder:text-gray-200 dark:text-gray-100  max-w-[223px]" placeholder="Search...">
                         <button class="py-1.5 px-2.5 w-9 h-[34px] text-white bg-sky-500 inline-block absolute ltr:right-1 top-1 rounded shadow shadow-violet-100 dark:shadow-gray-900 rtl:left-1 rtl:right-auto" type="button">
                             <i data-feather="search" class="w-3 h-3"></i>
                             </button>
                     </div>
-                </form>
+                </form> --}}
             </div>
             <div class="flex">
                 <div>
@@ -161,7 +162,7 @@
                             <x-dropdown align="right" width="48">
                                 <x-slot name="trigger">
                                     <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                                        <img class="w-8 h-8 rounded-full ltr:xl:mr-2 rtl:xl:ml-2" src="{{ asset('storage/images/user/img-02.jpg') }}" alt="Header Avatar">
+                                        <img class="w-8 h-8 rounded-full ltr:xl:mr-2 rtl:xl:ml-2" src="{{ url('storage/images/'. Auth::user()->image)}}" alt="Header Avatar">
                                         <div class="fw-medium xl:block dark:text-gray-50">{{ Auth::user()->name }}</div>
 
                                         <div class="ms-1">
