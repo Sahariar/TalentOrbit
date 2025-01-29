@@ -7,7 +7,7 @@
         <div class="main-content">
             <div class="page-content">
                 <!-- start home -->
-                    <section class="relative bg-sky-500/20  py-20 ">
+                    <section class="relative bg-sky-500/20  py-48 ">
                             <div class="container mx-auto">
                                 <div class="grid items-center grid-cols-12 gap-10">
                                     <div class="col-span-12 lg:col-span-7">

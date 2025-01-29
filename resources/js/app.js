@@ -12,6 +12,8 @@ import SmoothScroll from 'smooth-scroll';
 import Alpine from 'alpinejs';
 import Swiper from 'swiper';
 import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 
 window.Alpine = Alpine;
@@ -106,10 +108,13 @@ var swiper = new Swiper(".homeslider", {
     loop: true,
     spaceBetween: 20,
     autoplay: {
-        delay: 2500,
+        delay: 500,
         disableOnInteraction: false,
     },
-
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
 });
 
 

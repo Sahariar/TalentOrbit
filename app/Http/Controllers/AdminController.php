@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\CandidateProfile;
+use App\Models\Category;
 use App\Models\CompanyProfile;
 use App\Models\JobPost;
 use App\Models\Payment;
 use App\Models\PricingPlan;
+use App\Models\Tag;
 use App\Models\User;
 use App\Notifications\CompanyProfileApprove;
 use App\Notifications\CompanyProfileReject;
@@ -161,6 +163,28 @@ class AdminController extends Controller
     public function paymentShow(PricingPlan $payment)
     {
         return view('dashboard.admin.pricePlan.show', compact('payment'));
+    }
+    public function cateindex()
+    {
+        $categories = Category::paginate(10);
+
+        return view('dashboard.admin.categories.index', compact('categories'));
+    }
+    public function cateshow(Category $category)
+    {
+
+        return view('dashboard.admin.categories.show', compact('category'));
+    }
+    public function tagindex()
+    {
+        $tags = Tag::paginate(10);
+
+        return view('dashboard.admin.tags.index', compact('tags'));
+    }
+    public function tagshow(Tag $tag)
+    {
+
+        return view('dashboard.admin.tags.show', compact('tag'));
     }
 
 }

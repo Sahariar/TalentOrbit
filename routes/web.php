@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CandidateProfileController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Company\JobPostController as CompanyJobPostController;
 use App\Http\Controllers\CompanyProfileController;
 use App\Http\Controllers\Public\CandidateController;
@@ -93,6 +94,21 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
         Route::get('/', [AdminController::class, 'payments'])->name('index');
         Route::get('/{payment}', [AdminController::class, 'paymentShow'])->name('show');
         Route::delete('/{payments}', [AdminController::class, 'paymentDelete'])->name('delete');
+    });
+
+    // category Management
+    Route::prefix('categories')->name('categories.')->group(function () {
+        Route::get('/', [AdminController::class, 'cateindex'])->name('cateindex');
+        Route::get('/{category}', [AdminController::class, 'cateshow'])->name('cateshow');
+        Route::delete('/{category}', [AdminController::class, 'cateDelete'])->name('catedelete');
+
+    });
+    // Tags Management
+    Route::prefix('tags')->name('tags.')->group(function () {
+        Route::get('/', [AdminController::class, 'tagindex'])->name('tagindex');
+        Route::get('/{tag}', [AdminController::class, 'tagshow'])->name('tagshow');
+        Route::delete('/{tag}', [AdminController::class, 'tagDelete'])->name('tagdelete');
+
     });
 
 
