@@ -77,7 +77,7 @@
                             <a href="{{ route('login') }}" class="py-3 font-medium text-black text-13">Log in</a>
 
                             @if (Route::has('register'))
-                                <a href="{{ route('register') }}" class="ml-4 py-3 font-medium text-black text-13">Register</a>
+                                <a href="{{ route('register') }}" class="inline-flex items-center px-4 bg-sky-800 border border-transparent rounded-md text-xs text-white uppercase tracking-widest hover:bg-sky-700 focus:bg-sky-700 active:bg-sky-900 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 transition ease-in-out duration-150 justify-center ml-4 py-3 font-medium text-13">Register</a>
                             @endif
                         @endauth
                     </div>
