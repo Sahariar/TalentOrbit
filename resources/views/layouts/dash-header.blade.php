@@ -162,7 +162,13 @@
                             <x-dropdown align="right" width="48">
                                 <x-slot name="trigger">
                                     <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                                        <img class="w-8 h-8 rounded-full ltr:xl:mr-2 rtl:xl:ml-2" src="{{ url('storage/images/'. Auth::user()->image)}}" alt="Header Avatar">
+                                        @if (Auth::user()->role == 'company')
+                                            <img class="w-8 h-8 rounded-full ltr:xl:mr-2 rtl:xl:ml-2" src="{{ url('storage/'. Auth::user()->company_profile->image)}}" alt="Header Avatar">
+                                        @elseif(Auth::user()->role == 'candidate')
+                                            <img class="w-8 h-8 rounded-full ltr:xl:mr-2 rtl:xl:ml-2" src="{{ url('storage/'. Auth::user()->candidate_profile->image)}}" alt="Header Avatar">
+                                        @else
+                                            <img class="w-8 h-8 rounded-full ltr:xl:mr-2 rtl:xl:ml-2" src="{{ url('storage/'. Auth::user()->image)}}" alt="Header Avatar">
+                                        @endif
                                         <div class="fw-medium xl:block dark:text-gray-50">{{ Auth::user()->name }}</div>
 
                                         <div class="ms-1">
