@@ -128,7 +128,7 @@
                     @endforeach --}}
                                                     <div class="flex flex-wrap gap-1">
                                                         <span
-                                                            class="px-2 py-1 text-xs bg-gray-100 rounded-full">{{ $job->tag->name }}</span>
+                                                            class="px-2 py-1 text-xs bg-gray-100 rounded-full">{{ !is_null($job->tag) ? $job->tag->name : '' }}</span>
                                                     </div>
                                                 </td>
                                                 <td class="px-6 py-4">
