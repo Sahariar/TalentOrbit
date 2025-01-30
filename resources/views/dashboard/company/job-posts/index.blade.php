@@ -119,7 +119,7 @@
                                                             </a>
                                                         </div>
                                                         <div class="p-2">
-                                                            <a href="{{ route('company.job-posts.toggle-activity', $jobPost->id) }}" role="button" class="text-white btn bg-green-500 border-green-500 hover:bg-gray-600 focus:ring ring-violet-50focus:bg-gray-600" title="{{ $jobPost->is_active ? 'Inactivate' : 'Activate' }} Job Post">
+                                                            <a href="{{ route('company.job-posts.toggle-activity', $jobPost->id) }}" role="button" class="text-white btn {{ $jobPost->is_active ? 'bg-green-500 border-green-500' : 'bg-red-500 border-red-500' }} hover:bg-gray-600 focus:ring ring-violet-50focus:bg-gray-600" title="{{ $jobPost->is_active ? 'Inactivate' : 'Activate' }} Job Post">
                                                                 <i class="fas fa-toggle-{{ $jobPost->is_active ? 'on' : 'off' }}"></i>
                                                             </a>
                                                         </div>

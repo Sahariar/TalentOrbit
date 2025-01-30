@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\CandidateProfile;
 use App\Models\Category;
 use App\Models\CompanyProfile;
@@ -170,21 +171,137 @@ class AdminController extends Controller
 
         return view('dashboard.admin.categories.index', compact('categories'));
     }
-    public function cateshow(Category $category)
+
+    public function cateCreate()
+    {
+        return view('dashboard.admin.categories.create-or-edit');
+    }
+
+    public function cateStore(Request $request)
+    {
+        $validated = $request->validate([
+            'name'          => 'required|string|max:255',
+            'description'   => 'required|string'
+        ]);
+
+        $newCategpry = Category::create([
+            'name'          => $validated['name'],
+            'description'   => $validated['description']
+        ]);
+
+        if (!empty($newCategpry) && !is_null($newCategpry)) {
+            return back()->with(['msg' => 'Category Created Successfully']);
+        }
+
+        return back()->with(['msg' => 'Something Went Wrong, could not create Category']);
+    }
+
+    public function cateShow(Category $category)
     {
 
         return view('dashboard.admin.categories.show', compact('category'));
     }
-    public function tagindex()
+
+    public function cateEdit(Category $category)
+    {
+        return view('dashboard.admin.categories.create-or-edit',compact('category'));
+    }
+
+    public function cateUpdate(Request $request, Category $category)
+    {
+        $validated = $request->validate([
+            'name'          =>'required|string|max:255',
+            'description'   =>'required|string'
+        ]);
+
+        $updatedCategory = $category->update([
+            'name'          => $validated['name'],
+            'description'   => $validated['description']
+        ]);
+
+        if ($updatedCategory) {
+            return back()->with(['msg'=> 'Category Updated Successfully']);
+        }
+
+        return back()->with(['msg'=> 'Something Went Wrong, could not update Category']);
+    }
+
+    public function cateDelete(Request $request, Category $category)
+    {
+        if ($category->delete()) {
+            return back()->with(['msg'=> 'Category Deleted Successfully']);
+        }
+
+        return back()->with(['msg'=> 'Something Went Wrong, could not delete Category']);
+    }
+
+    public function tagIndex()
     {
         $tags = Tag::paginate(10);
 
         return view('dashboard.admin.tags.index', compact('tags'));
     }
-    public function tagshow(Tag $tag)
+
+    public function tagCreate()
+    {
+        return view('dashboard.admin.tags.create-or-edit');
+    }
+
+    public function tagStore(Request $request)
+    {
+        $validated = $request->validate([
+            'title'         => 'required|string|max:255',
+            'description'   => 'string'
+        ]);
+
+        $newTag = Tag::create([
+            'title'         => $validated['title'],
+            'description'   => $validated['description'],
+        ]);
+
+        if (!empty($newTag) && !is_null($newTag)) {
+            return back()->with(['msg'=> 'Tag Created Successfully']);
+        }
+
+        return back()->with(['msg'=> 'Sorry, could not create Tag']);
+    }
+
+    public function tagShow(Tag $tag)
     {
 
         return view('dashboard.admin.tags.show', compact('tag'));
+    }
+
+    public function tagEdit(Tag $tag)
+    {
+        return view('dashboard.admin.tags.create-or-edit',compact('tag'));
+    }
+
+    public function tagUpdate(Request $request, Tag $tag)
+    {
+        $validated = $request->validate([
+            'title'         =>'required|string|max:255',
+            'description'   =>'string'
+        ]);
+
+        $updatedTag = $tag->update([
+            'title'         => $validated['title'],
+            'description'   => $validated['description'],
+        ]);
+        if ($updatedTag) {
+            return back()->with(['msg'=> 'Tag Updated Successfully']);
+        }
+
+        return back()->with(['msg'=> 'Sorry, could not update Tag']);
+    }
+
+    public function tagDelete(Request $request, Tag $tag)
+    {
+        if ($tag->delete()) {
+            return back()->with(['msg'=> 'Tag Deleted Successfully']);
+        }
+
+        return back()->with(['msg'=> 'Sorry, could not delete Tag']);
     }
 
 }
