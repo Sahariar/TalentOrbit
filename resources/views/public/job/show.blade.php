@@ -35,10 +35,10 @@
                         <div class="col-span-12 lg:col-span-8">
                             <div class="border rounded-md border-gray-100/30 dark:border-neutral-600/80">
                                 <div class="relative">
-                                    <img src="{{ $jobPost->company_profile->image }}" alt="company_image" class="rounded-md img-fluid mb-7">
+                                    <img src="{{ url('storage/'. $jobPost->company_profile->image) }}" alt="company_image" class="rounded-md img-fluid mb-7">
                                     {{-- <img src="{{ asset('storage/assets/images/job-detail.jpg') }}" alt="company_image" class="rounded-md img-fluid mb-7"> --}}
                                     <div class="absolute z-20 -bottom-7 left-7">
-                                        <img src="{{ $jobPost->featured_image }}" alt="post_featured_image" class="rounded-md img-fluid">
+                                        <img src="{{ url('storage/images/'. $jobPost->featured_image) }}" alt="post_featured_image" class="rounded-md img-fluid">
                                         {{-- <img src="{{ asset('storage/assets/images/featured-job/img-10.png') }}" alt="" class="rounded-md img-fluid"> --}}
                                     </div>
                                 </div>
@@ -89,9 +89,9 @@
                                     </div>
 
                                     <div class="mt-5">
-                                        <h5 class="mb-3 text-gray-900 dark:text-gray-50">Job Description</h5>
+                                        <h2 class="mb-3 text-gray-900 dark:text-gray-50"><strong>Job Description</strong></h2>
                                         <div>
-                                            <p class="mb-0 text-gray-500 dark:text-gray-300">{!! $jobPost->description ?? 'N/A' !!}</p>
+                                            <p class="mb-0 text-gray-500 dark:text-gray-300">{!! $jobPost->description !!}</p>
                                         </div>
                                     </div>
 

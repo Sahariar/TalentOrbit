@@ -64,7 +64,15 @@ class JobPostController extends Controller
             return back()->with(['msg' => 'Sorry, there are already 3 active job posts. Please delete one to create a new one']);
         }
 
-        $maxJobLimit = $companyProfile->payment->pricing_plan->max_jobs;
+        if (!is_null($companyProfile->payment)) {
+            if (!is_null($companyProfile->payment->pricing_plan)) {
+                $maxJobLimit = $companyProfile->payment->pricing_plan->max_jobs;
+            }else{
+                $maxJobLimit = 3;
+            }
+        }else{
+            $maxJobLimit = 3;
+        }
 
         if ($checkJobCount->check($companyProfile) >= $maxJobLimit) {
             return back()->with(['msg' => 'Sorry, you have reached the maximum job post limit for the pricing plan you have']);
