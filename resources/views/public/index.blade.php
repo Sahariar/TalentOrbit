@@ -345,16 +345,16 @@
                 <!-- end home -->
 
                 <!-- start category -->
-{{--                    <section class="py-20 dark:bg-neutral-800">--}}
-{{--                        <div class="container mx-auto">--}}
-{{--                            <div class="grid grid-cols-1 gap-5">--}}
-{{--                                <div class="text-center">--}}
-{{--                                    <h3 class="mb-3 text-3xl text-gray-900 dark:text-gray-50">Browse Jobs Categories</h3>--}}
-{{--                                    <p class="mb-5 text-gray-500 whitespace-pre-line dark:text-gray-300">Post a job to tell us about your project. We'll quickly match you with the--}}
-{{--                                            right freelancers.</p>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="grid grid-cols-12 gap-5">--}}
+                   {{-- <section class="py-20 dark:bg-neutral-800">
+                       <div class="container mx-auto">
+                           <div class="grid grid-cols-1 gap-5">
+                               <div class="text-center">
+                                   <h3 class="mb-3 text-3xl text-gray-900 dark:text-gray-50">Browse Jobs Categories</h3>
+                                   <p class="mb-5 text-gray-500 whitespace-pre-line dark:text-gray-300">Post a job to tell us about your project. We'll quickly match you with the
+                                           right freelancers.</p>
+                               </div>
+                           </div>
+                           <div class="grid grid-cols-12 gap-5">
 
 
                                 @foreach ($categories as $category)
@@ -375,14 +375,14 @@
                                 </div>
                                 @endforeach
 
-{{--                            </div>--}}
-{{--                            <div class="grid grid-cols-1">--}}
-{{--                                <div class="mt-5 text-center">--}}
-{{--                                    <a href="{{route('category')}}" class="text-white border-transparent btn hover:-translate-y-2 bg-sky-900">Browse All Categories <i class="uil uil-arrow-right ms-1"></i></a>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </section>--}}
+                           </div>
+                           <div class="grid grid-cols-1">
+                               <div class="mt-5 text-center">
+                                   <a href="{{route('category')}}" class="text-white border-transparent btn hover:-translate-y-2 bg-sky-900">Browse All Categories <i class="uil uil-arrow-right ms-1"></i></a>
+                               </div>
+                           </div>
+                       </div>
+                   </section> --}}
                 <!-- end category -->
 
                 <!-- start job list -->
