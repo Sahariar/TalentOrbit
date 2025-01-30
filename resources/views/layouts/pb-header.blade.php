@@ -1,70 +1,5 @@
 <header>
-    <div class="hidden px-5 mx-auto border-gray-200 container-fluid lg:px-24 bg-gray-50 md:block">
-        <div class="grid items-center grid-cols-12">
-            <div class="col-span-7">
-                <ul class="flex items-center py-3">
-                    <li class="ltr:mr-4 rtl:ml-4">
-                        <p class="mb-0 text-black text-13 "> <i class="mdi mdi-map-marker"></i> Your Location: <a href="javascript:void(0)" class="font-medium">New Caledonia</a></p>
-                    </li>
-                    <li>
-                        <ul class="flex flex-wrap gap-4 text-black ">
-                            <li class="transition-all duration-200 ease-in hover:text-green-500  dark:hover:text-green-500"><a href="javascript:void(0)" class="social-link"><i class="uil uil-whatsapp"></i></a></li>
-                            <li class="transition-all duration-200 ease-in hover:text-green-500  dark:hover:text-green-500"><a href="javascript:void(0)" class="social-link"><i class="uil uil-facebook-messenger-alt"></i></a></li>
-                            <li class="transition-all duration-200 ease-in hover:text-green-500  dark:hover:text-green-500"><a href="javascript:void(0)" class="social-link"><i class="uil uil-instagram"></i></a></li>
-                            <li class="transition-all duration-200 ease-in hover:text-green-500  dark:hover:text-green-500"><a href="javascript:void(0)" class="social-link"><i class="uil uil-envelope"></i></a></li>
-                            <li class="transition-all duration-200 ease-in hover:text-green-500  dark:hover:text-green-500"><a href="javascript:void(0)" class="social-link"><i class="uil uil-twitter-alt"></i></a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-span-5 ml-auto">
-                <ul class="flex items-center gap-4">
-                    <li>
-                        @if (Route::has('login'))
-                        <div class="hidden px-6 py-4 sm:block">
-                            @auth
-                                <a href="{{ url('/dashboard') }}" class="py-3 font-medium text-black text-13">Dashboard</a>
-                            @else
-                                <a href="{{ route('login') }}" class="py-3 font-medium text-black text-13">Log in</a>
-
-                                @if (Route::has('register'))
-                                    <a href="{{ route('register') }}" class="ml-4 py-3 font-medium text-black text-13">Register</a>
-                                @endif
-                            @endauth
-                        </div>
-                    @endif
-                    </li>
-                    <li>
-                        <div class="relative hidden dropdown language sm:block">
-                            <button class="px-4 py-3 border-0 btn dropdown-toggle" type="button" aria-expanded="false" data-dropdown-toggle="navNotifications">
-                                <img src="{{ asset('storage/images/flags/us.jpg') }}" alt="" class="h-4" id="header-lang-img">
-                            </button>
-                            <div class="absolute top-auto z-50 hidden w-40 list-none bg-white rounded shadow dropdown-menu -left-20 dark:bg-neutral-700" id="navNotifications">
-                                <ul class="border border-gray-50 dark:border-gray-700" aria-labelledby="navNotifications">
-                                    <li>
-                                        <a href="#" class="block px-4 py-2 text-sm text-black hover:bg-gray-50/50 dark:text-gray-200 dark:hover:bg-neutral-600/50 dark:hover:text-white"><img src="{{ asset('storage/images/flags/us.jpg') }}" alt="user-image" class="inline-block h-3 mr-1"> <span class="align-middle">English</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="block px-4 py-2 text-sm text-black hover:bg-gray-50/50 dark:text-gray-200 dark:hover:bg-neutral-600/50 dark:hover:text-white"><img src="{{ asset('storage/images/flags/us.jpg') }}" alt="user-image" class="inline-block h-3 mr-1"> <span class="align-middle">Spanish</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="block px-4 py-2 text-sm text-black hover:bg-gray-50/50 dark:text-gray-200 dark:hover:bg-neutral-600/50 dark:hover:text-white"><img src="{{ asset('storage/images/flags/us.jpg') }}" alt="user-image" class="inline-block h-3 mr-1"> <span class="align-middle">German</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="block px-4 py-2 text-sm text-black hover:bg-gray-50/50 dark:text-gray-200 dark:hover:bg-neutral-600/50 dark:hover:text-white"><img src="{{ asset('storage/images/flags/us.jpg') }}" alt="user-image" class="inline-block h-3 mr-1"> <span class="align-middle">Italian</span></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-
-
-    <nav class="navbar fixed right-0 left-0 top-0 lg:top-[44.5px] px-5 lg:px-24 transition-all duration-500 ease shadow-lg shadow-gray-200/20 bg-white border-gray-200 z-40 dark:shadow-neutral-900" id="navbar">
+    <nav class="navbar fixed right-0 left-0 top-0 px-5 lg:px-24 transition-all duration-500 ease shadow-lg shadow-gray-200/20 bg-white border-gray-200 z-40 dark:shadow-neutral-900" id="navbar">
         <div class="mx-auto container-fluid">
             <div class="flex flex-wrap items-center justify-between mx-auto">
                 <a href="{{ route('home') }}" class="flex items-center">
@@ -75,6 +10,78 @@
                     <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
                 </button>
                 <div class="flex items-center lg:order-2">
+                    @if (Route::has('login'))
+                    <div class="hidden px-6 sm:block">
+                        @auth
+                        <div>
+                            <div class="relative dropdown ltr:mr-4 rtl:ml-4">
+                                @if(Auth::check())
+                                <!-- User is logged in -->
+                                <!-- Settings Dropdown -->
+                                <div class="hidden sm:flex sm:items-center sm:ms-6">
+                                    <x-dropdown align="right" width="48">
+                                        <x-slot name="trigger">
+                                            <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500  hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                                <img class="w-8 h-8 rounded-full ltr:xl:mr-2 rtl:xl:ml-2"
+                                                src="{{ asset(Auth::user()->image ? 'storage/' . Auth::user()->image : 'storage/images/user/img-02.jpg') }}"
+                                                alt="Header Avatar">
+
+                                                <div class="fw-medium xl:block dark:text-gray-50">{{ Auth::user()->name }}</div>
+
+                                                <div class="ms-1">
+                                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                                    </svg>
+                                                </div>
+                                            </button>
+                                        </x-slot>
+
+                                        <x-slot name="content">
+                                            @if(auth()->user()->role === 'admin')
+                                            <x-dropdown-link :href="route('admin.dashboard')">
+                                                {{ __('Dashboard') }}
+                                            </x-dropdown-link>
+                                        @elseif(auth()->user()->role === 'company')
+                                        <x-dropdown-link :href="route('company.dashboard')">
+                                            {{ __('Dashboard') }}
+                                        </x-dropdown-link>
+                                        @else
+                                        <x-dropdown-link :href="route('candidate.dashboard')">
+                                            {{ __('Dashboard') }}
+                                        </x-dropdown-link>
+                                        @endif
+
+                                            <x-dropdown-link :href="route('profile.edit')">
+                                                {{ __('Profile') }}
+                                            </x-dropdown-link>
+
+                                            <!-- Authentication -->
+                                            <form method="POST" action="{{ route('logout') }}">
+                                                @csrf
+
+                                                <x-dropdown-link :href="route('logout')"
+                                                    onclick="event.preventDefault();
+                                                    this.closest('form').submit();">
+                                                    {{ __('Log Out') }}
+                                                </x-dropdown-link>
+                                            </form>
+                                        </x-slot>
+                                    </x-dropdown>
+                                </div>
+                            @else
+                                <!-- User is not logged in -->
+                            @endif
+                            </div>
+                        </div>
+                        @else
+                            <a href="{{ route('login') }}" class="py-3 font-medium text-black text-13">Log in</a>
+
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}" class="inline-flex items-center px-4 bg-sky-800 border border-transparent rounded-md text-xs text-white uppercase tracking-widest hover:bg-sky-700 focus:bg-sky-700 active:bg-sky-900 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 transition ease-in-out duration-150 justify-center ml-4 py-3 font-medium text-13">Register</a>
+                            @endif
+                        @endauth
+                    </div>
+                    @endif
                     <div>
                         <div class="relative dropdown">
                             <div class="relative">
@@ -177,59 +184,7 @@
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <div class="relative dropdown ltr:mr-4 rtl:ml-4">
-                            @if(Auth::check())
-                            <!-- User is logged in -->
-                            <!-- Settings Dropdown -->
-                            <div class="hidden sm:flex sm:items-center sm:ms-6">
-                                <x-dropdown align="right" width="48">
-                                    <x-slot name="trigger">
-                                        <button
-                                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 hover:text-gray-500/75 bg-white   focus:outline-none transition ease-in-out duration-150">
-                                            <div>
-
-                                                {{ Auth::user()->name }}
-                                            </div>
-
-                                            <div class="ms-1">
-                                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20">
-                                                    <path fill-rule="evenodd"
-                                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                        clip-rule="evenodd" />
-                                                </svg>
-                                            </div>
-                                        </button>
-                                    </x-slot>
-
-                                    <x-slot name="content">
-                                        <x-dropdown-link :href="route('profile.edit')">
-                                            {{ __('Profile') }}
-                                        </x-dropdown-link>
-
-                                        <!-- Authentication -->
-                                        <form method="POST" action="{{ route('logout') }}">
-                                            @csrf
-
-                                            <x-dropdown-link :href="route('logout')"
-                                                onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                                {{ __('Log Out') }}
-                                            </x-dropdown-link>
-                                        </form>
-                                    </x-slot>
-                                </x-dropdown>
-                            </div>
-                        @else
-                            <!-- User is not logged in -->
-
-                        @endif
-
-                        </div>
-                    </div>
                 </div>
-
                 <div id="navbar-collapse" class="navbar-res items-center justify-between w-full text-sm lg:flex lg:w-auto lg:order-1 group-focus:[.navbar-toggler]:block hidden">
                     <ul class="flex flex-col items-start mt-5 mb-10 font-medium lg:mt-0 lg:mb-0 lg:items-center lg:flex-row" id="navigation-menu">
                         <li class="relative dropdown">
