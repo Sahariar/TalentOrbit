@@ -14,6 +14,7 @@ class RecentJobController extends Controller
     public function __invoke(Request $request)
     {
         $recentJobs = JobPost::orderBy('created_at', 'desc')->take(4)->get();
+
         return view('home', compact('recentJobs'));
     }
 }

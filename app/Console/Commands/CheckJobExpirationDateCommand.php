@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Artisan;
 use App\Jobs\CheckJobExpirationDate;
 use App\Models\JobPost;
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 
 class CheckJobExpirationDateCommand extends Command
 {

@@ -1,13 +1,29 @@
 @extends('layouts.' . ($layout ?? 'dashboard'))  <!-- Default to 'dashboard' layout -->
 
 @section('content')
+@inject('jobLimitService', 'App\Services\JobLimitService')
     @php
         $currentRouteName = Illuminate\Support\Facades\Route::currentRouteName();
         use Carbon\Carbon;
+        use Illuminate\Support\Facades\Auth;
+
+        $companyProfile = Auth::user() ? Auth::user()->company_profile : null;
+    if ($companyProfile) {
+        $limitCheck = $jobLimitService->checkJobLimits($companyProfile);
+    } else {
+        $limitCheck = null; // Or handle the case where there's no company profile
+    }
     @endphp
     <div class="page-content">
         <div class="container-fluid px-[0.625rem]">
             <div class="grid grid-cols-1">
+                @if($limitCheck['can_post'])
+
+                                <div class="card alert alert-info bg-sky-700 px-4 py-3 text-white sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
+                                    You can post {{ $limitCheck['remaining_slots'] }} more jobs.
+                                    ({{ $limitCheck['active_jobs'] }} active jobs out of 3 maximum) or you can upgrade your plan.
+                                </div>
+
                 <div class="card dark:bg-zinc-800 dark:border-zinc-600">
                     <div class="card-body border-b border-gray-100 dark:border-zinc-600">
                         <div class="grid grid-cols-2">
@@ -83,7 +99,7 @@
                                         <label for="salary-range" class="block mb-2 font-medium text-gray-700 dark:text-gray-100">Salary Range:</label>
                                         <input class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-100 placeholder:text-gray-800 dark:text-zinc-100" type="text" name="salary_range" value="{{ $currentRouteName == 'company.job-posts.edit' ? $job_post->salary_range : old('salary_range') }}" placeholder="100,000-150,000" id="salary-range">
                                     </div>
-                                    <div class="mb-4">                                        
+                                    <div class="mb-4">
                                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="featured-image">Featured Image:</label>
                                         <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-white-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="featured-image" name="featured_image" type="file">
                                     </div>
@@ -119,6 +135,16 @@
                         </div>
                     </div>
                 </div>
+                @else
+                <div class="alert alert-warning card alert alert-info bg-orange-600 px-4 py-3 text-white sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
+                    {{ $limitCheck['message'] }}
+                    you can upgrade your plan here.
+                    {{-- /priceplan/chose --}}
+                    <x-viewbtn
+                    href="{{ route('priceplan.choseplan', Auth::user()->company_profile) }}">
+                    {{ __('View plan') }}</x-viewbtn>
+                </div>
+                @endif
             </div>
         </div>
     </div>

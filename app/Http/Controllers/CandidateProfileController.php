@@ -26,9 +26,11 @@ class CandidateProfileController extends Controller
         : [];
         //
         $categories = Category::all();
+
         // dd($categories);
-        return view('dashboard.candidate.categories' , compact('categories' , 'subscribedCategories'));
+        return view('dashboard.candidate.categories', compact('categories', 'subscribedCategories'));
     }
+
     public function dashboard()
     {
         //
@@ -37,21 +39,23 @@ class CandidateProfileController extends Controller
     ? $user->candidate_profile->subscribedCategories->count()
     : 0;
 
-        return view('dashboard.candidate.index' , compact('subscribedCategoriesCount'))->with('layout', 'dashboard');
+        return view('dashboard.candidate.index', compact('subscribedCategoriesCount'))->with('layout', 'dashboard');
     }
+
     public function subscribe(Request $request)
     {
 
-    $user = Auth::user();
+        $user = Auth::user();
         // dd($user, $user->candidate_profile);
         if ($user->candidate_profile) {
             $user->candidate_profile->subscribedCategories()->sync($request->categories);
+
             return redirect()->back()->with('success', 'Your subscriptions have been updated!');
         }
+
         //
         return redirect()->back()->with('success', 'Your subscriptions have been updated!');
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -74,8 +78,9 @@ class CandidateProfileController extends Controller
      */
     public function show(CandidateProfile $candidate)
     {
-        $candidate->load('user');;
+        $candidate->load('user');
         $candidateProfile = $candidate;
+
         return view('public.candidate.show', compact('candidate'));
     }
 

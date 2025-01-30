@@ -2,9 +2,9 @@
 
 namespace App\Jobs;
 
+use App\Models\JobPost;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
-use App\Models\{JobPost};
 
 class CheckJobExpirationDate implements ShouldQueue
 {

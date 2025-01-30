@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PricingPlan;
 use Illuminate\Http\Request;
-use App\Models\{PricingPlan};
 
 class EtcController extends Controller
 {
@@ -17,9 +17,9 @@ class EtcController extends Controller
 
     public function price()
     {
-        $pricingPlans  = PricingPlan::all();
+        $pricingPlans = PricingPlan::all();
 
-        return view('public.etc.pricing',compact('pricingPlans'));
+        return view('public.etc.pricing', compact('pricingPlans'));
     }
 
     /**

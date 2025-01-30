@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\{CompanyProfile};
+use App\Models\CompanyProfile;
 
 class FetchAuthCompanyProfile
 {
@@ -16,6 +16,6 @@ class FetchAuthCompanyProfile
 
     public function fetch()
     {
-        return CompanyProfile::query()->where('user_id',auth()->user()->id)->first();
+        return CompanyProfile::query()->where('user_id', auth()->user()->id)->first();
     }
 }

@@ -2,7 +2,8 @@
 
 namespace App\Services;
 
-use App\Models\{JobPost, CompanyProfile};
+use App\Models\CompanyProfile;
+use App\Models\JobPost;
 
 class CheckActiveJobCount
 {

@@ -22,12 +22,12 @@ class CreateOrUpdateCompanyProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'              => 'required|string|max:511',
-            'description'       => 'string',
-            'phone_number'      => 'string|max:511',
-            'url'               => 'required|string|max:511',
-            'linkedin_url'      => 'required|string|max:511',
-            'image'             => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'name' => 'required|string|max:511',
+            'description' => 'string',
+            'phone_number' => 'string|max:511',
+            'url' => 'required|string|max:511',
+            'linkedin_url' => 'required|string|max:511',
+            'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ];
     }
 }

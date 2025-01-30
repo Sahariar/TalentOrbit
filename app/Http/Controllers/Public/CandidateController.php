@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
 use App\Models\CandidateProfile;
-use Illuminate\Http\Request;
 
 class CandidateController extends Controller
 {
@@ -19,6 +18,7 @@ class CandidateController extends Controller
     public function show(CandidateProfile $candidate)
     {
         $candidate->load('user');
+
         // $candidateProfile = $candidate;
         return view('public.candidate.show', compact('candidate'));
     }

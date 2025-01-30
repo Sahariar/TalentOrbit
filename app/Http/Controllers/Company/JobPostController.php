@@ -4,13 +4,26 @@ namespace App\Http\Controllers\Company;
 
 use App\Events\JobPosted;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateOrUpdateCompanyJobPostRequest;
+use App\Models\JobPost;
+use App\Models\Tag;
+use App\Services\CheckActiveJobCount;
+use App\Services\CheckJobCount;
+use App\Services\FetchAuthCompanyProfile;
+use App\Services\FetchCategories;
+use App\Services\FetchCompanyProfileJobPosts;
+use App\Services\JobLimitService;
 use Illuminate\Http\Request;
-use App\Services\{FetchCompanyProfileJobPosts,FetchCategories,FetchAuthCompanyProfile,CheckActiveJobCount,CheckJobCount};
-use App\Http\Requests\{CreateOrUpdateCompanyJobPostRequest};
-use App\Models\{JobPost,Tag};
 
 class JobPostController extends Controller
 {
+    protected $jobLimitService;
+
+    public function __construct(JobLimitService $jobLimitService)
+    {
+        $this->jobLimitService = $jobLimitService;
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -18,25 +31,25 @@ class JobPostController extends Controller
     {
         $companyProfile = $fetchCompanyProfileJobPosts->fetch()['companyProfile'];
 
-        $jobPosts       = $fetchCompanyProfileJobPosts->fetch()['jobPosts'];
+        $jobPosts = $fetchCompanyProfileJobPosts->fetch()['jobPosts'];
 
         return view('dashboard.company.job-posts.index', compact('jobPosts', 'companyProfile'));
     }
 
-    public function search(Request $request,FetchAuthCompanyProfile $fetchAuthCompanyProfile)
+    public function search(Request $request, FetchAuthCompanyProfile $fetchAuthCompanyProfile)
     {
         $companyProfile = $fetchAuthCompanyProfile->fetch();
 
-        $jobPosts = JobPost::query()->where('company_profile_id',$companyProfile->id)
-                        ->where('title','LIKE','%'.$request->search.'%')
-                        ->orWhere('description','LIKE','%'.$request->search.'%')
-                        ->orWhere('location','LIKE','%'.$request->search.'%')
-                        ->orWhere('salary_range','LIKE','%'.$request->search.'%')
-                        ->orWhere('expiration_date','LIKE','%'.$request->search.'%')
-                        ->orWhere('apply_link','LIKE','%'.$request->search.'%')
-                        ->paginate(5);
+        $jobPosts = JobPost::query()->where('company_profile_id', $companyProfile->id)
+            ->where('title', 'LIKE', '%'.$request->search.'%')
+            ->orWhere('description', 'LIKE', '%'.$request->search.'%')
+            ->orWhere('location', 'LIKE', '%'.$request->search.'%')
+            ->orWhere('salary_range', 'LIKE', '%'.$request->search.'%')
+            ->orWhere('expiration_date', 'LIKE', '%'.$request->search.'%')
+            ->orWhere('apply_link', 'LIKE', '%'.$request->search.'%')
+            ->paginate(5);
 
-        return view('dashboard.company.job-posts.index',compact('jobPosts'));
+        return view('dashboard.company.job-posts.index', compact('jobPosts'));
     }
 
     /**
@@ -48,15 +61,15 @@ class JobPostController extends Controller
 
         $companyProfile = $fetchAuthCompanyProfile->fetch();
 
-        $tags = Tag::select('id','title')->get();
+        $tags = Tag::select('id', 'title')->get();
 
-        return view('dashboard.company.job-posts.create-or-edit',compact('categories', 'companyProfile','tags'));
+        return view('dashboard.company.job-posts.create-or-edit', compact('categories', 'companyProfile', 'tags'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CreateOrUpdateCompanyJobPostRequest $request,FetchAuthCompanyProfile $fetchAuthCompanyProfile, CheckActiveJobCount $checkActiveJobCount, CheckJobCount $checkJobCount)
+    public function store(CreateOrUpdateCompanyJobPostRequest $request, FetchAuthCompanyProfile $fetchAuthCompanyProfile, CheckActiveJobCount $checkActiveJobCount, CheckJobCount $checkJobCount)
     {
         $companyProfile = $fetchAuthCompanyProfile->fetch();
 
@@ -64,18 +77,11 @@ class JobPostController extends Controller
             return back()->with(['msg' => 'Sorry, there are already 3 active job posts. Please delete one to create a new one']);
         }
 
-        if (!is_null($companyProfile->payment)) {
-            if (!is_null($companyProfile->payment->pricing_plan)) {
-                $maxJobLimit = $companyProfile->payment->pricing_plan->max_jobs;
-            }else{
-                $maxJobLimit = 3;
-            }
-        }else{
-            $maxJobLimit = 3;
-        }
+        // Check job limits
+        $limitCheck = $this->jobLimitService->checkJobLimits($companyProfile);
 
-        if ($checkJobCount->check($companyProfile) >= $maxJobLimit) {
-            return back()->with(['msg' => 'Sorry, you have reached the maximum job post limit for the pricing plan you have']);
+        if (! $limitCheck['can_post']) {
+            return back()->with(['msg' => $limitCheck['message']]);
         }
 
         $validated = $request->validated();
@@ -83,31 +89,32 @@ class JobPostController extends Controller
         if ($request->hasFile('featured_image')) {
             $featuredImage = $request->featured_image->getClientOriginalName();
 
-            $request->featured_image->storeAs('images',$featuredImage,'public');
-        }else {
+            $request->featured_image->storeAs('images', $featuredImage, 'public');
+        } else {
             $featuredImage = null;
         }
 
         $newJobPost = JobPost::create([
-            'company_profile_id'=> $companyProfile->id,
-            'category_id'       => $validated['category'],
-            'title'             => $validated['title'],
-            'description'       => $validated['description'],
-            'apply_link'        => $validated['apply_link'],
-            'expiration_date'   => $validated['job_expiration_date'],
-            'is_available'      => $validated['is_available'],
-            'location'          => $validated['location'],
-            'salary_range'      => $validated['salary_range'],
-            'featured_image'    => $featuredImage
+            'company_profile_id' => $companyProfile->id,
+            'category_id' => $validated['category'],
+            'title' => $validated['title'],
+            'description' => $validated['description'],
+            'apply_link' => $validated['apply_link'],
+            'expiration_date' => $validated['job_expiration_date'],
+            'is_available' => $validated['is_available'],
+            'location' => $validated['location'],
+            'salary_range' => $validated['salary_range'],
+            'featured_image' => $featuredImage,
         ]);
 
         if (isset($validated['tag_id']) && is_array($validated['tag_id'])) {
             $newJobPost->tags()->attach($validated['tag_id']);
         }
 
-        if (!empty($newJobPost) && !is_null($newJobPost)) {
+        if (! empty($newJobPost) && ! is_null($newJobPost)) {
             // Fire the event
             event(new JobPosted($newJobPost));
+
             return back()->with(['msg' => 'Job Post Created Successfully']);
         }
 
@@ -121,13 +128,13 @@ class JobPostController extends Controller
     {
         $companyProfile = $fetchAuthCompanyProfile->fetch();
 
-        return view('dashboard.company.job-posts.show',compact('job_post','companyProfile'));
+        return view('dashboard.company.job-posts.show', compact('job_post', 'companyProfile'));
     }
 
     public function toggle(JobPost $jobPost)
     {
         $toggledJobPost = $jobPost->update([
-            'is_active' => !$jobPost->is_active
+            'is_active' => ! $jobPost->is_active,
         ]);
 
         if ($toggledJobPost) {
@@ -140,15 +147,15 @@ class JobPostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(JobPost $job_post,FetchCategories $fetchCategories, FetchAuthCompanyProfile $fetchAuthCompanyProfile)
+    public function edit(JobPost $job_post, FetchCategories $fetchCategories, FetchAuthCompanyProfile $fetchAuthCompanyProfile)
     {
         $categories = $fetchCategories->fetch();
 
         $companyProfile = $fetchAuthCompanyProfile->fetch();
 
-        $tags = Tag::select('id','title')->get();
+        $tags = Tag::select('id', 'title')->get();
 
-        return view('dashboard.company.job-posts.create-or-edit',compact('categories','job_post', 'companyProfile', 'tags'));
+        return view('dashboard.company.job-posts.create-or-edit', compact('categories', 'job_post', 'companyProfile', 'tags'));
     }
 
     /**
@@ -161,24 +168,24 @@ class JobPostController extends Controller
         if ($request->hasFile('featured_image')) {
             $featuredImage = $request->featured_image->getClientOriginalName();
 
-            $request->featured_image->storeAs('images',$featuredImage,'public');
-        }else {
+            $request->featured_image->storeAs('images', $featuredImage, 'public');
+        } else {
             $featuredImage = null;
         }
 
         $companyProfile = $fetchAuthCompanyProfile->fetch();
 
         $updatedJobPost = $job_post->update([
-            'company_profile_id'=> $companyProfile->id,
-            'category_id'       => $validated['category'],
-            'title'             => $validated['title'],
-            'description'       => $validated['description'],
-            'apply_link'        => $validated['apply_link'],
-            'expiration_date'   => $validated['job_expiration_date'],
-            'is_available'      => $validated['is_available'],
-            'location'          => $validated['location'],
-            'salary_range'      => $validated['salary_range'],
-            'featured_image'    => $featuredImage
+            'company_profile_id' => $companyProfile->id,
+            'category_id' => $validated['category'],
+            'title' => $validated['title'],
+            'description' => $validated['description'],
+            'apply_link' => $validated['apply_link'],
+            'expiration_date' => $validated['job_expiration_date'],
+            'is_available' => $validated['is_available'],
+            'location' => $validated['location'],
+            'salary_range' => $validated['salary_range'],
+            'featured_image' => $featuredImage,
         ]);
 
         if ($updatedJobPost) {

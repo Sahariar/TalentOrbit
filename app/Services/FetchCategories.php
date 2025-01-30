@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\{Category};
+use App\Models\Category;
 
 class FetchCategories
 {
@@ -16,6 +16,6 @@ class FetchCategories
 
     public function fetch()
     {
-        return Category::query()->select('id','name')->get();
+        return Category::query()->select('id', 'name')->get();
     }
 }

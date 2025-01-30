@@ -2,7 +2,8 @@
 
 namespace App\Services;
 
-use App\Models\{CompanyProfile,JobPost};
+use App\Models\CompanyProfile;
+use App\Models\JobPost;
 
 class CheckJobCount
 {
@@ -17,8 +18,8 @@ class CheckJobCount
     public function check(CompanyProfile $companyProfile)
     {
         return JobPost::query()
-            ->where('company_profile_id',$companyProfile->id)
-            ->where('expiration_date','>=',now())
+            ->where('company_profile_id', $companyProfile->id)
+            ->where('expiration_date', '>=', now())
             ->count();
     }
 }

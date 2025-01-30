@@ -14,7 +14,6 @@ use App\Notifications\CompanyProfileApprove;
 use App\Notifications\CompanyProfileReject;
 use Illuminate\Support\Facades\Storage;
 
-
 class AdminController extends Controller
 {
     //
@@ -38,11 +37,11 @@ class AdminController extends Controller
 
         $recent_candidates = CandidateProfile::with('user')
             ->latest()->take(5)->get();
-        $total_sale  = Payment::sum('amount');
+        $total_sale = Payment::sum('amount');
 
         $recent_sale = Payment::latest()->take(5)->get();
 
-        return view('dashboard.index', compact('stats', 'recent_companies', 'recent_jobs', 'recent_candidates' , 'total_sale' , 'recent_sale'));
+        return view('dashboard.index', compact('stats', 'recent_companies', 'recent_jobs', 'recent_candidates', 'total_sale', 'recent_sale'));
     }
 
     public function companies()
@@ -52,7 +51,6 @@ class AdminController extends Controller
 
         return view('dashboard.admin.companies.index', compact('companies'));
     }
-
 
     public function companyProfileShow(CompanyProfile $companyProfile)
     {
@@ -137,9 +135,10 @@ class AdminController extends Controller
 
         return view('dashboard.admin.job_posts.show', compact('job'));
     }
+
     public function jobToggleStatus(JobPost $job)
     {
-        $job->update(['is_active' => !$job->is_active]);
+        $job->update(['is_active' => ! $job->is_active]);
 
         return redirect()->back()->with('success', $job->is_active ? 'Job has been activated.' : 'Job has been deactivated.');
     }
@@ -150,41 +149,47 @@ class AdminController extends Controller
 
         return view('dashboard.admin.pricePlan.index', compact('pricePlans'));
     }
+
     public function pricePlansShow(PricingPlan $pricingplan)
     {
         return view('dashboard.admin.pricePlan.show', compact('pricingplan'));
     }
+
     public function payments()
     {
         $payments = Payment::latest()->paginate(10);
 
         return view('dashboard.admin.payment.index', compact('payments'));
     }
+
     public function paymentShow(PricingPlan $payment)
     {
         return view('dashboard.admin.pricePlan.show', compact('payment'));
     }
+
     public function cateindex()
     {
         $categories = Category::paginate(10);
 
         return view('dashboard.admin.categories.index', compact('categories'));
     }
+
     public function cateshow(Category $category)
     {
 
         return view('dashboard.admin.categories.show', compact('category'));
     }
+
     public function tagindex()
     {
         $tags = Tag::paginate(10);
 
         return view('dashboard.admin.tags.index', compact('tags'));
     }
+
     public function tagshow(Tag $tag)
     {
 
         return view('dashboard.admin.tags.show', compact('tag'));
     }
-
 }

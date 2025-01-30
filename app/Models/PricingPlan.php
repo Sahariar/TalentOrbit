@@ -16,7 +16,9 @@ class PricingPlan extends Model
     {
         return $this->hasOne(Payment::class);
     }
-    public function companyProfile(){
+
+    public function companyProfile()
+    {
         return $this->hasMany(CompanyProfile::class);
     }
 
@@ -24,6 +26,7 @@ class PricingPlan extends Model
     {
         return $this->max_jobs > 0 && $this->price > 0;
     }
+
     public function pricingPlan()
     {
         return $this->belongsTo(PricingPlan::class);

@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\{Payment,CompanyProfile};
+use App\Models\Payment;
 
 class FetchCompanyPayments
 {
