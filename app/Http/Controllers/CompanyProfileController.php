@@ -22,10 +22,8 @@ class CompanyProfileController extends Controller
         ];
         // Get the latest payment for the logged-in user's company
         $recentPayment = Auth::user()->company_profile->payments()->latest()->first();
-        // dd($recentPayment);
         $activePlan = $recentPayment ? $recentPayment->pricing_plan : null;
 
-        // dd($activePlan);
         return view('dashboard.company.index', compact('stats', 'companyProfile', 'activePlan'))->with('layout', 'dashboard');
     }
 

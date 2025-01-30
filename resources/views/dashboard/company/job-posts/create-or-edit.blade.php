@@ -19,11 +19,19 @@
             <div class="grid grid-cols-1">
                 @if($limitCheck['can_post'])
 
-                                <div class="card alert alert-info bg-sky-700 px-4 py-3 text-white sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
+                                <div class="card alert alert-info bg-teal-600 px-4 py-3 text-white sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
                                     You can post {{ $limitCheck['remaining_slots'] }} more jobs.
-                                    ({{ $limitCheck['active_jobs'] }} active jobs out of 3 maximum) or you can upgrade your plan.
+                                    ({{ $limitCheck['active_jobs'] }} active jobs out of 3 maximum).
                                 </div>
+                @else
+                <div class="alert alert-warning card alert alert-info bg-orange-600 px-4 py-3 text-white sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
+                    {{ $limitCheck['message'] }}
 
+                    <x-viewbtn
+                    href="{{ route('priceplan.choseplan', Auth::user()->company_profile) }}">
+                    {{ __('View plan') }}</x-viewbtn>
+                </div>
+                @endif
                 <div class="card dark:bg-zinc-800 dark:border-zinc-600">
                     <div class="card-body border-b border-gray-100 dark:border-zinc-600">
                         <div class="grid grid-cols-2">
@@ -135,16 +143,6 @@
                         </div>
                     </div>
                 </div>
-                @else
-                <div class="alert alert-warning card alert alert-info bg-orange-600 px-4 py-3 text-white sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
-                    {{ $limitCheck['message'] }}
-                    you can upgrade your plan here.
-                    {{-- /priceplan/chose --}}
-                    <x-viewbtn
-                    href="{{ route('priceplan.choseplan', Auth::user()->company_profile) }}">
-                    {{ __('View plan') }}</x-viewbtn>
-                </div>
-                @endif
             </div>
         </div>
     </div>
