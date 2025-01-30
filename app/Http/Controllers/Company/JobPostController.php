@@ -188,6 +188,10 @@ class JobPostController extends Controller
             'featured_image' => $featuredImage,
         ]);
 
+        if (isset($validated['tag_id']) && is_array($validated['tag_id'])) {
+            $job_post->tags()->attach($validated['tag_id']);
+        }
+
         if ($updatedJobPost) {
             return back()->with(['msg' => 'Job Post Updated Successfully']);
         }

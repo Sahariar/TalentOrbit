@@ -28,13 +28,13 @@
     </a>
 </li>
 <li>
-    <a href="{{ route('admin.categories.cateindex') }}" class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:bg-sky-900 hover:text-white">
+    <a href="{{ route('admin.categories.cateIndex') }}" class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:bg-sky-900 hover:text-white">
         <i data-feather="copy" fill="#545a6d33"></i>
         <span data-key="t-dashboard"> Categories</span>
     </a>
 </li>
 <li>
-    <a href="{{ route('admin.tags.tagindex') }}" class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:bg-sky-900 hover:text-white">
+    <a href="{{ route('admin.tags.tagIndex') }}" class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:bg-sky-900 hover:text-white">
         <i data-feather="folder" fill="#545a6d33"></i>
         <span data-key="t-dashboard"> Tags</span>
     </a>

@@ -89,16 +89,24 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
 
     // category Management
     Route::prefix('categories')->name('categories.')->group(function () {
-        Route::get('/', [AdminController::class, 'cateindex'])->name('cateindex');
-        Route::get('/{category}', [AdminController::class, 'cateshow'])->name('cateshow');
-        Route::delete('/{category}', [AdminController::class, 'cateDelete'])->name('catedelete');
+        Route::get('/', [AdminController::class, 'cateindex'])->name('cateIndex');
+        Route::get('/create', [AdminController::class,'cateCreate'])->name('cateCreate');
+        Route::post('/store',[AdminController::class,'cateStore'])->name('cateStore');
+        Route::get('/{category}', [AdminController::class, 'cateShow'])->name('cateShow');
+        Route::get('/{category}/edit', [AdminController::class, 'cateEdit'])->name('cateEdit');
+        Route::put('/{category}/update', [AdminController::class, 'cateUpdate'])->name('cateUpdate');
+        Route::delete('/{category}', [AdminController::class, 'cateDelete'])->name('cateDelete');
 
     });
     // Tags Management
     Route::prefix('tags')->name('tags.')->group(function () {
-        Route::get('/', [AdminController::class, 'tagindex'])->name('tagindex');
-        Route::get('/{tag}', [AdminController::class, 'tagshow'])->name('tagshow');
-        Route::delete('/{tag}', [AdminController::class, 'tagDelete'])->name('tagdelete');
+        Route::get('/', [AdminController::class, 'tagIndex'])->name('tagIndex');
+        Route::get('/create',[AdminController::class,'tagCreate'])->name('tagCreate');
+        Route::post('/store',[AdminController::class, 'tagStore'])->name('tagStore');
+        Route::get('/{tag}', [AdminController::class, 'tagShow'])->name('tagShow');
+        Route::get('/{tag}/edit', [AdminController::class,'tagEdit'])->name('tagEdit');
+        Route::put('/{tag}/update', [AdminController::class, 'tagUpdate'])->name('tagUpdate');
+        Route::delete('/{tag}', [AdminController::class, 'tagDelete'])->name('tagDelete');
     });
 });
 

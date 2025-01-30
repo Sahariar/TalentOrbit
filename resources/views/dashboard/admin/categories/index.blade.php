@@ -25,8 +25,13 @@
             </div>
             <div class="p-6">
                 <div class="bg-white rounded-lg shadow">
-                    <div class="p-4 border-b">
-                        <h2 class="text-lg font-semibold">Categories</h2>
+                    <div class="grid grid-cols-2">
+                        <div class="p-4 border-b">
+                            <h2 class="text-lg font-semibold">Categories</h2>
+                        </div>
+                        <div class="text-right">
+                            <a role="button" href="{{ route('admin.categories.cateCreate') }}" type="button" class="text-white bg-gray-500 border-gray-500 btn hover:bg-gray-600 hover:border-gray-600 focus:bg-gray-600 focus:border-gray-600 focus:ring focus:ring-gray-500/30 active:bg-gray-600 active:border-gray-600">Create Category</a>
+                        </div>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="w-full">
@@ -52,11 +57,16 @@
                                     <td class="px-6 py-4">
                                         <div class="flex space-x-2">
                                             <x-viewbtn
-                                            href="{{ route('admin.categories.cateshow', $category) }}">
+                                            href="{{ route('admin.categories.cateShow', $category) }}">
                                             {{ __('View') }}
                                             </x-viewbtn>
 
-                                            <form action="{{ route('admin.categories.catedelete', $category) }}" method="POST" class="inline" onsubmit="return confirm('Are you sure?')">
+                                            <x-viewbtn
+                                            href="{{ route('admin.categories.cateEdit', $category) }}">
+                                            {{ __('Edit') }}
+                                            </x-viewbtn>
+
+                                            <form action="{{ route('admin.categories.cateDelete', $category) }}" method="POST" class="inline" onsubmit="return confirm('Are you sure?')">
                                                 @csrf
                                                 @method('DELETE')
                                                 <x-deletebtn>{{ __('Delete') }}

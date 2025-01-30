@@ -26,7 +26,12 @@
             <div class="p-6">
                 <div class="bg-white rounded-lg shadow">
                     <div class="p-4 border-b">
-                        <h2 class="text-lg font-semibold">Tags</h2>
+                        <div class="grid grid-cols-2">
+                            <h2 class="text-lg font-semibold">Tags</h2>
+                            <div class="text-right">
+                                <a role="button" href="{{ route('admin.tags.tagCreate') }}" type="button" class="text-white bg-gray-500 border-gray-500 btn hover:bg-gray-600 hover:border-gray-600 focus:bg-gray-600 focus:border-gray-600 focus:ring focus:ring-gray-500/30 active:bg-gray-600 active:border-gray-600">Create Tag</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="w-full">
@@ -52,11 +57,16 @@
                                     <td class="px-6 py-4">
                                         <div class="flex space-x-2">
                                             <x-viewbtn
-                                            href="{{ route('admin.tags.tagshow', $tag) }}">
+                                            href="{{ route('admin.tags.tagShow', $tag) }}">
                                             {{ __('View') }}
                                             </x-viewbtn>
 
-                                            <form action="{{ route('admin.tags.tagdelete', $tag) }}" method="POST" class="inline" onsubmit="return confirm('Are you sure?')">
+                                            <x-viewbtn
+                                            href="{{ route('admin.tags.tagEdit', $tag) }}">
+                                            {{ __('Edit') }}
+                                            </x-viewbtn>
+
+                                            <form action="{{ route('admin.tags.tagDelete', $tag) }}" method="POST" class="inline" onsubmit="return confirm('Are you sure?')">
                                                 @csrf
                                                 @method('DELETE')
                                                 <x-deletebtn>{{ __('Delete') }}
