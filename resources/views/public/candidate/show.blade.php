@@ -35,7 +35,7 @@
                             <div class="border rounded border-gray-100/50 dark:border-neutral-600">
                                 <div class="p-5 border-b border-gray-100/50 dark:border-neutral-600">
                                     <div class="text-center">
-                                        <img src="{{ asset('storage/images/home/' . $candidate->image) }}" alt="profile_image" class="w-20 h-20 mx-auto rounded-full">
+                                        <img src="{{ url('storage/' . $candidate->image) }}" alt="profile_image" class="w-20 h-20 mx-auto rounded-full">
                                         <h6 class="mt-4 mb-0 text-lg text-gray-900 dark:text-gray-50">{{ $candidate->name }}</h6>
                                         <p class="mb-4 text-gray-500 dark:text-gray-300">Creative Designer</p>
                                         <ul class="flex justify-center gap-4">
@@ -225,25 +225,6 @@
                                                     <i class="mdi mdi-star"></i>
                                                     <i class="mdi mdi-star"></i>
                                                     <i class="mdi mdi-star-half-full"></i>
-                                                </div>
-                                                <p class="mt-3 italic text-gray-500 dark:text-gray-300">" There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour "</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mt-6 sm:flex">
-                                        <div class="flex-shrink-0">
-                                            <img class="w-16 h-16 p-1 border-2 rounded-full border-gray-100/50" src="assets/images/user/img-02.jpg" alt="img">
-                                        </div>
-                                        <div class="grow ltr:ml-3 rtl:mr-3">
-                                            <div>
-                                                <p class="mb-2 text-sm text-gray-500 ltr:float-right rtl:float-left dark:text-gray-300">Jun 25, 2021</p>
-                                                <h6 class="text-gray-900 dark:text-gray-50">Jeffrey Montgomery</h6>
-                                                <div class="text-yellow-500 text-17">
-                                                    <i class="mdi mdi-star"></i>
-                                                    <i class="mdi mdi-star"></i>
-                                                    <i class="mdi mdi-star"></i>
-                                                    <i class="mdi mdi-star-half-full"></i>
-                                                    <i class="mdi mdi-star-outline"></i>
                                                 </div>
                                                 <p class="mt-3 italic text-gray-500 dark:text-gray-300">" There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour "</p>
                                             </div>

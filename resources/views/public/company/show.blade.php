@@ -35,7 +35,7 @@
                             <div class="border rounded border-gray-100/50 dark:border-neutral-600">
                                 <div class="p-5 border-b border-gray-100/50 dark:border-neutral-600">
                                     <div class="text-center">
-                                        <img src="{{ Storage::url('app/public/assets/images/featured-job/' . $id->image ) }}" alt="company image" class="w-20 h-20 mx-auto rounded-full">
+                                        <img src="{{ url('storage/' . $id->image) }}" alt="company image" class="w-20 h-20 mx-auto rounded-full">
                                         <h6 class="mt-4 mb-0 text-lg text-gray-900 dark:text-gray-50">{{$id->name}}</h6>
                                         <p class="mb-4 text-gray-500 dark:text-gray-300">Since {{$id->created_at->format('F, Y')}}</p>
                                         <ul class="flex flex-wrap justify-center gap-4">
@@ -142,7 +142,7 @@
                                                             <div class="grid grid-cols-12 gap-y-5 lg:gap-5">
                                                                 <div class="col-span-12 lg:col-span-2">
                                                                     <div class="text-center">
-                                                                        <a href="{{$id->id}}"><img src="{{ asset('storage/images/featured-job/' . $id->image ) }}" alt="job_image" class="md:mx-auto img-fluid rounded-3"></a>
+                                                                        <a href="{{$id->id}}"><img src="{{ url('storage/images/'. $jobPost->featured_image) }}" alt="job_image" class="md:mx-auto img-fluid rounded-3"></a>
                                                                     </div>
                                                                 </div>
                                                                 <!--end col-->
