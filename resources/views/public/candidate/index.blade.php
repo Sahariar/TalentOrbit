@@ -49,7 +49,7 @@
 
                                     <div class="flex mb-4">
                                         <div class="relative shrink-0">
-                                            <img src="{{ Storage::url('app/public/assets/images/featured-job/' . $candidate->image ) }}" alt="image" class="w-16 h-16 rounded">
+                                            <img src="{{ url('storage/' . $candidate->image)  }}" alt="image" class="w-16 h-16 rounded">
                                             <span class="absolute h-3.5 w-3.5 rounded-full bg-green-500 border-2 border-white -top-1 -right-1 dark:border-neutral-700">
                                                 <span class="hidden">active</span>
                                             </span>

@@ -51,7 +51,7 @@
                             @foreach ($companies as $company)
                                 <div class="col-span-12 lg:col-span-4">
                                     <div class="relative px-6 py-12 border rounded-md border-gray-100/50 dark:border-neutral-600">
-                                        <img src=" {{ asset('storage/images/featured-job/' . $company->image ) }}" alt="company_image" class="mx-auto">
+                                        <img src=" {{ url('storage/' . $company->image ) }}" alt="company_image" class="mx-auto">
                                         <div class="mt-5 text-center">
                                             <a href=" {{ route('company.show', $company) }} ">
                                                 <h6 class="mb-3 text-lg text-gray-900 dark:text-white">{{ $company->name }}</h6>
