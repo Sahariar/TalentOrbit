@@ -11,7 +11,6 @@ class CompanyProfile extends Model
     /** @use HasFactory<\Database\Factories\CompanyProfileFactory> */
     use HasFactory,Notifiable;
 
-
     protected $guarded = ['id'];
 
     public static function paginate(int $int)
@@ -33,12 +32,14 @@ class CompanyProfile extends Model
     {
         return $this->hasOne(Payment::class);
     }
+
     public function plan()
     {
         return $this->belongsTo(PricingPlan::class);
     }
+
     public function payments()
-{
-    return $this->hasMany(Payment::class);
-}
+    {
+        return $this->hasMany(Payment::class);
+    }
 }

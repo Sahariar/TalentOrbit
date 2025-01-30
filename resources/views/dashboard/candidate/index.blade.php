@@ -23,7 +23,7 @@
                     </nav>
                 </div>
             </div>
-            <div class="grid grid-cols-1 gap-6 gap-y-0 2xl:gap-6 md:grid-cols-2 2xl:grid-cols-4">
+            <div class="grid grid-cols-1 gap-6 gap-y-0 2xl:gap-6 md:grid-cols-2 2xl:grid-cols-3">
                 <div class="card dark:bg-zinc-800 dark:border-zinc-600">
                     <div class="card-body">
                         <div>

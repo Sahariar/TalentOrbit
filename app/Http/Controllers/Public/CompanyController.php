@@ -14,6 +14,7 @@ class CompanyController extends Controller
     public function index()
     {
         $companies = CompanyProfile::withCount('job_posts')->paginate(12);
+
         return view('public.company.index', compact('companies'));
     }
 
@@ -40,6 +41,7 @@ class CompanyController extends Controller
     {
         $company->load('user')->loadCount('job_posts');
         $id = $company;
+
         return view('public.company.show', compact('id'));
     }
 

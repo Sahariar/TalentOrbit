@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\{Tag};
+use App\Models\Tag;
 
 class FetchTags
 {
@@ -16,6 +16,6 @@ class FetchTags
 
     public function fetch()
     {
-        return Tag::query()->select('id','title')->get();
+        return Tag::query()->select('id', 'title')->get();
     }
 }

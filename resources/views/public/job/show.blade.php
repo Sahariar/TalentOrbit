@@ -15,7 +15,7 @@
                                 <nav class="inline-block" aria-label="breadcrumb text-center">
                                     <ol class="flex flex-wrap justify-center text-sm font-medium uppercase">
                                         <li><a href="index.html">Home</a></li>
-                                        <li><i class="bx bxs-chevron-right align-middle px-2.5"></i><a href="javascript:void(0)">Company</a></li>
+                                        <li><i class="bx bxs-chevron-right align-middle px-2.5"></i><a href="javascript:void(0)">Job</a></li>
                                         <li class="active" aria-current="page"><i class="bx bxs-chevron-right align-middle px-2.5"></i>Job Details </li>
                                     </ol>
                                 </nav>
@@ -24,8 +24,7 @@
                     </div>
                 </div>
             </div>
-            <img src="assets/images/about/shape.png" alt="" class="absolute block bg-cover -bottom-0 dark:hidden">
-            <img src="assets/images/about/shape-dark.png" alt="" class="absolute hidden bg-cover -bottom-0 dark:block">
+            <img src="{{ url('storage/images/about/shape.png')}}" alt="" class="absolute block bg-cover -bottom-0">
         </section>
 
         <!-- Start grid -->
@@ -35,11 +34,11 @@
                         <div class="col-span-12 lg:col-span-8">
                             <div class="border rounded-md border-gray-100/30 dark:border-neutral-600/80">
                                 <div class="relative">
-                                    <img src="{{ url('storage/'. $jobPost->company_profile->image) }}" alt="company_image" class="rounded-md img-fluid mb-7">
-                                    {{-- <img src="{{ asset('storage/assets/images/job-detail.jpg') }}" alt="company_image" class="rounded-md img-fluid mb-7"> --}}
+
+                                    <img src="{{ url('storage/images/'. $jobPost->featured_image) }}" alt="post_featured_image" class="rounded-md img-fluid mb-7">
+
                                     <div class="absolute z-20 -bottom-7 left-7">
-                                        <img src="{{ url('storage/images/'. $jobPost->featured_image) }}" alt="post_featured_image" class="rounded-md img-fluid">
-                                        {{-- <img src="{{ asset('storage/assets/images/featured-job/img-10.png') }}" alt="" class="rounded-md img-fluid"> --}}
+                                        <img src="{{ url('storage/'. $jobPost->company_profile->image) }}" alt="company_image" class="rounded-md img-fluid  w-12 h-12">
                                     </div>
                                 </div>
                                 <div class="p-6">
@@ -67,20 +66,20 @@
                                     </div>
 
                                     <div class="grid grid-cols-12 mt-8 gap-y-3 lg:gap-3">
-                                        <div class="col-span-12 lg:col-span-3">
+                                        <div class="col-span-12 lg:col-span-4">
                                             <div class="p-4 border rounded border-gray-100/50 dark:border-neutral-600/80">
                                                 <p class="mb-1 text-gray-500 dark:text-gray-300 text-13">Experience</p>
                                                 <p class="font-medium text-gray-900 dark:text-gray-50">Minimum 1 Year</p>
                                             </div>
                                         </div>
 
-                                        <div class="col-span-12 lg:col-span-3">
+                                        <div class="col-span-12 lg:col-span-4">
                                             <div class="p-4 border rounded border-gray-100/50 dark:border-neutral-600/80">
                                                 <p class="mb-1 text-gray-500 dark:text-gray-300 text-13">Position</p>
                                                 <p class="font-medium text-gray-900 dark:text-gray-50">Senior</p>
                                             </div>
                                         </div>
-                                        <div class="col-span-12 lg:col-span-3">
+                                        <div class="col-span-12 lg:col-span-4">
                                             <div class="p-4 border rounded border-gray-100/50 dark:border-neutral-600/80">
                                                 <p class="mb-1 text-gray-500 dark:text-gray-300 text-13">Offer Salary</p>
                                                 <p class="font-medium text-gray-900 dark:text-gray-50">${{$jobPost->salary_range}} Month</p>
@@ -94,14 +93,14 @@
                                             <p class="mb-0 text-gray-500 dark:text-gray-300">{!! $jobPost->description !!}</p>
                                         </div>
                                     </div>
+                                    <div class="mt-4 gap-2 flex">
+                                        @foreach($jobPost->tags as $tag)
+                                        <x-tagl
+                                            href="#">
+                                            {{ __($tag->title) }}
+                                            </x-tagl>
+                                        @endforeach
 
-
-                                    <div class="mt-4">
-                                        <span class="px-2 py-1 text-white rounded text-11 group-data-[theme-color=violet]:bg-violet-500 group-data-[theme-color=sky]:bg-sky-500 group-data-[theme-color=red]:bg-red-500 group-data-[theme-color=green]:bg-green-500 group-data-[theme-color=pink]:bg-pink-500 group-data-[theme-color=blue]:bg-blue-500">PHP</span>
-                                        <span class="px-2 py-1 text-white rounded text-11 group-data-[theme-color=violet]:bg-violet-500 group-data-[theme-color=sky]:bg-sky-500 group-data-[theme-color=red]:bg-red-500 group-data-[theme-color=green]:bg-green-500 group-data-[theme-color=pink]:bg-pink-500 group-data-[theme-color=blue]:bg-blue-500">JS</span>
-                                        <span class="px-2 py-1 text-white rounded text-11 group-data-[theme-color=violet]:bg-violet-500 group-data-[theme-color=sky]:bg-sky-500 group-data-[theme-color=red]:bg-red-500 group-data-[theme-color=green]:bg-green-500 group-data-[theme-color=pink]:bg-pink-500 group-data-[theme-color=blue]:bg-blue-500">Marketing</span>
-                                        <span class="px-2 py-1 text-white rounded text-11 group-data-[theme-color=violet]:bg-violet-500 group-data-[theme-color=sky]:bg-sky-500 group-data-[theme-color=red]:bg-red-500 group-data-[theme-color=green]:bg-green-500 group-data-[theme-color=pink]:bg-pink-500 group-data-[theme-color=blue]:bg-blue-500">REACT</span>
-                                        <span class="px-2 py-1 text-white rounded text-11 group-data-[theme-color=violet]:bg-violet-500 group-data-[theme-color=sky]:bg-sky-500 group-data-[theme-color=red]:bg-red-500 group-data-[theme-color=green]:bg-green-500 group-data-[theme-color=pink]:bg-pink-500 group-data-[theme-color=blue]:bg-blue-500">PHOTOSHOP</span>
                                     </div>
 
                                     <div class="pt-3 mt-4">
@@ -127,38 +126,36 @@
                             <!-- ---------  job start --------- -->
                             <div class="mt-10 space-y-8">
                                 <h5 class="text-gray-900 dark:text-gray-50">Related Jobs</h5>
-
-                                <div class="relative overflow-hidden transition-all duration-500 ease-in-out bg-white border rounded-md border-gray-100/50 group group-data-[theme-color=violet]:hover:border-violet-500 group-data-[theme-color=sky]:hover:border-sky-500 group-data-[theme-color=red]:hover:border-red-500 group-data-[theme-color=green]:hover:border-green-500 group-data-[theme-color=pink]:hover:border-pink-500 group-data-[theme-color=blue]:hover:border-blue-500 hover:-translate-y-2 dark:bg-neutral-900 dark:border-neutral-600">
+                                @if ($relatedPosts->isEmpty())
+                                    <p>No posts found</p>
+                                @else
+                                @foreach($relatedPosts as $post)
+                                <div class="relative overflow-hidden transition-all duration-500 ease-in-out bg-white border rounded-md border-gray-100/50 group dark:border-neutral-600">
                                     <div class="p-6">
                                         <div class="grid grid-cols-12 gap-5">
                                             <div class="col-span-12 lg:col-span-1">
                                                 <div class="mb-4 text-center mb-md-0">
-                                                    <a href="company-details.html"><img src="assets/images/featured-job/img-01.png" alt="" class="mx-auto img-fluid rounded-3"></a>
+                                                    <a href="{{ route('jobs.show',$post->id) }}"><img src="{{ url('storage/images/' . $post->featured_image) }}" alt="post_image" class="mx-auto img-fluid rounded-3"></a>
                                                 </div>
                                             </div>
                                             <!--end col-->
                                             <div class="col-span-12 lg:col-span-10">
-                                                <h5 class="mb-1 text-gray-900 fs-17"><a href="job-details.html" class="dark:text-gray-50">HTML Developer</a>
-                                                    <small class="font-normal text-gray-500 dark:text-gray-300">(0-2 Yrs Exp.)</small>
+                                                <h5 class="mb-1 text-gray-900 fs-17"><a href="{{ route('jobs.show',$post->id) }}" class="dark:text-gray-50">{{ $post->title }}</a>
+
                                                 </h5>
                                                 <ul class="flex flex-wrap gap-3 mb-0">
                                                     <li>
-                                                        <p class="mb-0 text-sm text-gray-500 dark:text-gray-300">Creative Agency</p>
+                                                        <p class="mb-0 text-sm text-gray-500 dark:text-gray-300">
+                                                            {{$post->company_profile->name}}
+                                                        </p>
                                                     </li>
                                                     <li>
-                                                        <p class="mb-0 text-sm text-gray-500 dark:text-gray-300"><i class="mdi mdi-map-marker"></i> New York</p>
+                                                        <p class="mb-0 text-sm text-gray-500 dark:text-gray-300"><i class="mdi mdi-map-marker"></i> {{$post->location}}</p>
                                                     </li>
                                                     <li>
-                                                        <p class="mb-0 text-sm text-gray-500 dark:text-gray-300"><i class="uil uil-wallet"></i> $250 - $800 / month</p>
+                                                        <p class="mb-0 text-sm text-gray-500 dark:text-gray-300"><i class="uil uil-wallet"></i> ${{$post->salary_range}}</p>
                                                     </li>
                                                 </ul>
-                                                <div class="mt-4">
-                                                    <div class="flex flex-wrap gap-1.5">
-                                                        <span class="bg-green-500/20 text-green-500 text-11 px-2 py-0.5 font-medium rounded">Full Time</span>
-                                                        <span class="bg-yellow-500/20 text-yellow-500 text-11 px-2 py-0.5 font-medium rounded">Urgent</span>
-                                                        <span class="bg-sky-500/20 text-sky-500 text-11 px-2 py-0.5 font-medium rounded">Private</span>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                         <!--end row-->
@@ -166,11 +163,7 @@
                                     <div class="px-4 py-3 bg-gray-50 dark:bg-neutral-700">
                                         <div class="grid grid-cols-12">
                                             <div class="col-span-12 lg:col-span-6">
-                                                <ul class="flex flex-wrap gap-2 text-gray-700 dark:text-gray-50">
-                                                    <li><i class="uil uil-tag"></i> Keywords :</li>
-                                                    <li><a href="javascript:void(0)" class="text-gray-500 dark:text-gray-50">Ui designer</a>,</li>
-                                                    <li><a href="javascript:void(0)" class="text-gray-500 dark:text-gray-50">developer</a></li>
-                                                </ul>
+
                                             </div>
                                             <!--end col-->
                                             <div class="col-span-12 mt-2 lg:col-span-6 lg:mt-0">
@@ -188,129 +181,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endforeach
 
-                                <div class="relative overflow-hidden transition-all duration-500 ease-in-out bg-white border rounded-md border-gray-100/50 group group-data-[theme-color=violet]:hover:border-violet-500 group-data-[theme-color=sky]:hover:border-sky-500 group-data-[theme-color=red]:hover:border-red-500 group-data-[theme-color=green]:hover:border-green-500 group-data-[theme-color=pink]:hover:border-pink-500 group-data-[theme-color=blue]:hover:border-blue-500 hover:-translate-y-2 dark:bg-neutral-900 dark:border-neutral-600">
-                                    <div class="p-6">
-                                        <div class="grid grid-cols-12 gap-5">
-                                            <div class="col-span-12 lg:col-span-1">
-                                                <div class="mb-4 text-center mb-md-0">
-                                                    <a href="company-details.html"><img src="assets/images/featured-job/img-02.png" alt="" class="mx-auto img-fluid rounded-3"></a>
-                                                </div>
-                                            </div>
-                                            <!--end col-->
-                                            <div class="col-span-10">
-                                                <h5 class="mb-1 text-gray-900 fs-17"><a href="job-details.html" class="dark:text-gray-50">Marketing Director</a>
-                                                    <small class="font-normal text-gray-500 dark:text-gray-300">(2-4 Yrs Exp.)</small>
-                                                </h5>
-                                                <ul class="flex flex-wrap gap-3 mb-0">
-                                                    <li>
-                                                        <p class="mb-0 text-sm text-gray-500 dark:text-gray-300">Jobcy Technology Pvt.Ltd</p>
-                                                    </li>
-                                                    <li>
-                                                        <p class="mb-0 text-sm text-gray-500 dark:text-gray-300"><i class="mdi mdi-map-marker"></i> California</p>
-                                                    </li>
-                                                    <li>
-                                                        <p class="mb-0 text-sm text-gray-500 dark:text-gray-300"><i class="uil uil-wallet"></i> $250 - $800 / month</p>
-                                                    </li>
-                                                </ul>
-                                                <div class="mt-4">
-                                                    <div class="flex flex-wrap gap-1.5">
-                                                        <span class="bg-red-500/20 text-red-500 text-11 px-2 py-0.5 font-medium rounded">Part Time</span>
-                                                        <span class="bg-sky-500/20 text-sky-500 text-11 px-2 py-0.5 font-medium rounded">Private</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--end row-->
-                                    </div>
-                                    <div class="px-4 py-3 bg-gray-50 dark:bg-neutral-700">
-                                        <div class="grid grid-cols-12">
-                                            <div class="col-span-12 lg:col-span-6">
-                                                <ul class="flex flex-wrap gap-2 text-gray-700 dark:text-gray-50">
-                                                    <li><i class="uil uil-tag"></i> Keywords :</li>
-                                                    <li><a href="javascript:void(0)" class="text-gray-500 dark:text-gray-50">Ui designer</a>,</li>
-                                                    <li><a href="javascript:void(0)" class="text-gray-500 dark:text-gray-50">developer</a></li>
-                                                </ul>
-                                            </div>
-                                            <!--end col-->
-                                            <div class="col-span-12 mt-2 lg:col-span-6 lg:mt-0">
-                                                <div class="ltr:lg:text-end rtl:lg:text-start dark:text-gray-50">
-                                                    <a href="#applyNow" data-bs-toggle="modal">Apply Now <i class="mdi mdi-chevron-double-right"></i></a>
-                                                </div>
-                                            </div>
-                                            <!--end col-->
-                                        </div>
-                                        <!--end row-->
-                                    </div>
-                                    <div class="absolute top-4 ltr:right-4 rtl:left-4">
-                                        <div class="w-8 h-8 text-center text-white bg-red-600 rounded">
-                                            <a href="javascript:void(0)"><i class="uil uil-heart-alt text-lg leading-[1.9]"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="relative overflow-hidden transition-all duration-500 ease-in-out bg-white border rounded-md border-gray-100/50 group group-data-[theme-color=violet]:hover:border-violet-500 group-data-[theme-color=sky]:hover:border-sky-500 group-data-[theme-color=red]:hover:border-red-500 group-data-[theme-color=green]:hover:border-green-500 group-data-[theme-color=pink]:hover:border-pink-500 group-data-[theme-color=blue]:hover:border-blue-500 hover:-translate-y-2 dark:bg-neutral-900 dark:border-neutral-600">
-                                    <div class="p-6">
-                                        <div class="grid grid-cols-12 gap-5">
-                                            <div class="col-span-12 lg:col-span-1">
-                                                <div class="mb-4 text-center mb-md-0">
-                                                    <a href="company-details.html"><img src="assets/images/featured-job/img-03.png" alt="" class="mx-auto img-fluid rounded-3"></a>
-                                                </div>
-                                            </div>
-                                            <!--end col-->
-                                            <div class="col-span-10">
-                                                <h5 class="mb-1 text-gray-900 fs-17"><a href="job-details.html" class="dark:text-gray-50">HTML Developer</a>
-                                                    <small class="font-normal text-gray-500 dark:text-gray-300">(2-4 Yrs Exp.)</small>
-                                                </h5>
-                                                <ul class="flex flex-wrap gap-3 mb-0">
-                                                    <li>
-                                                        <p class="mb-0 text-sm text-gray-500 dark:text-gray-300">Jobcy Technology Pvt.Ltd</p>
-                                                    </li>
-                                                    <li>
-                                                        <p class="mb-0 text-sm text-gray-500 dark:text-gray-300"><i class="mdi mdi-map-marker"></i> California</p>
-                                                    </li>
-                                                    <li>
-                                                        <p class="mb-0 text-sm text-gray-500 dark:text-gray-300"><i class="uil uil-wallet"></i> $250 - $800 / month</p>
-                                                    </li>
-                                                </ul>
-                                                <div class="mt-4">
-                                                    <div class="flex flex-wrap gap-1.5">
-                                                        <span class="bg-violet-500/20 text-violet-500 text-11 px-2 py-0.5 font-medium rounded">Freelance</span>
-                                                        <span class="bg-sky-500/20 text-sky-500 text-11 px-2 py-0.5 font-medium rounded">Internship</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--end row-->
-                                    </div>
-                                    <div class="px-4 py-3 bg-gray-50 dark:bg-neutral-700">
-                                        <div class="grid grid-cols-12">
-                                            <div class="col-span-12 lg:col-span-6">
-                                                <ul class="flex flex-wrap gap-2 text-gray-700 dark:text-gray-50">
-                                                    <li><i class="uil uil-tag"></i> Keywords :</li>
-                                                    <li><a href="javascript:void(0)" class="text-gray-500 dark:text-gray-50">Ui designer</a>,</li>
-                                                    <li><a href="javascript:void(0)" class="text-gray-500 dark:text-gray-50">developer</a></li>
-                                                </ul>
-                                            </div>
-                                            <!--end col-->
-                                            <div class="col-span-12 mt-2 lg:col-span-6 lg:mt-0">
-                                                <div class="ltr:lg:text-end rtl:lg:text-start dark:text-gray-50">
-                                                    <a href="#applyNow" data-bs-toggle="modal">Apply Now <i class="mdi mdi-chevron-double-right"></i></a>
-                                                </div>
-                                            </div>
-                                            <!--end col-->
-                                        </div>
-                                        <!--end row-->
-                                    </div>
-                                    <div class="absolute top-4 ltr:right-4 rtl:left-4">
-                                        <div class="w-8 h-8 text-center text-gray-100 transition-all duration-300 bg-transparent border rounded border-gray-100/50 hover:bg-red-600 hover:text-white hover:border-transparent dark:border-zinc-700">
-                                            <a href="javascript:void(0)"><i class="uil uil-heart-alt text-lg leading-[1.8]"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-
+                                @endif
                                 <div class="mt-4 text-center">
-                                    <a href="{{route('jobs')}}" class="font-medium text-gray-900 dark:text-gray-50">View More <i class="mdi mdi-arrow-right"></i></a>
+                                    <a href="{{route('jobs')}}" class="text-white border-transparent btn group-data-[theme-color=violet]:bg-violet-500 group-data-[theme-color=sky]:bg-sky-500 group-data-[theme-color=red]:bg-red-500 group-data-[theme-color=green]:bg-green-500 group-data-[theme-color=pink]:bg-pink-500 group-data-[theme-color=blue]:bg-blue-500">View More Jobs <i class="mdi mdi-arrow-right"></i></a>
                                 </div>
                             </div>
                             <!-- ---------  job end --------- -->
@@ -391,7 +266,7 @@
 
                                     <div class="mt-8 space-y-2">
                                         <a href="{{ route('jobs.apply', $jobPost->id) }}" data-bs-toggle="modal" class="btn w-full group-data-[theme-color=violet]:bg-violet-500 group-data-[theme-color=sky]:bg-sky-500 group-data-[theme-color=red]:bg-red-500 group-data-[theme-color=green]:bg-green-500 group-data-[theme-color=pink]:bg-pink-500 group-data-[theme-color=blue]:bg-blue-500 border-transparent text-white hover:-translate-y-1.5">Apply Now <i class="uil uil-arrow-right"></i></a>
-                                        <a href="bookmark-jobs.html" class="btn w-full bg-yellow-500/20 border-transparent text-yellow-500 hover:-translate-y-1.5 dark:bg-yellow-500/30"><i class="uil uil-bookmark"></i> Add Bookmark</a>
+
                                     </div>
                                     <br>
                                     @if (request()->session()->has('msg'))

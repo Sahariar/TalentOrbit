@@ -3,26 +3,21 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CandidateProfileController;
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Company\JobPostController as CompanyJobPostController;
-use App\Http\Controllers\CompanyProfileController;
-use App\Http\Controllers\Public\CandidateController;
-use App\Http\Controllers\Public\CompanyController;
-use App\Http\Controllers\Company\PaymentController;
 use App\Http\Controllers\Company\PaymentController as CompanyPaymentController;
+use App\Http\Controllers\CompanyProfileController;
 use App\Http\Controllers\CpaymentController;
-use App\Http\Controllers\RSSFeedController;
+use App\Http\Controllers\EtcController;
 use App\Http\Controllers\JobPostController;
 use App\Http\Controllers\PricingPlanController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\EtcController;
+use App\Http\Controllers\Public\CandidateController;
+use App\Http\Controllers\Public\CompanyController;
+use App\Http\Controllers\RSSFeedController;
 use App\Models\Category;
 use App\Models\JobPost;
 use Illuminate\Support\Facades\Route;
 
-//Route::get('/', function () {
-//    return view('public.index')->with('layout', 'app');
-//})->name('home');
 
 Route::get('/', function () {
     $recentJobs = JobPost::with('company_profile')
@@ -38,17 +33,12 @@ Route::get('/', function () {
 })->name('home');
 
 Route::middleware('guest')->group(function () {
-    // Route::get('/register', [RegisteredUserController::class, 'showRegisterationForm'])->name('register');
     Route::get('/register/CompanyProfile', [RegisteredUserController::class, 'showCompanyProfileRegistrationForm'])->name('register.companyProfile');
     Route::get('/register/candidate', [RegisteredUserController::class, 'showCandidateRegistrationForm'])->name('register.candidate');
 
     Route::post('/register/CompanyProfile', [RegisteredUserController::class, 'registerCompanyProfile'])->name('register.companyProfile.submit');
     Route::post('/register/candidate', [RegisteredUserController::class, 'registerCandidate'])->name('register.candidate.submit');
 });
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard.index')->with('layout', 'dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -117,10 +107,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
         Route::get('/{tag}/edit', [AdminController::class,'tagEdit'])->name('tagEdit');
         Route::put('/{tag}/update', [AdminController::class, 'tagUpdate'])->name('tagUpdate');
         Route::delete('/{tag}', [AdminController::class, 'tagDelete'])->name('tagDelete');
-
     });
-
-
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -128,8 +115,8 @@ Route::middleware(['auth'])->group(function () {
     // Company routes
     Route::prefix('/company')->middleware(['role:company'])->group(function () {
         Route::get('/dashboard', [CompanyProfileController::class, 'dashboard'])->name('company.dashboard');
-        Route::get('/job-posts/search',[CompanyJobPostController::class,'search'])->name('company.job-posts.search');
-        Route::get('/job-posts/{job_post}/toggle-activity',[CompanyJobPostController::class,'toggle'])->name('company.job-posts.toggle-activity');
+        Route::get('/job-posts/search', [CompanyJobPostController::class, 'search'])->name('company.job-posts.search');
+        Route::get('/job-posts/{job_post}/toggle-activity', [CompanyJobPostController::class, 'toggle'])->name('company.job-posts.toggle-activity');
         Route::resource('job-posts', CompanyJobPostController::class)->names([
             'index' => 'company.job-posts.index',
             'show' => 'company.job-posts.show',
@@ -140,15 +127,14 @@ Route::middleware(['auth'])->group(function () {
             'destroy' => 'company.job-posts.destroy',
         ]);
         Route::resource('company-profile', CompanyProfileController::class);
-        Route::get('/payments/search',[CompanyPaymentController::class,'search'])->name('company.payments.search');
-        Route::resource('payments',CompanyPaymentController::class)->except(['create','store'])->names([
-            'index'     => 'company.payments.index',
-            'show'      => 'company.payments.show',
-            'destroy'   => 'company.payments.destroy',
-            'edit'      => 'company.payments.edit',
-            'update'    => 'company.payments.update',
+        Route::get('/payments/search', [CompanyPaymentController::class, 'search'])->name('company.payments.search');
+        Route::resource('payments', CompanyPaymentController::class)->except(['create', 'store'])->names([
+            'index' => 'company.payments.index',
+            'show' => 'company.payments.show',
+            'destroy' => 'company.payments.destroy',
+            'edit' => 'company.payments.edit',
+            'update' => 'company.payments.update',
         ]);
-        // Route::get('/profile/{profile}',[CompanyProfileController::class,'show'])->name('company.profile.show');
     });
 
     Route::prefix('/candidate')->middleware(['role:candidate'])->group(function () {
@@ -163,9 +149,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/payment-success', [CpaymentController::class, 'success'])->name('payment.success');
 });
 
-Route::get('/find-jobs',[JobPostController::class,'find'])->name('find-jobs');
+Route::get('/find-jobs', [JobPostController::class, 'find'])->name('find-jobs');
 
-Route::get('category/{category}/jobs',[JobPostController::class,'categoryJobs'])->name('category.jobs');
+Route::get('category/{category}/jobs', [JobPostController::class, 'categoryJobs'])->name('category.jobs');
 
 Route::get('/jobs/filter', [JobPostController::class, 'filter'])->name('jobs.filter');
 
@@ -178,19 +164,19 @@ Route::resource('jobs', JobPostController::class)->names([
 
 Route::resource('company', CompanyController::class)->names([
     'index' => 'companies',
-    'show' => 'company.show'
+    'show' => 'company.show',
 ])->only(['index', 'show']);
 
 Route::resource('candidate', CandidateController::class)->names([
     'index' => 'candidates',
-    'show' => 'candidate.show'
+    'show' => 'candidate.show',
 ]);
 
 Route::view('about', 'public.etc.about_us')->name('about');
 Route::view('category', 'public.etc.category')->name('category');
 Route::view('contact', 'public.etc.contact')->name('contact');
 Route::view('faqs', 'public.etc.faqs')->name('faqs');
-Route::get('/price', [EtcController::class,'price'])->name('pricing');
+Route::get('/price', [EtcController::class, 'price'])->name('pricing');
 Route::view('privacy_policy', 'public.etc.privacy_policy')->name('privacy_policy');
 
 Route::get('/rss-feed', [RSSFeedController::class, 'index'])->name('rss.feed');

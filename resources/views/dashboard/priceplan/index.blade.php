@@ -14,7 +14,7 @@
                         <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 items-center gap-x-6 sm:mt-20 sm:gap-y-0 lg:max-w-4xl lg:grid-cols-2">
                             @foreach ($pricingPlans as $plan)
                             <div class="rounded-3xl rounded-t-3xl bg-white/60 p-6 ring-1 ring-gray-900/10 sm:mx-8 sm:rounded-b-none sm:p-10 lg:mx-0 lg:rounded-bl-3xl lg:rounded-tr-none">
-                            <h3 id="tier-hobby" class="text-base/7 font-semibold text-sky-600">{{ $plan->title }}</h3>
+                            <h3 id="tier-hobby" class="text-xl font-semibold text-orange-500">{{ $plan->title }}</h3>
                             <p class="mt-4 flex items-baseline gap-x-2">
                               <span class="text-5xl font-semibold tracking-tight text-gray-900">${{ $plan->price }}</span>
                               <span class="text-base text-gray-500">/month</span>
@@ -23,9 +23,13 @@
                             <form method="POST" action="{{ route('payment.process') }}" >
                                 @csrf
                                 <input type="hidden" name="pricing_plan_id" value="{{ $plan->id }}">
+                                @if ($plan->id == 1)
+                                @else
                                 <x-primary-button class="mt-3 text-center">
                                     {{ __('Proceed to Payment') }}
                                 </x-primary-button>
+                                @endif
+
                             </form>
                             {{-- <a href="#" aria-describedby="tier-hobby" class="mt-8 block rounded-md px-3.5 py-2.5 text-center text-sm font-semibold text-sky-600 ring-1 ring-inset ring-sky-200 hover:ring-sky-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 sm:mt-10">Get started today</a> --}}
                           </div>

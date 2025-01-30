@@ -2,7 +2,8 @@
 
 namespace App\Services;
 
-use App\Models\{JobPost,CompanyProfile};
+use App\Models\CompanyProfile;
+use App\Models\JobPost;
 
 class FetchCompanyProfileJobPosts
 {
@@ -16,13 +17,13 @@ class FetchCompanyProfileJobPosts
 
     public function fetch()
     {
-        $companyProfile = CompanyProfile::query()->where('user_id',auth()->user()->id)->first();
+        $companyProfile = CompanyProfile::query()->where('user_id', auth()->user()->id)->first();
 
-        $jobPosts       = JobPost::query()->where('company_profile_id',$companyProfile->id)->paginate(5);
+        $jobPosts = JobPost::query()->where('company_profile_id', $companyProfile->id)->paginate(5);
 
         return [
-            'companyProfile'    => $companyProfile,
-            'jobPosts'          => $jobPosts
+            'companyProfile' => $companyProfile,
+            'jobPosts' => $jobPosts,
         ];
     }
 }

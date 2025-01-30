@@ -2,29 +2,29 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Models\{CompanyProfile,JobPost,CandidateProfile, Payment};
+use App\Http\Requests\CreateOrUpdateCompanyProfileRequest;
+use App\Models\CompanyProfile;
+use App\Models\Payment;
+use App\Services\FetchAuthCompanyProfile;
+use App\Services\FetchCompanyStats;
 use Illuminate\Http\Request;
-use App\Services\{FetchAuthCompanyProfile,FetchCompanyStats};
-use App\Http\Requests\{CreateOrUpdateCompanyProfileRequest};
 use Illuminate\Support\Facades\Auth;
 
 class CompanyProfileController extends Controller
 {
-    public function dashboard(FetchAuthCompanyProfile $fetchAuthCompanyProfile,FetchCompanyStats $fetchCompanyStats)
+    public function dashboard(FetchAuthCompanyProfile $fetchAuthCompanyProfile, FetchCompanyStats $fetchCompanyStats)
     {
         $companyProfile = $fetchAuthCompanyProfile->fetch();
 
         $stats = [
-            'total_jobs'        => $fetchCompanyStats->total_jobs($companyProfile),
-            'active_jobs'       => $fetchCompanyStats->active_jobs($companyProfile),
+            'total_jobs' => $fetchCompanyStats->total_jobs($companyProfile),
+            'active_jobs' => $fetchCompanyStats->active_jobs($companyProfile),
         ];
         // Get the latest payment for the logged-in user's company
         $recentPayment = Auth::user()->company_profile->payments()->latest()->first();
-        // dd($recentPayment);
         $activePlan = $recentPayment ? $recentPayment->pricing_plan : null;
-        // dd($activePlan);
-        return view('dashboard.company.index', compact('stats','companyProfile' , 'activePlan'))->with('layout', 'dashboard');
+
+        return view('dashboard.company.index', compact('stats', 'companyProfile', 'activePlan'))->with('layout', 'dashboard');
     }
 
     public function index(FetchAuthCompanyProfile $fetchAuthCompanyProfile)
@@ -34,16 +34,12 @@ class CompanyProfileController extends Controller
         return view('dashboard.company.profile.index', compact('companyProfile'));
     }
 
-
     public function create()
     {
         //
     }
 
-    public function store(Request $request)
-    {
-
-    }
+    public function store(Request $request) {}
 
     /**
      * Display the specified resource.
@@ -58,7 +54,7 @@ class CompanyProfileController extends Controller
      */
     public function edit(CompanyProfile $company_profile)
     {
-        return view('dashboard.company.profile.create-or-edit',compact('company_profile'));
+        return view('dashboard.company.profile.create-or-edit', compact('company_profile'));
     }
 
     /**
@@ -72,17 +68,17 @@ class CompanyProfileController extends Controller
             $image = $request->image->getClientOriginalName();
 
             $request->image->storeAs('public/images', $image);
-        }else {
+        } else {
             $image = null;
         }
 
         $updatedCompanyProfile = $company_profile->update([
-            'name'          => $validated['name'],
-            'description'   => $validated['description'],
-            'phone_number'  => $validated['phone_number'],
-            'url'           => $validated['url'],
-            'linkedin_url'  => $validated['linkedin_url'],
-            'image'         => $image
+            'name' => $validated['name'],
+            'description' => $validated['description'],
+            'phone_number' => $validated['phone_number'],
+            'url' => $validated['url'],
+            'linkedin_url' => $validated['linkedin_url'],
+            'image' => $image,
         ]);
 
         if ($updatedCompanyProfile) {

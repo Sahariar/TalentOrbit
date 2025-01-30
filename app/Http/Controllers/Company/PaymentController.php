@@ -3,31 +3,32 @@
 namespace App\Http\Controllers\Company;
 
 use App\Http\Controllers\Controller;
+use App\Models\Payment;
+use App\Services\FetchAuthCompanyProfile;
+use App\Services\FetchCompanyPayments;
 use Illuminate\Http\Request;
-use App\Services\{FetchAuthCompanyProfile,FetchCompanyPayments};
-use App\Models\{Payment};
 
 class PaymentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(FetchAuthCompanyProfile $fetchAuthCompanyProfile,FetchCompanyPayments $fetchCompanyPayments)
+    public function index(FetchAuthCompanyProfile $fetchAuthCompanyProfile, FetchCompanyPayments $fetchCompanyPayments)
     {
         $companyProfile = $fetchAuthCompanyProfile->fetch();
 
-        $payments       = $fetchCompanyPayments->fetch($companyProfile->id);
+        $payments = $fetchCompanyPayments->fetch($companyProfile->id);
 
-        return view('dashboard.company.payments.index', compact('payments','companyProfile'));
+        return view('dashboard.company.payments.index', compact('payments', 'companyProfile'));
     }
 
-    public function search(Request $request,FetchAuthCompanyProfile $fetchAuthCompanyProfile)
+    public function search(Request $request, FetchAuthCompanyProfile $fetchAuthCompanyProfile)
     {
         $companyProfile = $fetchAuthCompanyProfile->fetch();
 
-        $payments       = Payment::where('company_profile_id', $companyProfile->id)
-                            ->where('amount','LIKE','%'.$request->search.'%')
-                            ->paginate(5);
+        $payments = Payment::where('company_profile_id', $companyProfile->id)
+            ->where('amount', 'LIKE', '%'.$request->search.'%')
+            ->paginate(5);
 
         return view('dashboard.company.payments.index', compact('payments'));
     }
@@ -72,11 +73,11 @@ class PaymentController extends Controller
     public function update(Request $request, Payment $payment)
     {
         $validated = $request->validate([
-            'amount'    => 'required|numeric',
+            'amount' => 'required|numeric',
         ]);
 
         $updatedPayment = $payment->update([
-            'amount'    => $validated['amount']
+            'amount' => $validated['amount'],
         ]);
 
         if ($updatedPayment) {

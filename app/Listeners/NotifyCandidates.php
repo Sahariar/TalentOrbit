@@ -5,8 +5,6 @@ namespace App\Listeners;
 use App\Events\JobPosted;
 use App\Mail\JobNotification;
 use App\Models\CandidateProfile;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Mail;
 
 class NotifyCandidates
@@ -26,7 +24,7 @@ class NotifyCandidates
     {
         //
         $job = $event->job;
-        if (!$job) {
+        if (! $job) {
             logger('Job object is null in JobPosted event.');
         }
         // dd($job);
@@ -37,7 +35,7 @@ class NotifyCandidates
             })->get();
             // Send notifications
             foreach ($subscribedCandidates as $subscriber) {
-                Mail::to($subscriber->user->email)->queue(new JobNotification($event->job , $subscriber->user->candidate_profile));
+                Mail::to($subscriber->user->email)->queue(new JobNotification($event->job, $subscriber->user->candidate_profile));
             }
         }
     }

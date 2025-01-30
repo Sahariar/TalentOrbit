@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{JobPost, Tag, Category};
-use App\Services\{FetchTags};
+use App\Models\Category;
+use App\Models\JobPost;
+use App\Models\Tag;
+use App\Services\FetchTags;
 use Illuminate\Http\Request;
 
 class JobPostController extends Controller
@@ -13,12 +15,12 @@ class JobPostController extends Controller
      */
     public function index(FetchTags $fetchTags)
     {
-        $jobPosts   = JobPost::where('is_public',true)->with(['company_profile', 'category'])->paginate(10);
-        $tags       = $fetchTags->fetch();
+        $jobPosts = JobPost::where('is_public', true)->with(['company_profile', 'category'])->latest()->paginate(10);
+        $tags = $fetchTags->fetch();
 
-        $categories = Category::query()->with(['job_posts:id,category_id,title'])->select('id','name')->paginate(10);
+        $categories = Category::query()->with(['job_posts:id,category_id,title'])->select('id', 'name')->paginate(10);
 
-        return view('public.job.index', compact('jobPosts','tags', 'categories'));
+        return view('public.job.index', compact('jobPosts', 'tags', 'categories'));
     }
 
     /**
@@ -26,7 +28,7 @@ class JobPostController extends Controller
      */
     public function apply(Request $request, JobPost $job)
     {
-        if (!is_null($job->apply_link)) {
+        if (! is_null($job->apply_link)) {
             $job->increment('apply_count');
 
             return redirect($job->apply_link);
@@ -41,20 +43,21 @@ class JobPostController extends Controller
     public function filter(Request $request, FetchTags $fetchTags)
     {
         $validated = $request->validate([
-            'tag_id'    => 'string|required',
-            'location'  => 'string|max:255|required',
+            'tag_id' => 'string|required',
+            'location' => 'string|max:255|required',
         ]);
 
-        $jobPosts = Tag::where('id',$validated['tag_id'])
+        $jobPosts = Tag::where('id', $validated['tag_id'])
             ->first()
             ->job_posts()
-            ->where('location','LIKE','%'.$validated['location'].'%')
+            ->where('location', 'LIKE', '%'.$validated['location'].'%')
             ->paginate(10);
 
         $tags = $fetchTags->fetch();
 
-        $categories = Category::query()->with(['job_posts:id,category_id,title'])->select('id','name')->paginate(10);
-        return view('public.job.index', compact('jobPosts','tags', 'categories'));
+        $categories = Category::query()->with(['job_posts:id,category_id,title'])->select('id', 'name')->paginate(10);
+
+        return view('public.job.index', compact('jobPosts', 'tags', 'categories'));
     }
 
     /**
@@ -64,18 +67,18 @@ class JobPostController extends Controller
     {
         $validated = $request->validate([
             'location' => 'string|required|max:255',
-            'name'     =>'string|required|max:255',
+            'name' => 'string|required|max:255',
         ]);
 
-        $jobPosts = JobPost::query()->where('location','LIKE','%'.$validated['location'].'%')
-            ->orWhere('title','LIKE','%'.$validated['name'].'%')
+        $jobPosts = JobPost::query()->where('location', 'LIKE', '%'.$validated['location'].'%')
+            ->orWhere('title', 'LIKE', '%'.$validated['name'].'%')
             ->paginate(10);
 
         $tags = $fetchTags->fetch();
 
-        $categories = Category::query()->with(['job_posts:id,category_id,title'])->select('id','name')->paginate(10);
+        $categories = Category::query()->with(['job_posts:id,category_id,title'])->select('id', 'name')->paginate(10);
 
-        return view('public.job.index', compact('jobPosts','tags', 'categories'));
+        return view('public.job.index', compact('jobPosts', 'tags', 'categories'));
     }
 
     /**
@@ -84,15 +87,15 @@ class JobPostController extends Controller
     public function categoryJobs(Category $category, FetchTags $fetchTags)
     {
         $jobPosts = JobPost::query()
-                ->where('category_id',$category->id)
-                ->paginate(10);
-                
+            ->where('category_id', $category->id)
+            ->paginate(10);
+
         $tags = $fetchTags->fetch();
 
-        $categories = Category::query()->with(['job_posts:id,category_id,title'])->select('id','name')->paginate(10);
+        $categories = Category::query()->with(['job_posts:id,category_id,title'])->select('id', 'name')->paginate(10);
 
-        return view('public.job.index', compact('jobPosts','tags','categories'));
-        
+        return view('public.job.index', compact('jobPosts', 'tags', 'categories'));
+
     }
 
     /**
@@ -120,8 +123,12 @@ class JobPostController extends Controller
         $job->increment('view_count');
         $job->load('company_profile', 'category');
         $jobPost = $job;
+        $relatedPosts = JobPost::where('category_id', $jobPost->category_id)
+            ->where('id', '!=', $jobPost->id)
+            ->limit(5)
+            ->get();
 
-        return view('public.job.show', compact('jobPost'));
+        return view('public.job.show', compact('jobPost', 'relatedPosts'));
     }
 
     /**
