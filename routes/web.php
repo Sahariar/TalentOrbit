@@ -16,6 +16,7 @@ use App\Http\Controllers\Public\CompanyController;
 use App\Http\Controllers\RSSFeedController;
 use App\Models\Category;
 use App\Models\JobPost;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 

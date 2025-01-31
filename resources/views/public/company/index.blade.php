@@ -23,8 +23,7 @@
                         </div>
                     </div>
                 </div>
-                <img src="assets/images/about/shape.png" alt="" class="absolute block bg-cover -bottom-0 dark:hidden">
-                <img src="assets/images/about/shape-dark.png" alt="" class="absolute hidden bg-cover -bottom-0 dark:block">
+                <img src="{{ asset('storage/images/about/shape.png') }}" alt="" class="absolute block bg-cover -bottom-0 dark:hidden">
             </section>
 
             <!-- Start grid -->
@@ -39,7 +38,7 @@
 
                         <div class="col-span-12 lg:col-span-4">
                             <div class="candidate-list-widgets">
-                                
+
                             </div><!--end candidate-list-widgets-->
                         </div><!--end col-->
                     </div>

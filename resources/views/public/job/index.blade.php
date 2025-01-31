@@ -263,7 +263,7 @@
                             </div>
                             <!--Filter Button-->
                             <div class="col-span-12 xl:col-span-3">
-                                <input type="hidden" name="salary_range" value="" id="input-value">
+                                <input type="hidden" name="salary_range" id="input-value">
                                 <button type="submit" class="w-full text-white border-transparent btn group-data-[theme-color=violet]:bg-violet-500 group-data-[theme-color=sky]:bg-sky-500 group-data-[theme-color=red]:bg-red-500 group-data-[theme-color=green]:bg-green-500 group-data-[theme-color=pink]:bg-pink-500 group-data-[theme-color=blue]:bg-blue-500 focus:ring focus:ring-custom-500/30">
                                     <i class="uil uil-filter"></i> Filter
                                 </button>

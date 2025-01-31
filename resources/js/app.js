@@ -137,9 +137,6 @@ var slider1Value = document.getElementById('slider1-span');
 var inputValue = document.getElementById('input-value');
 
 slider1.noUiSlider.on('update', function (values, handle) {
-    slider1Value.innerHTML = values[handle];
-});
-
-slider1.noUiSlider.on('update', function (values, handle) {
-    inputValue.value = values[handle];
+    document.getElementById('slider1-span').innerHTML = values[handle]; // Display value
+    document.getElementById('input-value').value = values[handle]; // Update hidden input
 });
