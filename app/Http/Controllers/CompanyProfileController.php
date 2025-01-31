@@ -67,7 +67,7 @@ class CompanyProfileController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->image->getClientOriginalName();
 
-            $request->image->storeAs('public/images', $image);
+            $request->image->storeAs('company', $image, 'public');
         } else {
             $image = null;
         }
@@ -78,7 +78,7 @@ class CompanyProfileController extends Controller
             'phone_number' => $validated['phone_number'],
             'url' => $validated['url'],
             'linkedin_url' => $validated['linkedin_url'],
-            'image' => $image,
+            'image' => 'company/' . $image,
         ]);
 
         if ($updatedCompanyProfile) {
