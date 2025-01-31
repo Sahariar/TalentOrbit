@@ -56,7 +56,7 @@ class JobLimitService
     private function getActiveJobsCount(CompanyProfile $companyProfile): int
     {
         return JobPost::where('company_profile_id', $companyProfile->id)
-            ->where('is_available', true)
+            ->where('is_active', true)
             ->count();
     }
 

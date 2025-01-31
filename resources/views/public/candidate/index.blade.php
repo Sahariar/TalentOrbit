@@ -22,8 +22,7 @@
                     </div>
                 </div>
             </div>
-            <img src="assets/images/about/shape.png" alt="" class="absolute block bg-cover -bottom-0 dark:hidden">
-            <img src="assets/images/about/shape-dark.png" alt="" class="absolute hidden bg-cover -bottom-0 dark:block">
+            <img src="{{ asset('storage/images/about/shape.png') }}" alt="" class="absolute block bg-cover -bottom-0 dark:hidden">
         </section>
 
         <!-- Start grid -->
@@ -35,7 +34,7 @@
                                 <h6 class="mb-0 text-gray-900 fs-16 dark:text-gray-50"> Showing {{ $candidates->firstItem() }} – {{ $candidates->lastItem() }} of {{ $candidates->total() }} results </h6>
                             </div>
                             <div class="col-span-12 lg:col-span-4">
-                                
+
                             </div>
                         </div>
                     </div>
@@ -95,8 +94,6 @@
                                     </div>
 
                                     <div class="mt-6">
-{{--                                            hire now option disable--}}
-{{--                                        <a href="#hireNow" data-bs-toggle="modal" class="w-full text-white border-transparent btn group-data-[theme-color=violet]:bg-violet-500 group-data-[theme-color=sky]:bg-sky-500 group-data-[theme-color=red]:bg-red-500 group-data-[theme-color=green]:bg-green-500 group-data-[theme-color=pink]:bg-pink-500 group-data-[theme-color=blue]:bg-blue-500 hover:-translate-y-2"><i class="mdi mdi-account-check"></i> Hire Now</a>--}}
                                         <a href="{{route('candidate.show', $candidate)}}" class="w-full mt-2 border-transparent btn group-data-[theme-color=violet]:bg-violet-500/20 group-data-[theme-color=sky]:bg-sky-500/20 group-data-[theme-color=red]:bg-red-500/20 group-data-[theme-color=green]:bg-green-500/20 group-data-[theme-color=pink]:bg-pink-500/20 group-data-[theme-color=blue]:bg-blue-500/20 group-data-[theme-color=violet]:text-violet-500 group-data-[theme-color=sky]:text-sky-500 group-data-[theme-color=red]:text-red-500
                                             group-data-[theme-color=green]:text-green-500 group-data-[theme-color=pink]:text-pink-500 group-data-[theme-color=blue]:text-blue-500 hover:-translate-y-1 group-data-[theme-color=violet]:hover:bg-violet-500 group-data-[theme-color=violet]:hover:text-white group-data-[theme-color=sky]:hover:bg-sky-500 group-data-[theme-color=sky]:hover:text-white group-data-[theme-color=red]:hover:bg-red-500 group-data-[theme-color=red]:hover:text-white group-data-[theme-color=green]:hover:bg-green-500
                                             group-data-[theme-color=green]:hover:text-white group-data-[theme-color=pink]:hover:bg-pink-500 group-data-[theme-color=pink]:hover:text-white group-data-[theme-color=blue]:hover:bg-blue-500 group-data-[theme-color=blue]:hover:text-white hover:ring group-data-[theme-color=violet]:hover:ring-violet-500/20 group-data-[theme-color=sky]:hover:ring-sky-500/20 group-data-[theme-color=red]:hover:ring-red-500/20 group-data-[theme-color=green]:hover:ring-green-500/20 group-data-[theme-color=pink]:hover:ring-pink-500/20

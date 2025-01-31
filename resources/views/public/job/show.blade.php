@@ -34,7 +34,6 @@
                         <div class="col-span-12 lg:col-span-8">
                             <div class="border rounded-md border-gray-100/30 dark:border-neutral-600/80">
                                 <div class="relative">
-
                                     <img src="{{ url('storage/images/'. $jobPost->featured_image) }}" alt="post_featured_image" class="rounded-md img-fluid mb-7">
 
                                     <div class="absolute z-20 -bottom-7 left-7">
